@@ -14,6 +14,7 @@ import excepciones.UsuarioInactivoException;
  * apellido permance constante
  * nombreUsuario != null
  * nombreUsuario != ""
+ * nombreUsuario.length() <= 10
  * contrasenia != null
  * contrasenia.length() >= 6
  * contrasenia.length() <= 12
@@ -40,6 +41,7 @@ public class Operario {
      * apellido != ""
      * nombreUsuario != null
      * nombreUsuario != ""
+     * nombreUsuario.length() <= 10
      * contrasenia != null
      * contrasenia.length() >= 6
      * contrasenia.length() <= 12
@@ -55,6 +57,7 @@ public class Operario {
         assert apellido != "";
         assert nombreUsuario != null;
         assert nombreUsuario != "";
+        assert nombreUsuario.length() <= 10;
         assert contrasenia != null;
         assert contrasenia.length() >= 6;
         assert contrasenia.length() <= 12;
