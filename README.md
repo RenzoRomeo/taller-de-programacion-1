@@ -10,3 +10,4 @@
 - Como verificar que exista una unica instancia de administrador?
 - Hay que validar las postcondiciones dentro de los constructores?
 - "Al menos dos productos deberan estar promocionados" esto es por dia?
+- Revisar Javadoc del constructor de administrador.
