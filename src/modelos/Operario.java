@@ -104,16 +104,8 @@ public class Operario {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getNombreUsuario() {
         return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
 
     public boolean isActivo() {
@@ -122,5 +114,9 @@ public class Operario {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 }
