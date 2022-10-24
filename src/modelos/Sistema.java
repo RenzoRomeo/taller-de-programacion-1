@@ -1,5 +1,7 @@
 package modelos;
 
+import excepciones.MesaRepetidaException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,13 +93,14 @@ public class Sistema {
      * <b>Pre:</b>
      * mesa != null
      * <b>Post:</b> Se agrega la mesa al sistema.
+     * @throws MesaRepetidaException si la mesa ya está en el sistema.
      * */
-    public void agregarMesa(Mesa mesa) {
+    public void agregarMesa(Mesa mesa) throws MesaRepetidaException {
         assert mesa != null : "La mesa no puede ser nula";
 
-        mesas.stream().filter(m -> m.getNroMesa() == mesa.getNroMesa()).findAny().ifPresent(m -> {
-            throw new IllegalArgumentException("Ya existe una mesa con ese número");
-        });
+        if (mesas.stream().anyMatch(m -> m.getNroMesa() == mesa.getNroMesa())) {
+            throw new MesaRepetidaException("La mesa ya está en el sistema");
+        }
 
         mesas.add(mesa);
 
