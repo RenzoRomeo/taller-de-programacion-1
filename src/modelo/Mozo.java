@@ -20,5 +20,9 @@ public class Mozo {
             this.estado = Estado.ACTIVO;
         }
 
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 }
 

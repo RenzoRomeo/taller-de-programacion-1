@@ -11,6 +11,8 @@ public class Factura {
     private ArrayList<Pedido> listaPedidos = new ArrayList<>();
     private double total;
     private FormaDePago formaDePago;
+    private ArrayList<Promocion> promocionesAplicadas = new ArrayList<>();
+    private Mozo mozo;
 
 
 }
