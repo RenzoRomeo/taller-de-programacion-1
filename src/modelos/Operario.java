@@ -103,6 +103,30 @@ public class Operario {
         // Acciones si se loguea bien
     }
 
+    /**
+     * Metodo que permite cambiar la contraseña del operario.
+     * @param contraseniaNueva Contraseña nueva del operario.
+     * <b>Pre:</b>
+     * contraseniaNueva != null
+     * contraseniaNueva.length() >= 6
+     * contraseniaNueva.length() <= 12
+     * contraseniaNueva contiene al menos un numero
+     * contraseniaNueva contiene al menos una letra mayuscula
+     * <b>Post:</b>
+     * Se cambia la contraseña del operario.
+     */
+    public void cambiarContrasenia(String contraseniaNueva) {
+        assert contraseniaNueva != null;
+        assert contraseniaNueva.length() >= 6;
+        assert contraseniaNueva.length() <= 12;
+        assert contraseniaNueva.matches(".*[0-9].*");
+        assert contraseniaNueva.matches(".*[A-Z].*");
+
+        contrasenia = contraseniaNueva;
+
+        assert contrasenia.equals(contraseniaNueva);
+    }
+
     public String getNombre() {
         return nombre;
     }

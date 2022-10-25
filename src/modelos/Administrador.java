@@ -12,4 +12,16 @@ public class Administrador extends Operario {
         super("ADMIN", "ADMIN", "ADMIN", "ADMIN1234");
         establecioContrasenia = false;
     }
+
+    /**
+     * <b>Post:</b>
+     * Se establece la contraseña del administrador.
+     */
+    @Override
+    public void cambiarContrasenia(String contraseniaNueva) {
+        super.cambiarContrasenia(contraseniaNueva);
+        establecioContrasenia = true;
+
+        assert establecioContrasenia;
+    }
 }
