@@ -85,5 +85,43 @@ public class Sistema {
         comanda.cerrarComanda(formaDePago);
     }
 
+    /**
+     *
+     * @param mozo
+     * @param mesa
+     *
+     * <b>Pre:</b>
+     * mozo != null
+     * mozo.getEstado() == Estado.ACTIVO
+     * mesa != null
+     * mozos.contains(mozo)
+     * mesas.contains(mesa)
+     *
+     *
+     * <b>Post:</b>
+     * asignacionMesas.get(mozo).contains(mesa)
+     *
+     */
+    public void asignarMesa(Mozo mozo, Mesa mesa) {
+        assert mozo != null;
+        assert mozo.getEstado() == Estado.ACTIVO;
+        assert mesa != null;
+        assert mozos.contains(mozo);
+        assert mesas.contains(mesa);
+
+
+        if (asignacionMesas.containsKey(mozo)) {
+            if (!asignacionMesas.get(mozo).contains(mesa))
+                asignacionMesas.get(mozo).add(mesa);
+        }else {
+            ArrayList<Mesa> m = new ArrayList<>();
+            m.add(mesa);
+            asignacionMesas.put(mozo, m);
+        }
+
+        assert asignacionMesas.get(mozo).contains(mesa);
+
+    }
+
 
 }

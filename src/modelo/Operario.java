@@ -16,7 +16,6 @@ public abstract class Operario {
      * @param apellido
      * @param nombreUsuario
      * @param contrasenia
-     * @param activo
      *
      * <b>Pre:</b>
      * nombre != null
@@ -67,6 +66,7 @@ public abstract class Operario {
     }
 
     public void asignarMesa(Mozo mozo, Mesa mesa) {
-        mozo.asignarMesa(mesa);
+        Sistema s = Sistema.getInstance();
+        s.asignarMesa(mozo, mesa);
     }
 }
