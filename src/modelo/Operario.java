@@ -44,7 +44,7 @@ public abstract class Operario {
         assert contrasenia != "";
         assert contrasenia.length() >= 6;
         assert contrasenia.length() <= 12;
-        assert contrasenia.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,10}$");
+        assert contrasenia.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,10}$"); //Regex que verifica que la contrasenia tenga al menos una mayuscula, un numero y que no tenga espacios en blanco
 
 
         this.nombre = nombre;
@@ -68,5 +68,17 @@ public abstract class Operario {
     public void asignarMesa(Mozo mozo, Mesa mesa) {
         Sistema s = Sistema.getInstance();
         s.asignarMesa(mozo, mesa);
+    }
+
+    public String getNombreUsuario() {
+        return this.nombreUsuario;
+    }
+
+    public String getContrasenia() {
+        return this.contrasenia;
+    }
+
+    public boolean isActivo() {
+        return this.activo;
     }
 }
