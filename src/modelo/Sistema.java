@@ -2,6 +2,9 @@ package modelo;
 
 import enums.Estado;
 import enums.FormaDePago;
+import excepciones.ContraseniaIncorrectaException;
+import excepciones.UsuarioInactivoException;
+import excepciones.UsuarioNoExisteException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +29,41 @@ public class Sistema {
         }
         return sistema;
     }
+
+    public void setNombreLocal(String nombreLocal) {
+        this.nombreLocal = nombreLocal;
+    }
+
+    /**
+     *
+     * @param nombreUsuario
+     * @param contrasenia
+     *
+     * <b>Pre:</b>
+     * nombreUsuario != null
+     * contrasenia != null
+     *
+     * <b>Post:</b>
+     * //TODO
+     *
+     */
+    public void iniciarSesionOperario(String nombreUsuario, String contrasenia) throws UsuarioInactivoException, UsuarioNoExisteException, ContraseniaIncorrectaException {
+        for (Operario operario : operarios) {
+            if (operario.getNombreUsuario().equals(nombreUsuario)) {
+                if (operario.getContrasenia().equals(contrasenia)) {
+                    if (operario.isActivo()) {
+                        //TODO: Iniciar sesion
+                    } else {
+                        throw new UsuarioInactivoException();
+                    }
+                } else {
+                    throw new ContraseniaIncorrectaException();
+                }
+            }
+        }
+        throw new UsuarioNoExisteException();
+    }
+
 
 
     public void agregarOperario(Operario operario) {
