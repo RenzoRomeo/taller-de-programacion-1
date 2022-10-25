@@ -110,17 +110,22 @@ public class Sistema {
         //TODO
     }
 
-    public void crearComanda(Mesa mesa) {
-        Comanda comanda = new Comanda();
+    //La comanda va estar abierta siempre y cuando exista
+    //Se crea con un unico producto y se le van agregando pedidos
+    public void crearComanda(Mesa mesa, Producto producto, int cantidad) {
+        Comanda comanda = new Comanda(producto, cantidad);
         comandas.put(mesa, comanda);
     }
-    public void agregarPedido(Pedido pedido, Mesa mesa) {
+
+    //Se agrega de a un producto a la comanda
+    public void agregarPedido(Producto p, int cantidad, Mesa mesa) {
         Comanda comanda = comandas.get(mesa);
-        comanda.agregarPedido(pedido);
+        comanda.agregarPedido(p, cantidad);
     }
     public void cerrarComanda(Mesa mesa, FormaDePago formaDePago) {
         Comanda comanda = comandas.get(mesa);
         comanda.cerrarComanda(formaDePago);
+        comandas.remove(mesa);
     }
 
     /**
