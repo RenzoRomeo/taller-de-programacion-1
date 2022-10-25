@@ -71,6 +71,22 @@ public class Sistema {
     }
 
     /**
+     * Elimina un mozo del sistema.
+     * <b>Pre:</b>
+     * mozo != null
+     * El mozo debe estar en el sistema.
+     * <b>Post:</b> Se elimina el mozo del sistema.
+     * */
+    public void eliminarMozo(Mozo mozo) {
+        assert mozo != null : "El mozo no puede ser nulo";
+        assert mozos.contains(mozo) : "El mozo no se encuentra en el sistema";
+
+        mozos.remove(mozo);
+
+        assert !mozos.contains(mozo) : "El mozo no se eliminó";
+    }
+
+    /**
      * Establece el estado de un mozo.
      * <b>Pre:</b>
      * mozo != null
@@ -108,6 +124,22 @@ public class Sistema {
     }
 
     /**
+     * Elimina una mesa del sistema.
+     * <b>Pre:</b>
+     * mesa != null
+     * La mesa debe estar en el sistema.
+     * <b>Post:</b> Se elimina la mesa del sistema.
+     * */
+    public void eliminarMesa(Mesa mesa) {
+        assert mesa != null : "La mesa no puede ser nula";
+        assert mesas.contains(mesa) : "La mesa no está en el sistema";
+
+        mesas.remove(mesa);
+
+        assert !mesas.contains(mesa) : "La mesa no se eliminó";
+    }
+
+    /**
      * Asigna una mesa a un mozo.
      * <b>Pre:</b>
      * mozo != null
@@ -116,7 +148,7 @@ public class Sistema {
      * La mesa debe estar en el sistema.
      * <b>Post:</b> Se asigna la mesa al mozo.
      * */
-    public void asignarMesaAMozo(Mozo mozo, Mesa mesa) {
+    public void asignarMesa(Mozo mozo, Mesa mesa) {
         assert mozo != null : "El mozo no puede ser nulo";
         assert mesa != null : "La mesa no puede ser nula";
         assert mozos.contains(mozo) : "El mozo no está en el sistema";
