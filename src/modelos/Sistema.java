@@ -31,6 +31,7 @@ public class Sistema {
     private Map<Mozo, List<Mesa>> asignacionMesas;
     private Map<Mesa, Comanda> comandas;
     private List<Promocion> promociones;
+    private Administrador administrador;
 
     /**
      * Crea un sistema con en nombre indicado e inicializa las colecciones.
@@ -52,6 +53,7 @@ public class Sistema {
         asignacionMesas = new HashMap<>();
         comandas = new HashMap<>();
         promociones = new ArrayList<>();
+        administrador = new Administrador();
     }
 
     /**
@@ -84,6 +86,38 @@ public class Sistema {
         mozos.remove(mozo);
 
         assert !mozos.contains(mozo) : "El mozo no se eliminó";
+    }
+
+    /**
+     * Agrega un producto al sistema.
+     * <b>Pre:</b>
+     * producto != null
+     * El producto no debe estar en el sistema.
+     * <b>Post:</b> Se agrega el producto al sistema.
+     * */
+    public void agregarProducto(Producto producto) {
+        assert producto != null : "El producto no puede ser nulo";
+        assert !productos.contains(producto) : "El producto ya se encuentra en el sistema";
+
+        productos.add(producto);
+
+        assert productos.contains(producto) : "El producto no se agregó";
+    }
+
+    /**
+     * Elimina un producto del sistema.
+     * <b>Pre:</b>
+     * producto != null
+     * El producto debe estar en el sistema.
+     * <b>Post:</b> Se elimina el producto del sistema.
+     * */
+    public void eliminarProducto(Producto producto) {
+        assert producto != null : "El producto no puede ser nulo";
+        assert productos.contains(producto) : "El producto no se encuentra en el sistema";
+
+        productos.remove(producto);
+
+        assert !productos.contains(producto) : "El producto no se eliminó";
     }
 
     /**
