@@ -162,4 +162,12 @@ public class Sistema {
     }
 
 
+    public boolean existeMesa(int nroMesa) {
+        for (Mesa mesa : mesas) {
+            if (mesa.getNroMesa() == nroMesa) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
