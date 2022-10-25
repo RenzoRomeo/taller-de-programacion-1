@@ -1,6 +1,7 @@
 package modelos;
 
 import excepciones.MesaRepetidaException;
+import excepciones.SistemaYaInicializadoException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,27 +34,61 @@ public class Sistema {
     private List<Promocion> promociones;
     private Administrador administrador;
 
+    private static Sistema instancia = null;
+
+    private Sistema() {
+
+    }
+
     /**
-     * Crea un sistema con en nombre indicado e inicializa las colecciones.
+     * Devuelve la instancia del sistema.
      * <b>Pre:</b>
-     * nombreLocal != null
-     * nombreLocal != ""
-     * <b>post:</b> Se crea el sistema con el nombre indicado y las colecciones vacías.
-     * */
-    public Sistema(String nombreLocal) {
+     * El sistema ya fue inicializado.
+     *
+     * @return Instancia del sistema.
+     */
+    public static Sistema getInstancia() {
+        return instancia;
+    }
+
+    /**
+     * Devuelve verdadero si el sistema ya fue inicializado.
+     *
+     * @return Si el sistema ya fue inicializado.
+     */
+    public static boolean isInicializado() {
+        return instancia != null;
+    }
+
+    /**
+     * Inicializa el sistema con en nombre indicado y sus colecciones.
+     *
+     * @param nombreLocal Nombre del local.
+     *                    <b>Pre:</b>
+     *                    nombreLocal != null
+     *                    nombreLocal != ""
+     *                    <b>post:</b> Se crea el sistema con el nombre indicado y las colecciones vacías.
+     * @throws SistemaYaInicializadoException si el sistema ya fue inicializado.
+     */
+    public static void inicializarSistema(String nombreLocal) throws SistemaYaInicializadoException {
         assert nombreLocal != null : "El nombre del local no puede ser nulo";
         assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
 
-        this.nombreLocal = nombreLocal;
+        if (instancia != null) {
+            throw new SistemaYaInicializadoException();
+        }
 
-        mozos = new ArrayList<>();
-        mesas = new ArrayList<>();
-        productos = new ArrayList<>();
-        operarios = new ArrayList<>();
-        asignacionMesas = new HashMap<>();
-        comandas = new HashMap<>();
-        promociones = new ArrayList<>();
-        administrador = new Administrador();
+        instancia = new Sistema();
+
+        instancia.nombreLocal = nombreLocal;
+        instancia.mozos = new ArrayList<>();
+        instancia.mesas = new ArrayList<>();
+        instancia.productos = new ArrayList<>();
+        instancia.operarios = new ArrayList<>();
+        instancia.asignacionMesas = new HashMap<>();
+        instancia.comandas = new HashMap<>();
+        instancia.promociones = new ArrayList<>();
+        instancia.administrador = new Administrador();
     }
 
     /**
@@ -149,7 +184,7 @@ public class Sistema {
         assert mesa != null : "La mesa no puede ser nula";
 
         if (mesas.stream().anyMatch(m -> m.getNroMesa() == mesa.getNroMesa())) {
-            throw new MesaRepetidaException("La mesa ya está en el sistema");
+            throw new MesaRepetidaException();
         }
 
         mesas.add(mesa);
@@ -191,5 +226,18 @@ public class Sistema {
         asignacionMesas.computeIfAbsent(mozo, k -> new ArrayList<>()).add(mesa);
 
         assert asignacionMesas.get(mozo).contains(mesa) : "La mesa no se asignó al mozo";
+    }
+
+    /**
+     * Crea una comanda para una mesa.
+     * <b>Pre:</b>
+     */
+    public void crearComanda(Mesa mesa) {
+        assert mesa != null : "La mesa no puede ser nula";
+        assert mesas.contains(mesa) : "La mesa no está en el sistema";
+
+        comandas.put(mesa, new Comanda());
+
+        assert comandas.containsKey(mesa) : "La comanda no se creó";
     }
 }
