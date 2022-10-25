@@ -127,6 +127,18 @@ public class Operario {
         assert contrasenia.equals(contraseniaNueva);
     }
 
+    /**
+     * Crea una nueva comanda y se la asiga a una mesa.
+     *
+     * @param mesa Mesa a la que se le asigna la comanda.
+     *             <b>Pre:</b>
+     *             mesa != null
+     *             mesa.isOcupada() == false
+     */
+    public void crearComanda(Mesa mesa) {
+
+    }
+
     public String getNombre() {
         return nombre;
     }
