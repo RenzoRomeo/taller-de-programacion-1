@@ -8,10 +8,8 @@ import excepciones.UsuarioInactivoException;
  * <b>Inv:</b>
  * nombre != null
  * nombre != ""
- * nombre permance constante
  * apellido != null
  * apellido != ""
- * apellido permance constante
  * nombreUsuario != null
  * nombreUsuario != ""
  * nombreUsuario.length() <= 10
@@ -158,4 +156,6 @@ public class Operario {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+    // TODO invariantes de clase.
 }
