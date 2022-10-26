@@ -15,14 +15,14 @@ public class Pedido {
 
     /**
      * Crea un pedido con un producto y su cantidad.
-     *
      * @param producto Producto del pedido.
      * @param cantidad Cantidad de unidades del producto pedidas.
-     *                 <b>Pre:</b>
-     *                 producto != null
-     *                 cantidad > 0
-     *                 <b>Post:</b>
-     *                 Se crea un nuevo pedido con el producto y la cantidad ingresados.
+     * <b>Pre:</b>
+     * producto != null
+     * cantidad > 0
+     * <b>Post:</b>
+     * Se crea un nuevo pedido con el producto y la cantidad ingresados.
+     * La fecha del pedido es la actual.
      */
     public Pedido(Producto producto, int cantidad) {
         assert producto != null : "El producto no puede ser nulo";
@@ -34,5 +34,6 @@ public class Pedido {
 
         assert this.producto == producto : "El producto no se asignó correctamente";
         assert this.cantidad == cantidad : "La cantidad no se asignó correctamente";
+        // TODO validar la fecha.
     }
 }
