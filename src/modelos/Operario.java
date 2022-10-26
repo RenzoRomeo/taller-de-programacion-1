@@ -49,18 +49,18 @@ public class Operario {
      * Se crea un nuevo operario con los datos ingresados y con el estado activo.
      */
     public Operario(String nombre, String apellido, String nombreUsuario, String contrasenia) {
-        assert nombre != null;
-        assert nombre != "";
-        assert apellido != null;
-        assert apellido != "";
-        assert nombreUsuario != null;
-        assert nombreUsuario != "";
-        assert nombreUsuario.length() <= 10;
-        assert contrasenia != null;
-        assert contrasenia.length() >= 6;
-        assert contrasenia.length() <= 12;
-        assert contrasenia.matches(".*[0-9].*");
-        assert contrasenia.matches(".*[A-Z].*");
+        assert nombre != null : "El nombre del operario no puede ser nulo";
+        assert nombre != "" : "El nombre del operario no puede ser vacío";
+        assert apellido != null : "El apellido del operario no puede ser nulo";
+        assert apellido != "" : "El apellido del operario no puede ser vacío";
+        assert nombreUsuario != null : "El nombre de usuario del operario no puede ser nulo";
+        assert nombreUsuario != "" : "El nombre de usuario del operario no puede ser vacío";
+        assert nombreUsuario.length() <= 10 : "El nombre de usuario del operario no puede tener más de 10 caracteres";
+        assert contrasenia != null : "La contraseña del operario no puede ser nula";
+        assert contrasenia.length() >= 6 : "La contraseña del operario no puede tener menos de 6 caracteres";
+        assert contrasenia.length() <= 12 : "La contraseña del operario no puede tener más de 12 caracteres";
+        assert contrasenia.matches(".*[0-9].*") : "La contraseña del operario debe contener al menos un número";
+        assert contrasenia.matches(".*[A-Z].*") : "La contraseña del operario debe contener al menos una letra mayúscula";
 
         this.nombre = nombre;
         this.apellido = apellido;
@@ -68,11 +68,11 @@ public class Operario {
         this.contrasenia = contrasenia;
         this.activo = true;
 
-        assert this.nombre == nombre;
-        assert this.apellido == apellido;
-        assert this.nombreUsuario == nombreUsuario;
-        assert this.contrasenia == contrasenia;
-        assert this.activo == true;
+        assert this.nombre == nombre : "El nombre no se asignó correctamente";
+        assert this.apellido == apellido : "El apellido no se asignó correctamente";
+        assert this.nombreUsuario == nombreUsuario : "El nombre de usuario no se asignó correctamente";
+        assert this.contrasenia == contrasenia : "La contraseña no se asignó correctamente";
+        assert this.activo == true : "El estado del operario no se asignó correctamente";
     }
 
     public void establecerEstadoMozo(Mozo mozo, Estado estado) {
