@@ -1,5 +1,7 @@
 package modelos;
 
+import excepciones.AdministradorExistenteException;
+
 /**
  * Clase que representa a un administrador del sistema.
  * <b>Inv:</b>
@@ -7,10 +9,29 @@ package modelos;
  */
 public class Administrador extends Operario {
     private boolean establecioContrasenia;
+    private static Administrador instancia;
+    private static boolean inicializado = false;
 
-    public Administrador() {
+    /**
+     * Crea un administrador con los valores por defecto.
+     * <b>Post:</b>
+     * establecioContrasenia == false
+     */
+    private Administrador() {
         super("ADMIN", "ADMIN", "ADMIN", "ADMIN1234");
         establecioContrasenia = false;
+
+        assert !establecioContrasenia : "No se estableció el atributo 'establecioContrasenia'";
+    }
+
+    public static Administrador crearAdministrador() throws AdministradorExistenteException {
+        if (inicializado)
+            throw new AdministradorExistenteException();
+
+        Administrador administrador = new Administrador();
+        inicializado = true;
+
+        return administrador;
     }
 
     /**
@@ -23,5 +44,9 @@ public class Administrador extends Operario {
         establecioContrasenia = true;
 
         assert establecioContrasenia;
+    }
+
+    public static boolean isInicializado() {
+        return inicializado;
     }
 }

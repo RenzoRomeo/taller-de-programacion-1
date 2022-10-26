@@ -1,5 +1,6 @@
 package modelos;
 
+import excepciones.AdministradorExistenteException;
 import excepciones.MesaRepetidaException;
 import excepciones.SistemaYaInicializadoException;
 
@@ -70,7 +71,7 @@ public class Sistema {
      *                    <b>post:</b> Se crea el sistema con el nombre indicado y las colecciones vacías.
      * @throws SistemaYaInicializadoException si el sistema ya fue inicializado.
      */
-    public static void inicializarSistema(String nombreLocal) throws SistemaYaInicializadoException {
+    public static void inicializarSistema(String nombreLocal) throws SistemaYaInicializadoException, AdministradorExistenteException {
         assert nombreLocal != null : "El nombre del local no puede ser nulo";
         assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
 
@@ -88,7 +89,7 @@ public class Sistema {
         instancia.asignacionMesas = new HashMap<>();
         instancia.comandas = new HashMap<>();
         instancia.promociones = new ArrayList<>();
-        instancia.administrador = new Administrador();
+        instancia.administrador = Administrador.crearAdministrador();
     }
 
     /**
