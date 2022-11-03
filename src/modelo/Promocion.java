@@ -9,6 +9,10 @@ public abstract class Promocion {
     private boolean activa;
     private ArrayList<Dia> diasPromo = new ArrayList<>();
 
+    public Promocion(int id, boolean activa, ArrayList<Dia> diasPromo) {
+        this.id = id;
+        this.activa = true;
+    }
     public boolean estaActiva() {
         return activa;
     }
