@@ -4,10 +4,7 @@ import excepciones.AdministradorExistenteException;
 import excepciones.MesaRepetidaException;
 import excepciones.SistemaYaInicializadoException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <b>Inv:</b>
@@ -21,9 +18,9 @@ import java.util.Map;
  * comandas != null
  * promociones != null
  * mozos.size() <= 6
- * Al menos 2 productos deberán estar promocionados (¿Por día?).
+ * Al menos 2 productos deberán estar promocionados.
  * Se establecen días de promocion para todos los productos.
- * */
+ */
 public class Sistema {
     private String nombreLocal;
     private List<Mozo> mozos;
@@ -32,7 +29,7 @@ public class Sistema {
     private List<Operario> operarios;
     private Map<Mozo, List<Mesa>> asignacionMesas;
     private Map<Mesa, Comanda> comandas;
-    private List<Promocion> promociones;
+    private Map<Producto, List<Promocion>> promociones;
     private Administrador administrador;
 
     private static Sistema instancia = null;
@@ -88,8 +85,10 @@ public class Sistema {
         instancia.operarios = new ArrayList<>();
         instancia.asignacionMesas = new HashMap<>();
         instancia.comandas = new HashMap<>();
-        instancia.promociones = new ArrayList<>();
+        instancia.promociones = new HashMap<>();
         instancia.administrador = Administrador.crearAdministrador();
+
+        assert instancia.verificarInvariantes() : "No se cumple la invariante";
     }
 
     /**
@@ -98,7 +97,7 @@ public class Sistema {
      * mozo != null
      * mozos.size() < 6
      * <b>Post:</b> Se agrega el mozo al sistema.
-     * */
+     */
     public void agregarMozo(Mozo mozo) {
         assert mozo != null : "El mozo no puede ser nulo";
         assert mozos.size() < 6 : "No puede haber más de 6 mozos";
@@ -106,6 +105,7 @@ public class Sistema {
         mozos.add(mozo);
 
         assert mozos.contains(mozo) : "El mozo no se agregó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -114,7 +114,7 @@ public class Sistema {
      * mozo != null
      * El mozo debe estar en el sistema.
      * <b>Post:</b> Se elimina el mozo del sistema.
-     * */
+     */
     public void eliminarMozo(Mozo mozo) {
         assert mozo != null : "El mozo no puede ser nulo";
         assert mozos.contains(mozo) : "El mozo no se encuentra en el sistema";
@@ -122,6 +122,7 @@ public class Sistema {
         mozos.remove(mozo);
 
         assert !mozos.contains(mozo) : "El mozo no se eliminó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -130,7 +131,7 @@ public class Sistema {
      * producto != null
      * El producto no debe estar en el sistema.
      * <b>Post:</b> Se agrega el producto al sistema.
-     * */
+     */
     public void agregarProducto(Producto producto) {
         assert producto != null : "El producto no puede ser nulo";
         assert !productos.contains(producto) : "El producto ya se encuentra en el sistema";
@@ -138,6 +139,7 @@ public class Sistema {
         productos.add(producto);
 
         assert productos.contains(producto) : "El producto no se agregó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -146,7 +148,7 @@ public class Sistema {
      * producto != null
      * El producto debe estar en el sistema.
      * <b>Post:</b> Se elimina el producto del sistema.
-     * */
+     */
     public void eliminarProducto(Producto producto) {
         assert producto != null : "El producto no puede ser nulo";
         assert productos.contains(producto) : "El producto no se encuentra en el sistema";
@@ -154,6 +156,7 @@ public class Sistema {
         productos.remove(producto);
 
         assert !productos.contains(producto) : "El producto no se eliminó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -163,7 +166,7 @@ public class Sistema {
      * estado != null
      * El mozo debe estar en el sistema.
      * <b>Post:</b> Se establece el estado del mozo.
-     * */
+     */
     public void establecerEstadoMozo(Mozo mozo, Estado estado) {
         assert mozo != null : "El mozo no puede ser nulo";
         assert estado != null : "El estado no puede ser nulo";
@@ -172,6 +175,7 @@ public class Sistema {
         mozo.setEstado(estado);
 
         assert mozo.getEstado() == estado : "El estado no se estableció";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -179,8 +183,9 @@ public class Sistema {
      * <b>Pre:</b>
      * mesa != null
      * <b>Post:</b> Se agrega la mesa al sistema.
+     *
      * @throws MesaRepetidaException si la mesa ya está en el sistema.
-     * */
+     */
     public void agregarMesa(Mesa mesa) throws MesaRepetidaException {
         assert mesa != null : "La mesa no puede ser nula";
 
@@ -191,6 +196,7 @@ public class Sistema {
         mesas.add(mesa);
 
         assert mesas.contains(mesa) : "La mesa no se agregó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -199,7 +205,7 @@ public class Sistema {
      * mesa != null
      * La mesa debe estar en el sistema.
      * <b>Post:</b> Se elimina la mesa del sistema.
-     * */
+     */
     public void eliminarMesa(Mesa mesa) {
         assert mesa != null : "La mesa no puede ser nula";
         assert mesas.contains(mesa) : "La mesa no está en el sistema";
@@ -207,6 +213,7 @@ public class Sistema {
         mesas.remove(mesa);
 
         assert !mesas.contains(mesa) : "La mesa no se eliminó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -217,7 +224,7 @@ public class Sistema {
      * El mozo debe estar en el sistema.
      * La mesa debe estar en el sistema.
      * <b>Post:</b> Se asigna la mesa al mozo.
-     * */
+     */
     public void asignarMesa(Mozo mozo, Mesa mesa) {
         assert mozo != null : "El mozo no puede ser nulo";
         assert mesa != null : "La mesa no puede ser nula";
@@ -227,6 +234,7 @@ public class Sistema {
         asignacionMesas.computeIfAbsent(mozo, k -> new ArrayList<>()).add(mesa);
 
         assert asignacionMesas.get(mozo).contains(mesa) : "La mesa no se asignó al mozo";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
@@ -240,5 +248,54 @@ public class Sistema {
         comandas.put(mesa, new Comanda());
 
         assert comandas.containsKey(mesa) : "La comanda no se creó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
+    }
+
+    public ModoOperacion getModoOperacion() {
+        return modoOperacion;
+    }
+
+    private boolean verificarInvariantes() {
+        Dia diaActual = Dia.getDiaActual();
+        Set<Map.Entry<Producto, List<Promocion>>> entries = promociones.entrySet();
+        Iterator<Map.Entry<Producto, List<Promocion>>> iterator = entries.iterator();
+        int productosPromocionadosHoy = 0;
+        while (iterator.hasNext() && productosPromocionadosHoy < 2) {
+            Map.Entry<Producto, List<Promocion>> entry = iterator.next();
+            List<Promocion> promociones = entry.getValue();
+            Iterator<Promocion> iteratorPromociones = promociones.iterator();
+            boolean productoPromocionadoHoy = false;
+            while (iteratorPromociones.hasNext() && productosPromocionadosHoy < 2 && !productoPromocionadoHoy) {
+                Promocion promocion = iteratorPromociones.next();
+                if (promocion.getDiasPromo().contains(diaActual)) {
+                    productosPromocionadosHoy++;
+                    productoPromocionadoHoy = true;
+                }
+            }
+        }
+
+        // TODO: Verificar si nos cortan la cabeza por usar break.
+        /*for (Map.Entry<Producto, List<Promocion>> entry : promociones.entrySet()) {
+            List<Promocion> promocionesProducto = entry.getValue();
+
+            for (Promocion promocion : promocionesProducto) {
+                if (promocion.getDiasPromo().contains(diaActual)) {
+                    productosPromocionadosHoy++;
+                    break;
+                }
+            }
+
+            if (productosPromocionadosHoy >= 2) {
+                break;
+            }
+        }*/
+
+        return nombreLocal != null && !nombreLocal.equals("") && mozos != null
+                && mesas != null && productos != null && operarios != null
+                && asignacionMesas != null && comandas != null
+                && promociones != null && mozos.size() <= 6
+                && productosPromocionadosHoy >= 2
+                && promociones.values().stream().allMatch(promocionesProducto -> promocionesProducto != null && promocionesProducto.stream().allMatch(promocion -> promocion.getDiasPromo() != null));
+
     }
 }
