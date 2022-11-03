@@ -36,4 +36,10 @@ public class Mesa {
     public int getNroMesa() {
         return this.nroMesa;
     }
+    public boolean getEstaOcupada() {
+        return this.estaOcupada;
+    }
+    public void setEstaOcupada(boolean estaOcupada) {
+        this.estaOcupada = estaOcupada;
+    }
 }
