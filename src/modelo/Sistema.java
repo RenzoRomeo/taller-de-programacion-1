@@ -19,6 +19,7 @@ public class Sistema {
     private HashMap<Mozo, ArrayList<Mesa>> asignacionMesas = new HashMap<>();
     private HashMap<Mesa, Comanda> comandas = new HashMap<>();
     private ArrayList<Promocion> promociones = new ArrayList<>();
+    private Administrador administrador;
 
     //Singleton sistema
     private static Sistema sistema = null;
@@ -184,22 +185,38 @@ public class Sistema {
     /**
      *
      * @param mesa
-     * @param producto
-     * @param cantidad
      *
      * <b>Pre:</b>
+     * mesas.size() > 0
      * mesa != null
-     * producto != null
-     * cantidad > 0
+     * Mesa tiene mozo activo asignado
+     * mesa tiene estado libre
+     * al menos 2 productos en promocion activa
      *
      */
-    public void crearComanda(Mesa mesa, Producto producto, int cantidad) {
+    public void crearComanda(Mesa mesa, Pedido pedido) {
         assert mesa != null;
-        assert producto != null;
-        assert cantidad > 0;
+        assert mesa.getEstaOcupada() == false;
 
-        Comanda comanda = new Comanda(producto, cantidad);
-        comandas.put(mesa, comanda);
+
+        int cantidadPromocion = 0;
+        for (Promocion promocion : promociones) {
+            if (promocion.estaActiva()) {
+                cantidadPromocion++;
+            }
+        }
+
+        //chequea que la mesa tenga un mozo activo asignado antes de crearla
+        int finalCantidadPromocion = cantidadPromocion;
+        asignacionMesas.forEach((mozo, mesasAsignadas) -> {
+            if (mesasAsignadas.contains(mesa) && mozo.getEstado() == Estado.ACTIVO && finalCantidadPromocion >= 2) {
+                        Comanda comanda = new Comanda(pedido);
+                        comandas.put(mesa, comanda);
+                        mesa.setEstaOcupada(true);
+            }
+        });
+
+
     }
 
     //Se agrega de a un producto a la comanda
@@ -239,9 +256,6 @@ public class Sistema {
         assert mesa != null;
         assert formaDePago != null;
 
-        Comanda comanda = comandas.get(mesa);
-        comanda.cerrarComanda(formaDePago);
-        comandas.remove(mesa);
     }
 
     /**

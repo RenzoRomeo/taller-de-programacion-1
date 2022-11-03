@@ -9,4 +9,8 @@ public abstract class Promocion {
     private boolean activa;
     private ArrayList<Dia> diasPromo = new ArrayList<>();
 
+    public boolean estaActiva() {
+        return activa;
+    }
+
 }
