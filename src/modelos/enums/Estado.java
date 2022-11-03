@@ -1,4 +1,4 @@
-package modelos;
+package modelos.enums;
 
 public enum Estado {
     ACTIVO,
