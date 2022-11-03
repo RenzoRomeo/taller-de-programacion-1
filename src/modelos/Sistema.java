@@ -3,6 +3,8 @@ package modelos;
 import excepciones.AdministradorExistenteException;
 import excepciones.MesaRepetidaException;
 import excepciones.SistemaYaInicializadoException;
+import modelos.enums.Estado;
+import modelos.enums.ModoOperacion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +36,7 @@ public class Sistema {
     private Map<Mesa, Comanda> comandas;
     private List<Promocion> promociones;
     private Administrador administrador;
+    private ModoOperacion modoOperacion;
 
     private static Sistema instancia = null;
 
@@ -49,6 +52,7 @@ public class Sistema {
      * @return Instancia del sistema.
      */
     public static Sistema getInstancia() {
+        assert isInicializado() : "El sistema no ha sido inicializado";
         return instancia;
     }
 
@@ -69,7 +73,8 @@ public class Sistema {
      *                    nombreLocal != null
      *                    nombreLocal != ""
      *                    <b>post:</b> Se crea el sistema con el nombre indicado y las colecciones vacías.
-     * @throws SistemaYaInicializadoException si el sistema ya fue inicializado.
+     * @throws SistemaYaInicializadoException  si el sistema ya fue inicializado.
+     * @throws AdministradorExistenteException si el sistema ya tiene un administrador.
      */
     public static void inicializarSistema(String nombreLocal) throws SistemaYaInicializadoException, AdministradorExistenteException {
         assert nombreLocal != null : "El nombre del local no puede ser nulo";
@@ -90,6 +95,18 @@ public class Sistema {
         instancia.comandas = new HashMap<>();
         instancia.promociones = new ArrayList<>();
         instancia.administrador = Administrador.crearAdministrador();
+        instancia.modoOperacion = ModoOperacion.OPERARIO;
+
+        assert instancia.nombreLocal == nombreLocal : "El nombre del local no se asignó correctamente";
+        assert instancia.mozos != null : "La lista de mozos no se inicializó correctamente";
+        assert instancia.mesas != null : "La lista de mesas no se inicializó correctamente";
+        assert instancia.productos != null : "La lista de productos no se inicializó correctamente";
+        assert instancia.operarios != null : "La lista de operarios no se inicializó correctamente";
+        assert instancia.asignacionMesas != null : "La asignación de mesas no se inicializó correctamente";
+        assert instancia.comandas != null : "La lista de comandas no se inicializó correctamente";
+        assert instancia.promociones != null : "La lista de promociones no se inicializó correctamente";
+        assert instancia.administrador != null : "El administrador no se inicializó correctamente";
+        assert instancia.modoOperacion == ModoOperacion.OPERARIO : "El modo administrador no se inicializó correctamente";
     }
 
     /**
@@ -241,4 +258,21 @@ public class Sistema {
 
         assert comandas.containsKey(mesa) : "La comanda no se creó";
     }
+
+
+    /**
+     * Asigna el modo de operacion del sistema.
+     * <b>Pre:</b> modoOperacion != null
+     * <b>Post: </b> Se asigna el modo de operacion del sistema.
+     *
+     * @param modoOperacion El modo de operacion del sistema.
+     */
+    public void setModoOperacion(ModoOperacion modoOperacion) {
+        assert modoOperacion != null : "El modo de operacion no puede ser nulo";
+
+        this.modoOperacion = modoOperacion;
+
+        assert this.modoOperacion == modoOperacion : "El modo de operacion no se establecio";
+    }
+
 }
