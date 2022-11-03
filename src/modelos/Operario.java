@@ -3,6 +3,7 @@ package modelos;
 import excepciones.ContraseniaIncorrectaException;
 import excepciones.UsuarioInactivoException;
 import modelos.enums.Estado;
+import modelos.enums.ModoOperacion;
 
 /**
  * Clase que representa a un operario del sistema.
@@ -99,12 +100,11 @@ public class Operario {
             throw new ContraseniaIncorrectaException();
         }
 
-        // Acciones si se loguea bien
+        Sistema.getInstancia().setModoOperacion(ModoOperacion.OPERARIO);
     }
 
     /**
      * Metodo que permite cambiar la contraseña del operario.
-     * @param contraseniaNueva Contraseña nueva del operario.
      * <b>Pre:</b>
      * contraseniaNueva != null
      * contraseniaNueva.length() >= 6
@@ -113,6 +113,8 @@ public class Operario {
      * contraseniaNueva contiene al menos una letra mayuscula
      * <b>Post:</b>
      * Se cambia la contraseña del operario.
+     *
+     * @param contraseniaNueva Contraseña nueva del operario.
      */
     public void cambiarContrasenia(String contraseniaNueva) {
         assert contraseniaNueva != null;
@@ -128,11 +130,10 @@ public class Operario {
 
     /**
      * Crea una nueva comanda y se la asiga a una mesa.
-     *
      * @param mesa Mesa a la que se le asigna la comanda.
-     *             <b>Pre:</b>
-     *             mesa != null
-     *             mesa.isOcupada() == false
+     * <b>Pre:</b>
+     * mesa != null
+     * mesa.isOcupada() == false
      */
     public void crearComanda(Mesa mesa) {
 
