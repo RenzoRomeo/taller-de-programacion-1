@@ -16,3 +16,4 @@
 - ~~Como asegurar que solo el admin pueda crear nuevo operarios por ejemplo? ALMACENAR OPERARIO LOGUEADO, BOOLEAN MODO
   EN SISTEMA~~
 - ~~Esta bien que el operario genere la comanda? OPERARIO~~
+- Esta bien la solucion del booleano modo que se asigna al iniciar sesion?

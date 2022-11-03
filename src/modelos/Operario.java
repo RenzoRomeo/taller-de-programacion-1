@@ -2,6 +2,7 @@ package modelos;
 
 import excepciones.ContraseniaIncorrectaException;
 import excepciones.UsuarioInactivoException;
+import modelos.enums.Estado;
 
 /**
  * Clase que representa a un operario del sistema.

@@ -1,5 +1,7 @@
 package modelos;
 
+import modelos.enums.Estado;
+
 import java.util.Date;
 
 /**

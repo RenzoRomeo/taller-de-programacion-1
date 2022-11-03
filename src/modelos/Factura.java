@@ -1,5 +1,7 @@
 package modelos;
 
+import modelos.enums.FormaPago;
+
 import java.util.Date;
 import java.util.List;
 
