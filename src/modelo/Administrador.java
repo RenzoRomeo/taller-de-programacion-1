@@ -1,11 +1,10 @@
 package modelo;
 
 public class Administrador extends Operario {
-    private boolean establecioContrasena;
+    private boolean establecioContrasena = false;
 
-    public Administrador(String nombre, String apellido, String nombreUsuario, String contrasenia, boolean activo, boolean establecioContrasena) {
-        super(nombre, apellido, nombreUsuario, contrasenia);
-        this.establecioContrasena = establecioContrasena;
+    public Administrador(boolean activo) {
+        super("ADMIN", "ADMIN", "ADMIN", "ADMIN1234");
     }
 
     public void agregarOperario(Operario operario) {
