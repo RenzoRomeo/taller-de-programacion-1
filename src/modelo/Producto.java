@@ -5,7 +5,7 @@ public class Producto {
     private String nombre;
     private double precioCosto;
     private double precioVenta;
-    private int stockInicial;
+    private int stock;
 
     /**
      *
@@ -38,13 +38,20 @@ public class Producto {
         this.nombre = nombre;
         this.precioCosto = precioCosto;
         this.precioVenta = precioVenta;
-        this.stockInicial = stockInicial;
+        this.stock = stockInicial;
 
         assert this.id == id;
         assert this.nombre.equals(nombre);
         assert this.precioCosto == precioCosto;
         assert this.precioVenta == precioVenta;
-        assert this.stockInicial == stockInicial;
+        assert this.stock == stockInicial;
+    }
+
+    public int getStock() {
+        return this.stock;
+    }
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
 }
