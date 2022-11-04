@@ -14,7 +14,7 @@ public class Sistema {
     private ArrayList<Mozo> mozos = new ArrayList<>();
     private ArrayList<Mesa> mesas = new ArrayList<>();
     private ArrayList<Producto> productos = new ArrayList<>();
-    private ArrayList<Operario> operarios = new ArrayList<>();
+    private HashMap<String, Operario> operarios = new HashMap<String, Operario>();
     private Sueldo sueldo;
     private HashMap<Mozo, ArrayList<Mesa>> asignacionMesas = new HashMap<>();
     private HashMap<Mesa, Comanda> comandas = new HashMap<>();
@@ -49,33 +49,31 @@ public class Sistema {
      *
      */
     public void iniciarSesionOperario(String nombreUsuario, String contrasenia) throws UsuarioInactivoException, UsuarioNoExisteException, ContraseniaIncorrectaException {
-        for (Operario operario : operarios) {
-            if (operario.getNombreUsuario().equals(nombreUsuario)) {
-                if (operario.getContrasenia().equals(contrasenia)) {
-                    if (operario.isActivo()) {
-                        //TODO: Iniciar sesion
-                    } else {
-                        throw new UsuarioInactivoException();
-                    }
-                } else {
-                    throw new ContraseniaIncorrectaException();
-                }
-            }
+        assert nombreUsuario != null;
+        assert contrasenia != null;
+
+        if (!operarios.containsKey(nombreUsuario)) {
+            throw new UsuarioNoExisteException();
         }
-        throw new UsuarioNoExisteException();
+        if(!operarios.get(nombreUsuario).isActivo()) {
+            throw new UsuarioInactivoException();
+        }
+        if(!operarios.get(nombreUsuario).getContrasenia().equals(contrasenia)) {
+            throw new ContraseniaIncorrectaException();
+        }
+        //TODO LOGIN
+
     }
 
 
 
     public void agregarOperario(Operario operario) {
-        operarios.add(operario);
+        operarios.put(operario.getNombreUsuario(), operario);
     }
     public void eliminarOperario(Operario operario) {
         operarios.remove(operario);
     }
-    public void modificarOperario(Operario operario) {
-        //TODO
-    }
+
 
     /**
      * Agrega mozo al sistema
@@ -101,9 +99,6 @@ public class Sistema {
         assert mozo != null;
 
         mozos.remove(mozo);
-    }
-    public void modificarMozo(Mozo mozo) {
-        //TODO
     }
 
     /**
@@ -147,9 +142,7 @@ public class Sistema {
 
         mesas.remove(mesa);
     }
-    public void modificarMesa(Mesa mesa) {
-        //TODO
-    }
+
 
     /**
      * Agrega producto al sistema
@@ -175,9 +168,6 @@ public class Sistema {
         assert producto != null;
         productos.remove(producto);
     }
-    public void modificarProducto(Producto producto) {
-        //TODO
-    }
 
     //La comanda va estar abierta siempre y cuando exista
     //Se crea con un unico producto y se le van agregando pedidos
@@ -198,7 +188,7 @@ public class Sistema {
         assert mesa != null;
         assert mesa.getEstaOcupada() == false;
 
-
+        //realizar como invariante de clase
         int cantidadPromocion = 0;
         for (Promocion promocion : promociones) {
             if (promocion.estaActiva()) {

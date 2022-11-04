@@ -46,7 +46,6 @@ public abstract class Operario {
         assert contrasenia.length() <= 12;
         assert contrasenia.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,10}$"); //Regex que verifica que la contrasenia tenga al menos una mayuscula, un numero y que no tenga espacios en blanco
 
-
         this.nombre = nombre;
         this.apellido = apellido;
         this.nombreUsuario = nombreUsuario;
