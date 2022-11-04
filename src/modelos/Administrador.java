@@ -46,7 +46,6 @@ public class Administrador extends Operario {
         return administrador;
     }
 
-
     /**
      * Inicia sesion en el sistema.
      * <b>Pre:</b>
