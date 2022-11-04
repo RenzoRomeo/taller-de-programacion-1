@@ -1,12 +1,24 @@
 # taller-de-programacion-1
 
 # Integrantes
+
 - Camila Cacace
 - Lucas de Lellis
 - Teo Ramos kees
 - Renzo Romeo
 
+# TODO
+
+- Flujo de inicio:
+  - Se inicia el programa.
+  - Se intenta cargar el sistema desde el archivo.
+    - Si no existe, aparece la vista de crear sistema. Esta vista te lleva a la vista de crear sistema para poner el
+      nombre del sistema y luego te lleva a la vista para establecer la contraseña del admin.
+    - Si ya existe, aparece la vista de iniciar sesion.
+  - Se muestra la vista correspondiente: operario o administrador.
+
 # Preguntas
+
 - ~~Como verificar que exista una unica instancia de administrador? SINGLETON?~~
 - ~~Hay que validar las postcondiciones dentro de los constructores? SI~~
 - Como se chequean las fechas? DEPENDE. SE PUEDE USAR UN STRING FECHA Y VALIDAR CON ESO.
