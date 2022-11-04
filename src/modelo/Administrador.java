@@ -1,13 +1,15 @@
 package modelo;
 
+import excepciones.AdminExistenteException;
 import excepciones.NombreDeUsuarioNoDisponibleException;
 
 public class Administrador extends Operario {
     private boolean establecioContrasena = false;
 
-    public Administrador(boolean activo) {
+    public Administrador(){
         super("ADMIN", "ADMIN", "ADMIN", "ADMIN1234");
     }
+
 
     public void agregarOperario(String nombre, String apellido, String nombreDeUsuario, String contrasena) {
         Operario o = new Operario(nombre, apellido, nombreDeUsuario, contrasena);
