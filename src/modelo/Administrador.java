@@ -1,5 +1,7 @@
 package modelo;
 
+import excepciones.NombreDeUsuarioNoDisponibleException;
+
 public class Administrador extends Operario {
     private boolean establecioContrasena = false;
 
@@ -7,9 +9,15 @@ public class Administrador extends Operario {
         super("ADMIN", "ADMIN", "ADMIN", "ADMIN1234");
     }
 
-    public void agregarOperario(Operario operario) {
+    public void agregarOperario(String nombre, String apellido, String nombreDeUsuario, String contrasena) {
+        Operario o = new Operario(nombre, apellido, nombreDeUsuario, contrasena);
         Sistema s = Sistema.getInstance();
-        s.agregarOperario(operario);
+        try {
+            s.agregarOperario(o);
+        } catch (NombreDeUsuarioNoDisponibleException e) {
+            e.printStackTrace();
+        }
+
     }
     public void eliminarOperario(Operario operario) {
         Sistema s = Sistema.getInstance();

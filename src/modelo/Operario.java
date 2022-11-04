@@ -2,7 +2,7 @@ package modelo;
 
 import enums.Estado;
 
-public abstract class Operario {
+public class Operario {
     private String nombre;
     private String apellido;
     private String nombreUsuario;
@@ -80,4 +80,5 @@ public abstract class Operario {
     public boolean isActivo() {
         return this.activo;
     }
+
 }

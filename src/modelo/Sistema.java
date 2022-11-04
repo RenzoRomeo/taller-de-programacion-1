@@ -3,6 +3,7 @@ package modelo;
 import enums.Estado;
 import enums.FormaDePago;
 import excepciones.ContraseniaIncorrectaException;
+import excepciones.NombreDeUsuarioNoDisponibleException;
 import excepciones.UsuarioInactivoException;
 import excepciones.UsuarioNoExisteException;
 
@@ -67,8 +68,10 @@ public class Sistema {
 
 
 
-    public void agregarOperario(Operario operario) {
-        operarios.put(operario.getNombreUsuario(), operario);
+    public void agregarOperario(Operario operario) throws NombreDeUsuarioNoDisponibleException {
+        if (operarios.containsKey(operario.getNombreUsuario())) {
+            throw new NombreDeUsuarioNoDisponibleException(operario.getNombreUsuario());
+        }
     }
     public void eliminarOperario(Operario operario) {
         operarios.remove(operario);
