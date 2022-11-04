@@ -8,4 +8,8 @@ public abstract class Promocion {
     private int id;
     private boolean activa;
     private List<Dia> diasPromo;
+
+    public List<Dia> getDiasPromo() {
+        return diasPromo;
+    }
 }
