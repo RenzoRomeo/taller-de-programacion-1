@@ -5,6 +5,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 
 public class Login extends JFrame implements IVista {
 
@@ -20,20 +21,6 @@ public class Login extends JFrame implements IVista {
 
     private char defaultChar;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Login frame = new Login();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /**
      * Create the frame.
@@ -122,7 +109,7 @@ public class Login extends JFrame implements IVista {
         JPanel botones = new JPanel();
         contentPane.add(botones, BorderLayout.SOUTH);
 
-        JButton iniciarSesionButton = new JButton("Iniciar Sesion");
+        iniciarSesionButton = new JButton("Iniciar Sesion");
         iniciarSesionButton.setActionCommand("iniciarSesion");
         botones.add(iniciarSesionButton);
 
@@ -144,5 +131,18 @@ public class Login extends JFrame implements IVista {
     public void setActionListener(ActionListener actionListener) {
         iniciarSesionButton.addActionListener(actionListener);
         mostrarContraseniaBoton.addActionListener(actionListener);
+    }
+
+    @Override
+    public void setWindowListener(WindowListener windowListener) {
+        addWindowListener(windowListener);
+    }
+
+    public String getUsuario() {
+        return textField.getText();
+    }
+
+    public String getContrasenia() {
+        return new String(passwordField.getPassword());
     }
 }

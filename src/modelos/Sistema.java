@@ -1,9 +1,6 @@
 package modelos;
 
-import excepciones.AdministradorExistenteException;
-import excepciones.MesaRepetidaException;
-import excepciones.OperarioExistenteException;
-import excepciones.SistemaYaInicializadoException;
+import excepciones.*;
 import modelos.enums.Dia;
 import modelos.enums.Estado;
 import modelos.enums.ModoOperacion;
@@ -374,7 +371,24 @@ public class Sistema {
         assert this.modoOperacion == modoOperacion : "El modo de operacion no se establecio";
     }
 
-    public Iterator<Operario> getOperarios() {
-        return operarios.iterator();
+    /**
+     * Busca un operario por su nombre de usuario.
+     *
+     * @param nombreUsuario nombre de usuario del operario.
+     * @return el operario con el nombre de usuario indicado.
+     * @throws OperarioInexistenteException si no existe un operario con el nombre de usuario indicado.
+     */
+    public Operario buscarOperario(String nombreUsuario) throws OperarioInexistenteException {
+        for (Operario operario : operarios) {
+            if (operario.getNombreUsuario().equals(nombreUsuario)) {
+                return operario;
+            }
+        }
+
+        if (administrador.getNombreUsuario().equals(nombreUsuario)) {
+            return administrador;
+        } else {
+            throw new OperarioInexistenteException(nombreUsuario);
+        }
     }
 }

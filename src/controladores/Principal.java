@@ -18,7 +18,9 @@ public class Principal {
     }
 
     public void setControladorActual(Controller controlador) {
-        controladorActual.cerrarVentana();
+        if (controladorActual != null) {
+            controladorActual.cerrarVentana();
+        }
         controladorActual = controlador;
     }
 
