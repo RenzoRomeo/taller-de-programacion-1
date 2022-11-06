@@ -1,4 +1,6 @@
-package vistas;
+package vistasViejas;
+
+import vistas.IVista;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
