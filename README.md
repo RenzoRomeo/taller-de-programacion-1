@@ -12,8 +12,8 @@
 - Flujo de inicio:
   - Se inicia el programa.
   - Se intenta cargar el sistema desde el archivo.
-    - Si no existe, aparece la vista de crear sistema. Esta vista te lleva a la vista de crear sistema para poner el
-      nombre del sistema y luego te lleva a la vista para establecer la contraseña del admin.
+    - Si no existe, aparece la vista de crear sistema. Esta vista permite poner el nombre del local y luego te lleva a
+      la vista para establecer la contraseña del admin.
     - Si ya existe, aparece la vista de iniciar sesion.
   - Se muestra la vista correspondiente: operario o administrador.
 
@@ -29,3 +29,8 @@
   EN SISTEMA~~
 - ~~Esta bien que el operario genere la comanda? OPERARIO~~
 - Esta bien la solucion del booleano modo que se asigna al iniciar sesion?
+- Si ya verifiqué las pre de crear operario en Sistema, las vuelvo a chequear en Operario?
+- "El sistema debe tener registro de sus empleados y de su asistencia" -> Como se hace esto?
+- "Al menos debe tener dos productos promocionados" -> Al comienzo del sistema esto no se va a cumplir porque no hay
+  promociones ni productos. Como se hace?
+- Podríamos tener botones para iniciar y finalizar jornada, y el item anterior se verifica al iniciar la jornada.
