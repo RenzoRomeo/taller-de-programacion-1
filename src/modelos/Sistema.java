@@ -2,17 +2,13 @@ package modelos;
 
 import excepciones.AdministradorExistenteException;
 import excepciones.MesaRepetidaException;
+import excepciones.OperarioExistenteException;
 import excepciones.SistemaYaInicializadoException;
 import modelos.enums.Dia;
 import modelos.enums.Estado;
 import modelos.enums.ModoOperacion;
 
-import java.util.Set;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
+import java.util.*;
 
 /**
  * <b>Inv:</b>
@@ -273,6 +269,47 @@ public class Sistema {
         assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
+    /**
+     * Crea un nuevo operario.
+     * <b>Pre:</b>
+     * nombre != null
+     * nombre != ""
+     * apellido != null
+     * apellido != ""
+     * nombreUsuario != null
+     * nombreUsuario != ""
+     * nombreUsuario.length() <= 10
+     * contrasenia != null
+     * contrasenia.length() >= 6
+     * contrasenia.length() <= 12
+     * contrasenia contiene al menos un numero
+     * contrasenia contiene al menos una letra mayuscula
+     */
+    public void crearOperario(String nombre, String apellido, String nombreUsuario, String contrasenia) throws OperarioExistenteException {
+        assert nombre != null : "El nombre del operario no puede ser nulo";
+        assert nombre != "" : "El nombre del operario no puede ser vacío";
+        assert apellido != null : "El apellido del operario no puede ser nulo";
+        assert apellido != "" : "El apellido del operario no puede ser vacío";
+        assert nombreUsuario != null : "El nombre de usuario del operario no puede ser nulo";
+        assert nombreUsuario != "" : "El nombre de usuario del operario no puede ser vacío";
+        assert nombreUsuario.length() <= 10 : "El nombre de usuario del operario no puede tener más de 10 caracteres";
+        assert contrasenia != null : "La contraseña del operario no puede ser nula";
+        assert contrasenia.length() >= 6 : "La contraseña del operario no puede tener menos de 6 caracteres";
+        assert contrasenia.length() <= 12 : "La contraseña del operario no puede tener más de 12 caracteres";
+        assert contrasenia.matches(".*[0-9].*") : "La contraseña del operario debe contener al menos un número";
+        assert contrasenia.matches(".*[A-Z].*") : "La contraseña del operario debe contener al menos una letra mayúscula";
+
+        boolean existe = operarios.stream().anyMatch(o -> o.getNombreUsuario().equals(nombreUsuario));
+        if (existe) {
+            throw new OperarioExistenteException(nombreUsuario);
+        }
+        Operario operario = new Operario(nombre, apellido, nombreUsuario, contrasenia);
+        operarios.add(operario);
+
+        assert operarios.contains(operario) : "El operario no se creó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
+    }
+
     public ModoOperacion getModoOperacion() {
         return modoOperacion;
     }
@@ -337,4 +374,7 @@ public class Sistema {
         assert this.modoOperacion == modoOperacion : "El modo de operacion no se establecio";
     }
 
+    public Iterator<Operario> getOperarios() {
+        return operarios.iterator();
+    }
 }

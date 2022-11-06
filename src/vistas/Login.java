@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 public class Login extends JFrame implements IVista {
 
     private JPanel contentPane;
+    private JPanel principal;
+    private JPanel titulo;
     private JTextField tituloText;
     private JTextField textField;
     private JPasswordField passwordField;

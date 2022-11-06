@@ -143,6 +143,10 @@ public class Operario {
         return nombre;
     }
 
+    public String getApellido() {
+        return apellido;
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
