@@ -3,6 +3,7 @@ package controladores;
 import vistas.IVista;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public abstract class Controller<E extends IVista> implements ActionListener, WindowListener {
@@ -12,5 +13,40 @@ public abstract class Controller<E extends IVista> implements ActionListener, Wi
         this.vista = vista;
         this.vista.setActionListener(this);
         this.vista.setWindowListener(this);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        // TODO: persistir datos.
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }
