@@ -30,25 +30,26 @@ public class Operario {
 
     /**
      * Constructor de la clase Operario.
-     * @param nombre Nombre del operario.
-     * @param apellido Apellido del operario.
+     *
+     * @param nombre        Nombre del operario.
+     * @param apellido      Apellido del operario.
      * @param nombreUsuario Nombre de usuario del operario.
-     * @param contrasenia Contraseña del operario.
-     * <b>Pre:</b>
-     * nombre != null
-     * nombre != ""
-     * apellido != null
-     * apellido != ""
-     * nombreUsuario != null
-     * nombreUsuario != ""
-     * nombreUsuario.length() <= 10
-     * contrasenia != null
-     * contrasenia.length() >= 6
-     * contrasenia.length() <= 12
-     * contrasenia contiene al menos un numero
-     * contrasenia contiene al menos una letra mayuscula
-     * <b>Post:</b>
-     * Se crea un nuevo operario con los datos ingresados y con el estado activo.
+     * @param contrasenia   Contraseña del operario. <br>
+     *                      <b>Pre:</b> <br>
+     *                      nombre != null <br>
+     *                      nombre != "" <br>
+     *                      apellido != null <br>
+     *                      apellido != "" <br>
+     *                      nombreUsuario != null <br>
+     *                      nombreUsuario != "" <br>
+     *                      nombreUsuario.length() <= 10 <br>
+     *                      contrasenia != null <br>
+     *                      contrasenia.length() >= 6 <br>
+     *                      contrasenia.length() <= 12 <br>
+     *                      contrasenia contiene al menos un numero <br>
+     *                      contrasenia contiene al menos una letra mayuscula <br>
+     *                      <b>Post:</b> <br>
+     *                      Se crea un nuevo operario con los datos ingresados y con el estado activo. <br>
      */
     public Operario(String nombre, String apellido, String nombreUsuario, String contrasenia) {
         assert nombre != null : "El nombre del operario no puede ser nulo";
