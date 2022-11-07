@@ -114,12 +114,10 @@ public class Sistema {
      * Agrega un mozo al sistema.
      * <b>Pre:</b>
      * mozo != null
-     * mozos.size() < 6
      * <b>Post:</b> Se agrega el mozo al sistema.
      */
     public void agregarMozo(Mozo mozo) {
         assert mozo != null : "El mozo no puede ser nulo";
-        assert mozos.size() < 6 : "No puede haber más de 6 mozos";
 
         mozos.add(mozo);
 
@@ -270,40 +268,18 @@ public class Sistema {
     }
 
     /**
-     * Crea un nuevo operario.
+     * Agrega un operario al sistema.
      * <b>Pre:</b>
-     * nombre != null
-     * nombre != ""
-     * apellido != null
-     * apellido != ""
-     * nombreUsuario != null
-     * nombreUsuario != ""
-     * nombreUsuario.length() <= 10
-     * contrasenia != null
-     * contrasenia.length() >= 6
-     * contrasenia.length() <= 12
-     * contrasenia contiene al menos un numero
-     * contrasenia contiene al menos una letra mayuscula
+     * operario != null
+     * <b>Post:</b> Se agrega el operario al sistema.
      */
-    public void crearOperario(String nombre, String apellido, String nombreUsuario, String contrasenia) throws OperarioExistenteException {
-        assert nombre != null : "El nombre del operario no puede ser nulo";
-        assert nombre != "" : "El nombre del operario no puede ser vacío";
-        assert apellido != null : "El apellido del operario no puede ser nulo";
-        assert apellido != "" : "El apellido del operario no puede ser vacío";
-        assert nombreUsuario != null : "El nombre de usuario del operario no puede ser nulo";
-        assert nombreUsuario != "" : "El nombre de usuario del operario no puede ser vacío";
-        assert nombreUsuario.length() <= 10 : "El nombre de usuario del operario no puede tener más de 10 caracteres";
-        assert contrasenia != null : "La contraseña del operario no puede ser nula";
-        assert contrasenia.length() >= 6 : "La contraseña del operario no puede tener menos de 6 caracteres";
-        assert contrasenia.length() <= 12 : "La contraseña del operario no puede tener más de 12 caracteres";
-        assert contrasenia.matches(".*[0-9].*") : "La contraseña del operario debe contener al menos un número";
-        assert contrasenia.matches(".*[A-Z].*") : "La contraseña del operario debe contener al menos una letra mayúscula";
+    public void agregarOperario(Operario operario) throws OperarioExistenteException {
+        assert operario != null : "El operario no puede ser nulo";
 
-        boolean existe = operarios.stream().anyMatch(o -> o.getNombreUsuario().equals(nombreUsuario));
-        if (existe) {
-            throw new OperarioExistenteException(nombreUsuario);
+        if (operarios.contains(operario)) {
+            throw new OperarioExistenteException(operario);
         }
-        Operario operario = new Operario(nombre, apellido, nombreUsuario, contrasenia);
+
         operarios.add(operario);
 
         assert operarios.contains(operario) : "El operario no se creó";
