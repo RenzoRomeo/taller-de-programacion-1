@@ -151,4 +151,12 @@ public class Login extends JFrame implements IVista {
     public void setWindowListener(WindowListener windowListener) {
         addWindowListener(windowListener);
     }
+
+    public String getUsuario() {
+        return textField.getText();
+    }
+
+    public String getContrasenia() {
+        return new String(passwordField.getPassword());
+    }
 }

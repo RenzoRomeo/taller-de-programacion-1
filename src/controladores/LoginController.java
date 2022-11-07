@@ -1,6 +1,7 @@
 package controladores;
 
 import excepciones.ContraseniaIncorrectaException;
+import excepciones.OperarioInexistenteException;
 import excepciones.UsuarioInactivoException;
 import modelos.Operario;
 import modelos.Sistema;
@@ -8,7 +9,6 @@ import vistas.Login;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Iterator;
 
 public class LoginController extends Controller<Login> {
 
@@ -20,34 +20,23 @@ public class LoginController extends Controller<Login> {
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
 
-        if (cmd.equalsIgnoreCase("login")) {
-            String username = vista.getUsername();
+        if (cmd.equalsIgnoreCase("iniciarSesion")) {
+            String nombreUsuario = vista.getUsuario();
             String contrasenia = vista.getContrasenia();
 
-            Iterator<Operario> operarios = Sistema.getInstancia().getOperarios();
-            boolean encontrado = false;
-            while (operarios.hasNext() && !encontrado) {
-                Operario operario = operarios.next();
-                if (operario.getNombreUsuario().equals(username)) {
-                    encontrado = true;
-                    try {
-                        operario.iniciarSesion(contrasenia);
-                        Controller controller = null;
-                        if (operario.getNombreUsuario().equals("admin")) {
-                            controller = new AdministradorController();
-                        } else {
-                            controller = new OperarioController();
-                        }
-                        Principal.getInstancia().setControladorActual(controller);
-                        vista.dispose();
-                    } catch (ContraseniaIncorrectaException | UsuarioInactivoException ex) {
-                        JOptionPane.showMessageDialog(vista, ex.getMessage());
-                    }
-                }
+            try {
+                Operario usuario = Sistema.getInstancia().buscarOperario(nombreUsuario);
+                usuario.iniciarSesion(contrasenia);
+            } catch (OperarioInexistenteException ex) {
+                JOptionPane.showMessageDialog(vista, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (UsuarioInactivoException ex) {
+                JOptionPane.showMessageDialog(vista, ex.getMessage(), "El usuario se encuentra inactivo.", JOptionPane.ERROR_MESSAGE);
+            } catch (ContraseniaIncorrectaException ex) {
+                JOptionPane.showMessageDialog(vista, ex.getMessage(), "Usuario o contraseña incorrectos", JOptionPane.ERROR_MESSAGE);
             }
-            if (!encontrado) {
-                JOptionPane.showMessageDialog(vista, "El usuario no existe");
-            }
+
+        } else if (cmd.equalsIgnoreCase("mostrarContrasenia")) {
+            vista.intercambiarContrasenia();
         }
     }
 }
