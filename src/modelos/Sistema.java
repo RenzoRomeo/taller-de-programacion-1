@@ -160,12 +160,15 @@ public class Sistema {
      * Elimina un producto del sistema.
      * <b>Pre:</b>
      * producto != null
-     * El producto debe estar en el sistema.
      * <b>Post:</b> Se elimina el producto del sistema.
      */
-    public void eliminarProducto(Producto producto) {
+    public void eliminarProducto(Producto producto) throws ProductoInexistenteException {
         assert producto != null : "El producto no puede ser nulo";
         assert productos.contains(producto) : "El producto no se encuentra en el sistema";
+
+        if (!productos.contains(producto)) {
+            throw new ProductoInexistenteException(producto);
+        }
 
         productos.remove(producto);
 
@@ -280,6 +283,27 @@ public class Sistema {
         operarios.add(operario);
 
         assert operarios.contains(operario) : "El operario no se creó";
+        assert verificarInvariantes() : "Los invariantes no se cumplen";
+    }
+
+    /**
+     * Elimina un operario del sistema.
+     * <b>Pre:</b>
+     * operario != null
+     * <b>Post:</b> Se elimina el operario del sistema.
+     *
+     * @throws OperarioInexistenteException si el operario no está en el sistema.
+     */
+    public void eliminarOperario(Operario operario) throws OperarioInexistenteException {
+        assert operario != null : "El operario no puede ser nulo";
+
+        if (!operarios.contains(operario)) {
+            throw new OperarioInexistenteException(operario.getNombreUsuario());
+        }
+
+        operarios.remove(operario);
+
+        assert !operarios.contains(operario) : "El operario no se eliminó";
         assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
