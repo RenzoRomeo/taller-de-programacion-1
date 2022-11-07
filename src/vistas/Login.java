@@ -5,6 +5,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 
 public class Login extends JFrame implements IVista {
 
@@ -144,5 +145,10 @@ public class Login extends JFrame implements IVista {
     public void setActionListener(ActionListener actionListener) {
         iniciarSesionButton.addActionListener(actionListener);
         mostrarContraseniaBoton.addActionListener(actionListener);
+    }
+
+    @Override
+    public void setWindowListener(WindowListener windowListener) {
+        addWindowListener(windowListener);
     }
 }
