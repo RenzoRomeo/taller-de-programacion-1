@@ -1,7 +1,7 @@
 package controladores;
 
 import modelos.Sistema;
-import vistas.CrearOperario;
+import vistasViejas.CrearOperario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
