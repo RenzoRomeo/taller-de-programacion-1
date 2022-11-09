@@ -23,6 +23,9 @@ import java.util.*;
  * Se establecen días de promocion para todos los productos.
  */
 public class Sistema {
+
+    // TODO: Agregar throws para OperacionNoAutorizadaException
+
     private String nombreLocal;
     private List<Mozo> mozos;
     private List<Mesa> mesas;
@@ -53,7 +56,7 @@ public class Sistema {
     }
 
     /**
-     * Devuelve verdadero si el sistema ya fue inicializado.
+     * Devuelve verdadero si el sistema ya fue inicializado. <br>
      *
      * @return Si el sistema ya fue inicializado.
      */
@@ -62,17 +65,17 @@ public class Sistema {
     }
 
     /**
-     * Inicializa el sistema con en nombre indicado y sus colecciones.
+     * Inicializa el sistema con en nombre indicado y sus colecciones. <br>
+     * <b>Pre:</b> <br>
+     * nombreLocal != null <br>
+     * nombreLocal != "" <br>
+     * <b>post:</b> <br>
+     * Se crea el sistema con el nombre indicado y las colecciones vacías. <br>
      *
      * @param nombreLocal Nombre del local.
-     *                    <b>Pre:</b>
-     *                    nombreLocal != null
-     *                    nombreLocal != ""
-     *                    <b>post:</b> Se crea el sistema con el nombre indicado y las colecciones vacías.
-     * @throws SistemaYaInicializadoException  si el sistema ya fue inicializado.
-     * @throws AdministradorExistenteException si el sistema ya tiene un administrador.
+     * @throws SistemaYaInicializadoException si el sistema ya fue inicializado.
      */
-    public static void inicializarSistema(String nombreLocal) throws SistemaYaInicializadoException, AdministradorExistenteException {
+    public static void inicializarSistema(String nombreLocal) throws SistemaYaInicializadoException {
         assert nombreLocal != null : "El nombre del local no puede ser nulo";
         assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
 
@@ -90,7 +93,13 @@ public class Sistema {
         instancia.asignacionMesas = new HashMap<>();
         instancia.comandas = new HashMap<>();
         instancia.promociones = new HashMap<>();
-        instancia.administrador = Administrador.crearAdministrador();
+
+        try {
+            instancia.administrador = Administrador.crearAdministrador();
+        } catch (AdministradorExistenteException e) {
+            e.printStackTrace();
+        }
+
         instancia.modoOperacion = ModoOperacion.OPERARIO;
 
         assert instancia.nombreLocal == nombreLocal : "El nombre del local no se asignó correctamente";
@@ -108,13 +117,26 @@ public class Sistema {
     }
 
     /**
-     * Agrega un mozo al sistema.
-     * <b>Pre:</b>
-     * mozo != null
-     * <b>Post:</b> Se agrega el mozo al sistema.
+     * Agrega un mozo al sistema. <br>
+     * <b>Pre:</b> <br>
+     * mozo != null <br>
+     * <b>Post:</b> <br>
+     * Se agrega el mozo al sistema. <br>
+     *
+     * @param mozo El mozo a agregar.
+     * @throws MozoInexistenteException Si el mozo a agregar ya existe.
      */
-    public void agregarMozo(Mozo mozo) {
+    public void agregarMozo(Mozo mozo) throws MozoExistenteException, MaximaCantidadMozosException, OperacionNoAutorizadaException {
         assert mozo != null : "El mozo no puede ser nulo";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
+
+        if (mozos.contains(mozo))
+            throw new MozoExistenteException(mozo);
+
+        if (mozos.size() == 6)
+            throw new MaximaCantidadMozosException(mozos.size());
 
         mozos.add(mozo);
 
@@ -123,15 +145,23 @@ public class Sistema {
     }
 
     /**
-     * Elimina un mozo del sistema.
-     * <b>Pre:</b>
-     * mozo != null
-     * El mozo debe estar en el sistema.
-     * <b>Post:</b> Se elimina el mozo del sistema.
+     * Elimina un mozo del sistema. <br>
+     * <b>Pre:</b> <br>
+     * mozo != null <br>
+     * <b>Post:</b> <br>
+     * Se elimina el mozo del sistema. <br>
+     *
+     * @param mozo El mozo a eliminar.
+     * @throws MozoInexistenteException Si el mozo a eliminar no existe.
      */
-    public void eliminarMozo(Mozo mozo) {
+    public void eliminarMozo(Mozo mozo) throws MozoInexistenteException, OperacionNoAutorizadaException {
         assert mozo != null : "El mozo no puede ser nulo";
-        assert mozos.contains(mozo) : "El mozo no se encuentra en el sistema";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
+
+        if (!mozos.contains(mozo))
+            throw new MozoInexistenteException(mozo);
 
         mozos.remove(mozo);
 
@@ -140,15 +170,24 @@ public class Sistema {
     }
 
     /**
-     * Agrega un producto al sistema.
-     * <b>Pre:</b>
-     * producto != null
-     * El producto no debe estar en el sistema.
-     * <b>Post:</b> Se agrega el producto al sistema.
+     * Agrega un producto al sistema. <br>
+     * <b>Pre:</b> <br>
+     * producto != null <br>
+     * <b>Post:</b> <br>
+     * Se agrega el producto al sistema. <br>
+     *
+     * @param producto El producto a agregar.
+     * @throws ProductoExistenteException     Si el producto ya existe.
+     * @throws OperacionNoAutorizadaException Si el sistema no está en modo administrador.
      */
-    public void agregarProducto(Producto producto) {
+    public void agregarProducto(Producto producto) throws ProductoExistenteException, OperacionNoAutorizadaException {
         assert producto != null : "El producto no puede ser nulo";
-        assert !productos.contains(producto) : "El producto ya se encuentra en el sistema";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
+
+        if (productos.contains(producto))
+            throw new ProductoExistenteException(producto);
 
         productos.add(producto);
 
@@ -157,18 +196,29 @@ public class Sistema {
     }
 
     /**
-     * Elimina un producto del sistema.
-     * <b>Pre:</b>
-     * producto != null
-     * <b>Post:</b> Se elimina el producto del sistema.
+     * Elimina un producto del sistema. <br>
+     * <b>Pre:</b> <br>
+     * producto != null <br>
+     * <b>Post:</b> <br>
+     * Se elimina el producto del sistema. <br>
+     *
+     * @param producto El producto a eliminar.
+     * @throws ProductoInexistenteException   Si el producto no existe.
+     * @throws ProductoEnComandaException     Si el producto está asociado a una comanda.
+     * @throws OperacionNoAutorizadaException Si el sistema no está en modo administrador.
      */
-    public void eliminarProducto(Producto producto) throws ProductoInexistenteException {
+    public void eliminarProducto(Producto producto) throws ProductoInexistenteException, OperacionNoAutorizadaException {
         assert producto != null : "El producto no puede ser nulo";
         assert productos.contains(producto) : "El producto no se encuentra en el sistema";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
 
         if (!productos.contains(producto)) {
             throw new ProductoInexistenteException(producto);
         }
+
+        // TODO: Verifica que el producto no esté asociado a una comanda.
 
         productos.remove(producto);
 
@@ -177,17 +227,23 @@ public class Sistema {
     }
 
     /**
-     * Establece el estado de un mozo.
-     * <b>Pre:</b>
-     * mozo != null
-     * estado != null
-     * El mozo debe estar en el sistema.
-     * <b>Post:</b> Se establece el estado del mozo.
+     * Establece el estado de un mozo. <br>
+     * <b>Pre:</b> <br>
+     * mozo != null <br>
+     * estado != null <br>
+     * <b>Post:</b> <br>
+     * Se establece el estado del mozo. <br>
+     *
+     * @param mozo   El mozo cuyo estado se desea cambiar.
+     * @param estado El nuevo estado del mozo.
+     * @throws MozoInexistenteException Si el mozo no existe.
      */
-    public void establecerEstadoMozo(Mozo mozo, Estado estado) {
+    public void establecerEstadoMozo(Mozo mozo, Estado estado) throws MozoInexistenteException {
         assert mozo != null : "El mozo no puede ser nulo";
         assert estado != null : "El estado no puede ser nulo";
-        assert mozos.contains(mozo) : "El mozo no está en el sistema";
+
+        if (!mozos.contains(mozo))
+            throw new MozoInexistenteException(mozo);
 
         mozo.setEstado(estado);
 
@@ -196,14 +252,20 @@ public class Sistema {
     }
 
     /**
-     * Agrega una mesa al sistema.
-     * <b>Pre:</b>
-     * mesa != null
-     * <b>Post:</b> Se agrega la mesa al sistema.
+     * Agrega una mesa al sistema. <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * <b>Post:</b> <br>
+     * Se agrega la mesa al sistema. <br>
+     *
+     * @param mesa La mesa a agregar.
      * @throws MesaRepetidaException si la mesa ya está en el sistema.
      */
-    public void agregarMesa(Mesa mesa) throws MesaRepetidaException {
+    public void agregarMesa(Mesa mesa) throws MesaRepetidaException, OperacionNoAutorizadaException {
         assert mesa != null : "La mesa no puede ser nula";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
 
         if (mesas.stream().anyMatch(m -> m.getNroMesa() == mesa.getNroMesa())) {
             throw new MesaRepetidaException();
@@ -216,15 +278,24 @@ public class Sistema {
     }
 
     /**
-     * Elimina una mesa del sistema.
-     * <b>Pre:</b>
-     * mesa != null
-     * La mesa debe estar en el sistema.
-     * <b>Post:</b> Se elimina la mesa del sistema.
+     * Elimina una mesa del sistema. <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * La mesa debe estar en el sistema. <br>
+     * <b>Post:</b> <br>
+     * Se elimina la mesa del sistema. <br>
+     *
+     * @param mesa La mesa a eliminar.
+     * @throws MesaInexistenteException Si la mesa no existe.
      */
-    public void eliminarMesa(Mesa mesa) {
+    public void eliminarMesa(Mesa mesa) throws MesaInexistenteException, OperacionNoAutorizadaException {
         assert mesa != null : "La mesa no puede ser nula";
-        assert mesas.contains(mesa) : "La mesa no está en el sistema";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
+
+        if (!mesas.contains(mesa))
+            throw new MesaInexistenteException(mesa);
 
         mesas.remove(mesa);
 
@@ -233,19 +304,27 @@ public class Sistema {
     }
 
     /**
-     * Asigna una mesa a un mozo.
-     * <b>Pre:</b>
-     * mozo != null
-     * mesa != null
-     * El mozo debe estar en el sistema.
-     * La mesa debe estar en el sistema.
-     * <b>Post:</b> Se asigna la mesa al mozo.
+     * Asigna una mesa a un mozo. <br>
+     * <b>Pre:</b> <br>
+     * mozo != null <br>
+     * mesa != null <br>
+     * <b>Post:</b>  <br>
+     * Se asigna la mesa al mozo. <br>
+     *
+     * @param mozo El mozo asignado para la mesa.
+     * @param mesa La mesa a asignar.
+     * @throws MozoInexistenteException Si el mozo no existe.
+     * @throws MesaInexistenteException Si la mesa no existe.
      */
-    public void asignarMesa(Mozo mozo, Mesa mesa) {
+    public void asignarMesa(Mozo mozo, Mesa mesa) throws MozoInexistenteException, MesaInexistenteException {
         assert mozo != null : "El mozo no puede ser nulo";
         assert mesa != null : "La mesa no puede ser nula";
-        assert mozos.contains(mozo) : "El mozo no está en el sistema";
-        assert mesas.contains(mesa) : "La mesa no está en el sistema";
+
+        if (!mozos.contains(mozo))
+            throw new MozoInexistenteException(mozo);
+
+        if (!mesas.contains(mesas))
+            throw new MesaInexistenteException(mesa);
 
         asignacionMesas.computeIfAbsent(mozo, k -> new ArrayList<>()).add(mesa);
 
@@ -268,13 +347,20 @@ public class Sistema {
     }
 
     /**
-     * Agrega un operario al sistema.
-     * <b>Pre:</b>
-     * operario != null
-     * <b>Post:</b> Se agrega el operario al sistema.
+     * Agrega un operario al sistema. <br>
+     * <b>Pre:</b> <br>
+     * operario != null <br>
+     * <b>Post:</b> <br>
+     * Se agrega el operario al sistema. <br>
+     *
+     * @throws OperarioExistenteException     Si el operario no existe.
+     * @throws OperacionNoAutorizadaException Si el sistema no está en modo administrador.
      */
-    public void agregarOperario(Operario operario) throws OperarioExistenteException {
+    public void agregarOperario(Operario operario) throws OperarioExistenteException, OperacionNoAutorizadaException {
         assert operario != null : "El operario no puede ser nulo";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
 
         if (operarios.contains(operario)) {
             throw new OperarioExistenteException(operario);
@@ -282,20 +368,26 @@ public class Sistema {
 
         operarios.add(operario);
 
-        assert operarios.contains(operario) : "El operario no se creó";
+        assert operarios.contains(operario) : "El operario no se agregó";
         assert verificarInvariantes() : "Los invariantes no se cumplen";
     }
 
     /**
-     * Elimina un operario del sistema.
-     * <b>Pre:</b>
-     * operario != null
-     * <b>Post:</b> Se elimina el operario del sistema.
+     * Elimina un operario del sistema. <br>
+     * <b>Pre:</b> <br>
+     * operario != null <br>
+     * <b>Post:</b> <br>
+     * Se elimina el operario del sistema. <br>
      *
-     * @throws OperarioInexistenteException si el operario no está en el sistema.
+     * @param operario El operario a eliminar.
+     * @throws OperarioInexistenteException   si el operario no está en el sistema.
+     * @throws OperacionNoAutorizadaException Si el sistema no está en modo administrador.
      */
-    public void eliminarOperario(Operario operario) throws OperarioInexistenteException {
+    public void eliminarOperario(Operario operario) throws OperarioInexistenteException, OperacionNoAutorizadaException {
         assert operario != null : "El operario no puede ser nulo";
+
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
 
         if (!operarios.contains(operario)) {
             throw new OperarioInexistenteException(operario.getNombreUsuario());
@@ -330,22 +422,6 @@ public class Sistema {
             }
         }
 
-        // TODO: Verificar si nos cortan la cabeza por usar break.
-        /*for (Map.Entry<Producto, List<Promocion>> entry : promociones.entrySet()) {
-            List<Promocion> promocionesProducto = entry.getValue();
-
-            for (Promocion promocion : promocionesProducto) {
-                if (promocion.getDiasPromo().contains(diaActual)) {
-                    productosPromocionadosHoy++;
-                    break;
-                }
-            }
-
-            if (productosPromocionadosHoy >= 2) {
-                break;
-            }
-        }*/
-
         return nombreLocal != null && !nombreLocal.equals("") && mozos != null
                 && mesas != null && productos != null && operarios != null
                 && asignacionMesas != null && comandas != null
@@ -370,6 +446,7 @@ public class Sistema {
 
         assert this.modoOperacion == modoOperacion : "El modo de operacion no se establecio";
     }
+
 
     /**
      * Busca un operario por su nombre de usuario.

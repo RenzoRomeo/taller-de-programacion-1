@@ -87,9 +87,12 @@ public class Operario {
     }
 
     /**
-     * Inicia sesion a un operario dentro del sistema.
+     * Inicia sesion a un operario dentro del sistema. <br>
+     * <b>Post:</b> <br>
+     * Se establece el sistema en modo operario. <br>
+     *
      * @param contrasenia La contraseña del operario.
-     * @throws UsuarioInactivoException Si el usuario se encuentra inactivo.
+     * @throws UsuarioInactivoException       Si el usuario se encuentra inactivo.
      * @throws ContraseniaIncorrectaException Si la contraseña ingresada es incorrecta.
      */
     public void iniciarSesion(String contrasenia) throws UsuarioInactivoException, ContraseniaIncorrectaException {
@@ -105,16 +108,15 @@ public class Operario {
     }
 
     /**
-     * Metodo que permite cambiar la contraseña del operario.
-     * <b>Pre:</b>
-     * contraseniaNueva != null
-     * contraseniaNueva.length() >= 6
-     * contraseniaNueva.length() <= 12
-     * contraseniaNueva contiene al menos un numero
-     * contraseniaNueva contiene al menos una letra mayuscula
-     * <b>Post:</b>
-     * Se cambia la contraseña del operario.
-     *
+     * Metodo que permite cambiar la contraseña del operario. <br>
+     * <b>Pre:</b> <br>
+     * contraseniaNueva != null <br>
+     * contraseniaNueva.length() >= 6 <br>
+     * contraseniaNueva.length() <= 12 <br>
+     * contraseniaNueva contiene al menos un numero <br>
+     * contraseniaNueva contiene al menos una letra mayuscula <br>
+     * <b>Post:</b> <br>
+     * Se cambia la contraseña del operario. <br>
      * @param contraseniaNueva Contraseña nueva del operario.
      */
     public void cambiarContrasenia(String contraseniaNueva) {
@@ -129,12 +131,15 @@ public class Operario {
         assert contrasenia.equals(contraseniaNueva);
     }
 
+    // TODO: Metodo estático para verificar si la contraseña es válida.
+
     /**
      * Crea una nueva comanda y se la asiga a una mesa.
+     *
      * @param mesa Mesa a la que se le asigna la comanda.
-     * <b>Pre:</b>
-     * mesa != null
-     * mesa.isOcupada() == false
+     *             <b>Pre:</b>
+     *             mesa != null
+     *             mesa.isOcupada() == false
      */
     public void crearComanda(Mesa mesa) {
 
