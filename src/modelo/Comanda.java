@@ -16,4 +16,8 @@ public class Comanda {
         Pedido pedido = new Pedido(producto, cantidad);
         pedidos.add(pedido);
     }
+
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
 }

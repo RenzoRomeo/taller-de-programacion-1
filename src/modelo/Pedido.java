@@ -35,4 +35,11 @@ public class Pedido {
         assert this.cantidad == cantidad;
         assert this.fechaActual != null;
     }
+
+    public Producto getProducto() {
+        return this.producto;
+    }
+    public int getCantidad() {
+        return this.cantidad;
+    }
 }

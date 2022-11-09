@@ -17,4 +17,8 @@ public abstract class Promocion {
         return activa;
     }
 
+    public ArrayList<Dia> getDiasPromo() {
+        return diasPromo;
+    }
+
 }
