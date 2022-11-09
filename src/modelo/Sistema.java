@@ -25,6 +25,11 @@ public class Sistema {
     private ArrayList<PromocionTemporal> promocionesTemporales = new ArrayList<>();
     private Administrador administrador;
 
+
+    private Sistema() {
+        this.administrador = new Administrador();
+    }
+
     //Singleton sistema
     private static Sistema sistema = null;
 
@@ -35,17 +40,6 @@ public class Sistema {
         return sistema;
     }
 
-    public void iniciarSistema() {
-        if (sistema == null) {
-            sistema = new Sistema();
-            administrador = new Administrador();
-            operarios.put(administrador.getNombreUsuario(), administrador);
-            LoginController.getInstance();
-
-        }
-
-
-    }
 
     public void setNombreLocal(String nombreLocal) {
         this.nombreLocal = nombreLocal;
@@ -207,13 +201,13 @@ public class Sistema {
         assert mesa != null;
         assert mesa.getEstaOcupada() == false;
 
-        //realizar como invariante de clase, chequear si es dia de promocion para el mismo
+        //chequea cuantos productos hay en promocion hoy
         int cantidadPromocion = 0;
-//        for (Promocion promocion : promociones) {
-//            if (promocion.estaActiva()) {
-//                cantidadPromocion++;
-//            }
-//        }
+        for (PromocionProducto promocion : promocionesProducto) {
+            if (promocion.estaActiva() && cumpleDiaPromocion(promocion)) {
+                cantidadPromocion++;
+            }
+        }
 
         //chequea que la mesa tenga un mozo activo asignado antes de crearla
         int finalCantidadPromocion = cantidadPromocion;
@@ -266,10 +260,10 @@ public class Sistema {
         assert formaDePago != null;
 
         Comanda comanda = comandas.get(mesa);
-        Mozo m = null;
+        Mozo mozo = null;
         for (HashMap.Entry<Mozo, ArrayList<Mesa>> entry : asignacionMesas.entrySet()) {
             if (entry.getValue().contains(mesa)) {
-                m = entry.getKey();
+                mozo = entry.getKey();
             }
         }
 
@@ -301,8 +295,7 @@ public class Sistema {
                     }
                 }
             }
-
-//        Factura f = new Factura(mesa, formaDePago, m);
+        Factura factura = new Factura(mesa, formaDePago, total, promocionesAplicadas, mozo);
     }
 
     private boolean cumpleCondicionAcumulable(boolean esAcumulable, boolean aplicoPromocionProducto) {

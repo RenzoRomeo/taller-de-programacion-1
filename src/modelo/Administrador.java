@@ -54,5 +54,11 @@ public class Administrador extends Operario {
         s.eliminarMesa(mesa);
     }
 
+    public boolean esEstablecioContrasena() {
+        return establecioContrasena;
+    }
+     public void setEstablecioContrasena() {
+         this.establecioContrasena = true;
+     }
 
 }
