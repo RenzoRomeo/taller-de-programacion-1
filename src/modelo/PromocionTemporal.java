@@ -1,8 +1,11 @@
 package modelo;
 
+import enums.Dia;
 import enums.FormaDePago;
 
-public class PromocionTemporal {
+import java.util.ArrayList;
+
+public class PromocionTemporal extends Promocion{
     private String nombre;
     private FormaDePago formaDePago;
     private int porcentajeDescuento;
@@ -22,7 +25,9 @@ public class PromocionTemporal {
      * porcentajeDescuento <= 100
      *
      */
-    public PromocionTemporal(String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable) {
+    public PromocionTemporal(int id, boolean activa, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable) {
+        super(id, activa, diasPromo);
+
         assert nombre != null;
         assert formaDePago != null;
         assert porcentajeDescuento > 0;
@@ -32,5 +37,17 @@ public class PromocionTemporal {
         this.formaDePago = formaDePago;
         this.porcentajeDescuento = porcentajeDescuento;
         this.esAcumulable = esAcumulable;
+    }
+
+    public boolean esAcumulable() {
+        return esAcumulable;
+    }
+
+    public double realizaDescuento(double precio) {
+        return precio - (precio * porcentajeDescuento / 100);
+    }
+
+    public FormaDePago getFormaDePago() {
+        return formaDePago;
     }
 }

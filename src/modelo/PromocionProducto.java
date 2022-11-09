@@ -54,4 +54,19 @@ public class PromocionProducto extends Promocion{
         assert this.dtoPorCantidad_CantMinima == dtoPorCantidad_CantMinima;
         assert this.descuentoPorCantidad_PrecioUnitario == descuentoPorCantidad_PrecioUnitario;
     }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public double realizaDescuento(Pedido pedido, double subtotal){
+        double descuento = 0.0;
+        if (aplicaDosPorUno){
+            descuento += subtotal / 2;
+        }
+        if (aplicaDescuentoPorCantidad && pedido.getCantidad() >= dtoPorCantidad_CantMinima){
+            descuento += subtotal - (descuentoPorCantidad_PrecioUnitario * pedido.getCantidad());
+        }
+        return subtotal - descuento;
+    }
 }
