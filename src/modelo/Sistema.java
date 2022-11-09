@@ -1,5 +1,7 @@
 package modelo;
 
+import controladores.LoginController;
+import enums.Dia;
 import enums.Estado;
 import enums.FormaDePago;
 import excepciones.ContraseniaIncorrectaException;
@@ -19,7 +21,8 @@ public class Sistema {
     private Sueldo sueldo;
     private HashMap<Mozo, ArrayList<Mesa>> asignacionMesas = new HashMap<>();
     private HashMap<Mesa, Comanda> comandas = new HashMap<>();
-    private ArrayList<Promocion> promociones = new ArrayList<>();
+    private ArrayList<PromocionProducto> promocionesProducto = new ArrayList<>();
+    private ArrayList<PromocionTemporal> promocionesTemporales = new ArrayList<>();
     private Administrador administrador;
 
     //Singleton sistema
@@ -30,6 +33,18 @@ public class Sistema {
             sistema = new Sistema();
         }
         return sistema;
+    }
+
+    public void iniciarSistema() {
+        if (sistema == null) {
+            sistema = new Sistema();
+            administrador = new Administrador();
+            operarios.put(administrador.getNombreUsuario(), administrador);
+            LoginController.getInstance();
+
+        }
+
+
     }
 
     public void setNombreLocal(String nombreLocal) {
@@ -63,6 +78,7 @@ public class Sistema {
             throw new ContraseniaIncorrectaException();
         }
         //TODO LOGIN
+        LoginController.getInstance().inicioSesionExitoso();
 
     }
 
@@ -191,13 +207,13 @@ public class Sistema {
         assert mesa != null;
         assert mesa.getEstaOcupada() == false;
 
-        //realizar como invariante de clase
+        //realizar como invariante de clase, chequear si es dia de promocion para el mismo
         int cantidadPromocion = 0;
-        for (Promocion promocion : promociones) {
-            if (promocion.estaActiva()) {
-                cantidadPromocion++;
-            }
-        }
+//        for (Promocion promocion : promociones) {
+//            if (promocion.estaActiva()) {
+//                cantidadPromocion++;
+//            }
+//        }
 
         //chequea que la mesa tenga un mozo activo asignado antes de crearla
         int finalCantidadPromocion = cantidadPromocion;
@@ -249,7 +265,63 @@ public class Sistema {
         assert mesa != null;
         assert formaDePago != null;
 
+        Comanda comanda = comandas.get(mesa);
+        Mozo m = null;
+        for (HashMap.Entry<Mozo, ArrayList<Mesa>> entry : asignacionMesas.entrySet()) {
+            if (entry.getValue().contains(mesa)) {
+                m = entry.getKey();
+            }
+        }
+
+        ArrayList<Promocion> promocionesAplicadas = new ArrayList<>();
+        ArrayList<Pedido> pedidos = comanda.getPedidos();
+        double total = 0.0;
+        double subtotal = 0.0;
+        boolean aplicoPromocionProducto = false;
+
+        for (Pedido pedido : pedidos) {
+                Producto producto = pedido.getProducto();
+                //chequeo si producto esta en promocion
+                for (PromocionProducto promocionProducto : promocionesProducto) {
+                    subtotal = promocionProducto.getProducto().getPrecioVenta() * pedido.getCantidad();
+                    if (promocionProducto.getProducto().equals(producto) && promocionProducto.estaActiva() && cumpleDiaPromocion(promocionProducto)) {
+                        aplicoPromocionProducto = true;
+                        promocionesAplicadas.add(promocionProducto);
+                        total += promocionProducto.realizaDescuento(pedido, subtotal);
+                    }
+                    else {
+                        total += subtotal;
+                    }
+                }
+                //chequeo si hay promocion temporal
+                for (PromocionTemporal promocionTemporal : promocionesTemporales) {
+                    if (promocionTemporal.estaActiva() && cumpleDiaPromocion(promocionTemporal) && cumpleCondicionAcumulable(promocionTemporal.esAcumulable(), aplicoPromocionProducto) && promocionTemporal.getFormaDePago().equals(formaDePago)) {
+                        promocionesAplicadas.add(promocionTemporal);
+                        total += promocionTemporal.realizaDescuento(total);
+                    }
+                }
+            }
+
+//        Factura f = new Factura(mesa, formaDePago, m);
     }
+
+    private boolean cumpleCondicionAcumulable(boolean esAcumulable, boolean aplicoPromocionProducto) {
+        boolean auxiliar = false;
+        if (esAcumulable) {
+            auxiliar = true;
+        }
+        else if (!aplicoPromocionProducto) {
+            auxiliar = true;
+        }
+        return auxiliar;
+    }
+
+
+    private boolean cumpleDiaPromocion(Promocion promocion) {
+        return promocion.getDiasPromo().contains(Dia.getDiaActual());
+    }
+
+
 
     /**
      *
@@ -297,5 +369,15 @@ public class Sistema {
             }
         }
         return false;
+    }
+
+    public void agregarPromocionProducto(int id, boolean activa, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) {
+        PromocionProducto promocion = new PromocionProducto(id, activa, diasPromo, producto, aplicaDosPorUno, aplicaDescuentoPorCantidad, dtoPorCantidad_CantMinima, descuentoPorCantidad_PrecioUnitario);
+        promocionesProducto.add(promocion);
+    }
+
+    public void agregarPromocionTemporal(int id, boolean activa, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable){
+        PromocionTemporal promocion = new PromocionTemporal(id, activa, diasPromo, nombre, formaDePago, porcentajeDescuento, esAcumulable);
+        promocionesTemporales.add(promocion);
     }
 }
