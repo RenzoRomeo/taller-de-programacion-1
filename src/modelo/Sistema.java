@@ -82,6 +82,7 @@ public class Sistema {
         if (operarios.containsKey(operario.getNombreUsuario())) {
             throw new NombreDeUsuarioNoDisponibleException(operario.getNombreUsuario());
         }
+        operarios.put(operario.getNombreUsuario(), operario);
     }
     public void eliminarOperario(Operario operario) {
         operarios.remove(operario);
@@ -372,5 +373,93 @@ public class Sistema {
     public void agregarPromocionTemporal(int id, boolean activa, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable){
         PromocionTemporal promocion = new PromocionTemporal(id, activa, diasPromo, nombre, formaDePago, porcentajeDescuento, esAcumulable);
         promocionesTemporales.add(promocion);
+    }
+
+    public String getNombreLocal() {
+        return nombreLocal;
+    }
+
+    public ArrayList<Mozo> getMozos() {
+        return mozos;
+    }
+
+    public ArrayList<Mesa> getMesas() {
+        return mesas;
+    }
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public HashMap<String, Operario> getOperarios() {
+        return operarios;
+    }
+
+    public Sueldo getSueldo() {
+        return sueldo;
+    }
+
+    public HashMap<Mozo, ArrayList<Mesa>> getAsignacionMesas() {
+        return asignacionMesas;
+    }
+
+    public HashMap<Mesa, Comanda> getComandas() {
+        return comandas;
+    }
+
+    public ArrayList<PromocionProducto> getPromocionesProducto() {
+        return promocionesProducto;
+    }
+
+    public ArrayList<PromocionTemporal> getPromocionesTemporales() {
+        return promocionesTemporales;
+    }
+
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+    public void setMozos(ArrayList<Mozo> mozos) {
+        this.mozos = mozos;
+    }
+
+    public void setMesas(ArrayList<Mesa> mesas) {
+        this.mesas = mesas;
+    }
+
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public void setOperarios(HashMap<String, Operario> operarios) {
+        this.operarios = operarios;
+    }
+
+    public void setSueldo(Sueldo sueldo) {
+        this.sueldo = sueldo;
+    }
+
+    public void setAsignacionMesas(HashMap<Mozo, ArrayList<Mesa>> asignacionMesas) {
+        this.asignacionMesas = asignacionMesas;
+    }
+
+    public void setComandas(HashMap<Mesa, Comanda> comandas) {
+        this.comandas = comandas;
+    }
+
+    public void setPromocionesProducto(ArrayList<PromocionProducto> promocionesProducto) {
+        this.promocionesProducto = promocionesProducto;
+    }
+
+    public void setPromocionesTemporales(ArrayList<PromocionTemporal> promocionesTemporales) {
+        this.promocionesTemporales = promocionesTemporales;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
+
+    public static void setSistema(Sistema sistema) {
+        Sistema.sistema = sistema;
     }
 }
