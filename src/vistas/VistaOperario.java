@@ -12,26 +12,30 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 
-public class VistaOperario extends JFrame {
+public class VistaOperario extends JFrame implements IVista {
 
     private JPanel contentPane;
+    private JPanel panelOperario;
+    private JPanel panelEstadoMozo;
+    private JScrollPane scrollPaneMozosEstado;
+    private JList listMozosEstado;
+    private JPanel panelEstados;
+    private JButton botonActivo;
+    private JButton botonAusente;
+    private JButton botonDeFranco;
+    private JPanel panelAsignacion;
+    private JScrollPane scrollPaneMesas;
+    private JList listMesas;
+    private JPanel panelBotones;
+    private JPanel panelBotonAsignar;
+    private JButton botonAsignar;
+    private JPanel panelBotonVovler;
+    private JButton botonVolver;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    VistaOperario frame = new VistaOperario();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /**
      * Create the frame.
@@ -44,70 +48,72 @@ public class VistaOperario extends JFrame {
         contentPane.setLayout(new BorderLayout(0, 0));
         setContentPane(contentPane);
 
-        JPanel panelOperario = new JPanel();
+        panelOperario = new JPanel();
         contentPane.add(panelOperario, BorderLayout.CENTER);
         panelOperario.setLayout(new GridLayout(0, 2, 0, 0));
 
-        JPanel panelEstadoMozo = new JPanel();
+        panelEstadoMozo = new JPanel();
         panelOperario.add(panelEstadoMozo);
-        panelEstadoMozo.setLayout(new GridLayout(0, 2, 0, 0));
+        panelEstadoMozo.setLayout(new GridLayout(2, 2, 0, 0));
 
-        JScrollPane scrollPaneMozosEstado = new JScrollPane();
+        scrollPaneMozosEstado = new JScrollPane();
         panelEstadoMozo.add(scrollPaneMozosEstado);
 
-        JList listMozosEstado = new JList();
+        listMozosEstado = new JList();
         scrollPaneMozosEstado.setViewportView(listMozosEstado);
 
-        JPanel panelEstados = new JPanel();
+        panelEstados = new JPanel();
         panelEstadoMozo.add(panelEstados);
-        panelEstados.setLayout(new GridLayout(3, 0, 0, 0));
+        panelEstados.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        JPanel panelBotonActivo = new JPanel();
-        panelEstados.add(panelBotonActivo);
+        botonActivo = new JButton("Activo");
+        panelEstados.add(botonActivo);
 
-        JButton BotonActivo = new JButton("Activo");
-        panelBotonActivo.add(BotonActivo);
+        botonAusente = new JButton("Ausente");
+        panelEstados.add(botonAusente);
 
-        JPanel panelBotonAusente = new JPanel();
-        panelEstados.add(panelBotonAusente);
+        botonDeFranco = new JButton("De franco");
+        panelEstados.add(botonDeFranco);
 
-        JButton BotonAusente = new JButton("Ausente");
-        panelBotonAusente.add(BotonAusente);
-
-        JPanel panelBotonDeFranco = new JPanel();
-        panelEstados.add(panelBotonDeFranco);
-
-        JButton BotonDeFranco = new JButton("De franco");
-        panelBotonDeFranco.add(BotonDeFranco);
-
-        JPanel panelAsignacion = new JPanel();
+        panelAsignacion = new JPanel();
         panelOperario.add(panelAsignacion);
-        panelAsignacion.setLayout(new GridLayout(0, 3, 0, 0));
+        panelAsignacion.setLayout(new GridLayout(2, 1, 0, 0));
 
-        JScrollPane scrollPane = new JScrollPane();
-        panelAsignacion.add(scrollPane);
+        scrollPaneMesas = new JScrollPane();
+        panelAsignacion.add(scrollPaneMesas);
 
-        JList listMozosAAsignar = new JList();
-        scrollPane.setViewportView(listMozosAAsignar);
+        listMesas = new JList();
+        scrollPaneMesas.setViewportView(listMesas);
 
-        JPanel panelBoton = new JPanel();
-        panelAsignacion.add(panelBoton);
-        panelBoton.setLayout(new GridLayout(3, 1, 0, 0));
+        panelBotones = new JPanel();
+        panelAsignacion.add(panelBotones);
+        panelBotones.setLayout(new GridLayout(2, 0, 0, 0));
 
-        JPanel panel = new JPanel();
-        panelBoton.add(panel);
+        panelBotonAsignar = new JPanel();
+        panelBotones.add(panelBotonAsignar);
 
-        JPanel panelBotonAsignar = new JPanel();
-        panelBoton.add(panelBotonAsignar);
-
-        JButton botonAsignar = new JButton("Asignar");
+        botonAsignar = new JButton("Asignar");
         panelBotonAsignar.add(botonAsignar);
 
-        JScrollPane scrollPane_1 = new JScrollPane();
-        panelAsignacion.add(scrollPane_1);
+        panelBotonVovler = new JPanel();
+        panelBotones.add(panelBotonVovler);
 
-        JList listMesasAAsignar = new JList();
-        scrollPane_1.setViewportView(listMesasAAsignar);
+        botonVolver = new JButton("Volver");
+        panelBotonVovler.add(botonVolver);
     }
 
+    @Override
+    public void setActionListener(ActionListener actionListener) {
+        botonActivo.addActionListener(actionListener);
+        botonAusente.addActionListener(actionListener);
+        botonDeFranco.addActionListener(actionListener);
+        botonAsignar.addActionListener(actionListener);
+        botonVolver.addActionListener(actionListener);
+    }
+
+    @Override
+    public void setWindowListener(WindowListener windowListener) {
+        addWindowListener(windowListener);
+    }
 }
+
