@@ -11,6 +11,18 @@ public class Administrador extends Operario {
     }
 
 
+    /**
+     *
+     * @param nombre
+     * @param apellido
+     * @param nombreDeUsuario
+     * @param contrasena
+     * @throws NombreDeUsuarioNoDisponibleException
+     *
+     * Este metodo se utiliza para crear un nuevo operario
+     * <b>Pre: </b>
+     *
+     */
     public void agregarOperario(String nombre, String apellido, String nombreDeUsuario, String contrasena) {
         Operario o = new Operario(nombre, apellido, nombreDeUsuario, contrasena);
         Sistema s = Sistema.getInstance();
