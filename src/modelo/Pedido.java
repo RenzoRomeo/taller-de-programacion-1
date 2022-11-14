@@ -10,22 +10,22 @@ public class Pedido implements Serializable {
 
     /**
      *
-     * @param producto
-     * @param cantidad
+     * @param producto producto del pedido
+     * @param cantidad cantidad del producto
      *
      * <br>
      * <b>Pre:</b> <br>
      * producto != null <br>
-     * cantidad > 0 <br>
-     * cantidad < stock <br>
+     * cantidad mayor a 0 <br>
+     * cantidad menor a stock <br>
      *
      * <b>Post:</b> <br>
      * Se crea un pedido con los datos ingresados <br>
      */
     public Pedido(Producto producto, int cantidad) {
-        assert producto != null;
-        assert cantidad > 0;
-        assert cantidad < producto.getStock();
+        assert producto != null : "El producto no puede ser nulo";
+        assert cantidad > 0 : "La cantidad debe ser mayor a 0";
+        assert cantidad < producto.getStock() : "La cantidad debe ser menor al stock";
 
         producto.setStock(producto.getStock() - cantidad);
         this.producto = producto;
@@ -33,9 +33,9 @@ public class Pedido implements Serializable {
         this.fechaActual = new Date();
 
 
-        assert this.producto.equals(producto);
-        assert this.cantidad == cantidad;
-        assert this.fechaActual != null;
+        assert this.producto.equals(producto) : "El producto no es el mismo";
+        assert this.cantidad == cantidad : "La cantidad no es la misma";
+        assert this.fechaActual != null : "La fecha no puede ser nula";
     }
 
     public Producto getProducto() {

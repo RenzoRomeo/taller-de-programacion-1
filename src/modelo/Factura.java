@@ -17,8 +17,8 @@ public class Factura implements Serializable {
 
     /**
      * Constructor de la clase Factura
-     * @param mesa
-     * @param mozo
+     * @param mesa mesa a la que se le genera la factura
+     * @param mozo mozo que atendio la mesa
      *
      * <br>
      * <b>Pre:</b> <br>

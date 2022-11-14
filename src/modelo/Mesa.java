@@ -9,14 +9,14 @@ public class Mesa implements Serializable {
 
     /**
      *
-     * @param nroMesa
-     * @param capacidad
+     * @param nroMesa numero de mesa
+     * @param capacidad capacidad de la mesa
      *
      * <br>
      * <b>Pre:</b> <br>
      * nroMesa inexistente <br>
-     * nroMesa >= 0 <br>
-     * capacidad >= 2 <br>
+     * nroMesa mayor o igual a 0 <br>
+     * capacidad mayor o igual a 2 <br>
      *
      * <b>Post:</b> <br>
      * Se crea una mesa con los datos ingresados <br>

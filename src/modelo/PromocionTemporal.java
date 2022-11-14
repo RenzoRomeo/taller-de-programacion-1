@@ -14,18 +14,19 @@ public class PromocionTemporal extends Promocion implements Serializable {
 
     /**
      * Constructor de la clase PromocionTemporal
-     * @param id
-     * @param diasPromo
-     * @param nombre
-     * @param formaDePago
-     * @param porcentajeDescuento
-     * @param esAcumulable
+     * @param id id de la promocion
+     * @param diasPromo dias en los que se aplica la promocion
+     * @param nombre nombre de la promocion
+     * @param formaDePago forma de pago en la que se aplica la promocion
+     * @param porcentajeDescuento porcentaje de descuento que se aplica
+     * @param esAcumulable si la promocion es acumulable o no
      *
-     * <b>Pre:</b>
-     * nombre != null
-     * formaDePago != null
-     * porcentajeDescuento > 0
-     * porcentajeDescuento <= 100
+     * <br>
+     * <b>Pre:</b> <br>
+     * nombre != null <br>
+     * formaDePago != null <br>
+     * porcentajeDescuento mayor a 0 <br>
+     * porcentajeDescuento menor o igual a 100 <br>
      *
      */
     public PromocionTemporal(int id, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable) {
@@ -48,11 +49,11 @@ public class PromocionTemporal extends Promocion implements Serializable {
 
     /**
      * Calcula el descuento de la promocion
-     * @param precio
+     * @param precio precio del producto
      *
      * <br>
      * <b>Pre:</b> <br>
-     * precio > 0 <br>
+     * precio mayor a 0 <br>
      *
      * @return aplica descuento a precio
      */

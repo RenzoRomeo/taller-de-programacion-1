@@ -15,21 +15,21 @@ public class PromocionProducto extends Promocion implements Serializable {
 
     /**
      * Constructor de la clase PromocionProducto
-     * @param id
-     * @param diasPromo
-     * @param producto
-     * @param aplicaDosPorUno
-     * @param aplicaDescuentoPorCantidad
-     * @param dtoPorCantidad_CantMinima
-     * @param descuentoPorCantidad_PrecioUnitario
+     * @param id id de la promocion
+     * @param diasPromo dias en los que se aplica la promocion
+     * @param producto producto al que se aplica la promocion
+     * @param aplicaDosPorUno si la promocion es de dos por uno
+     * @param aplicaDescuentoPorCantidad si la promocion es de descuento por cantidad
+     * @param dtoPorCantidad_CantMinima cantidad minima para aplicar el descuento
+     * @param descuentoPorCantidad_PrecioUnitario precio unitario con el descuento aplicado
      *
      * <br>
      * <b>Pre:</b> <br>
      * producto != null <br>
-     * dtoPorCantidad_CantMinima >= 0 <br>
-     * descuentoPorCantidad_PrecioUnitario >= 0 <br>
+     * dtoPorCantidad_CantMinima mayor o igual a 0 <br>
+     * descuentoPorCantidad_PrecioUnitario mayor o igual a 0 <br>
      * aplicarDosPorUno == true || aplicarDescuentoPorCantidad == true <br>
-     * descuentoPorCantidad_PrecioUnitario >= 0 <br>
+     * descuentoPorCantidad_PrecioUnitario mayor o igual a 0 <br>
      *
      * <b>Post:</b> <br>
      * Se crea una promocion de producto con los datos ingresados <br>
@@ -64,13 +64,13 @@ public class PromocionProducto extends Promocion implements Serializable {
 
     /**
      * Metodo que aplica promocion a un pedido
-     * @param pedido
-     * @param subtotal
+     * @param pedido pedido al que se le aplica la promocion
+     * @param subtotal subtotal del pedido
      *
      * <br>
      * <b>Pre:</b> <br>
      * pedido != null <br>
-     * subtotal >= 0 <br>
+     * subtotal mayor 0 <br>
      *
      * @return subtotal con descuento aplicado
      */

@@ -15,16 +15,16 @@ public class Mozo implements Serializable {
 
     /**
      *
-     * @param nombre
-     * @param apellido
-     * @param fechaNacimiento
-     * @param hijosACargo
+     * @param nombre nombre del mozo
+     * @param apellido apellido del mozo
+     * @param fechaNacimiento fecha de nacimiento del mozo
+     * @param hijosACargo cantidad de hijos a cargo del mozo
      * <br>
      * <b>Pre:</b> <br>
      * nombre != null <br>
      * apellido != null <br>
      * fechaNacimiento != null <br>
-     * hijosACargo >= 0 <br>
+     * hijosACargo mayor o igual a 0 <br>
      *
      * <b>Post:</b> <br>
      * Se crea un mozo con los datos ingresados <br>

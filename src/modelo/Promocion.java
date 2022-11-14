@@ -12,12 +12,12 @@ public abstract class Promocion implements Serializable {
 
     /**
      * Constructor de la clase Promocion
-     * @param id
-     * @param diasPromo
+     * @param id id de la promocion
+     * @param diasPromo dias en los que se aplica la promocion
      *
      * <br>
      * <b>Pre:</b> <br>
-     * id > 0 <br>
+     * id mayor a 0 <br>
      * diasPromo != null <br>
      */
     public Promocion(int id, ArrayList<Dia> diasPromo) {

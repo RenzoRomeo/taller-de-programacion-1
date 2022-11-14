@@ -14,10 +14,10 @@ public class Operario implements Serializable {
 
     /**
      * Constructor de la clase Operario
-     * @param nombre
-     * @param apellido
-     * @param nombreUsuario
-     * @param contrasenia
+     * @param nombre nombre del operario
+     * @param apellido apellido del operario
+     * @param nombreUsuario nombre de usuario del operario
+     * @param contrasenia contrasenia del operario
      *
      * <br>
      * <b>Pre:</b> <br>
@@ -25,11 +25,11 @@ public class Operario implements Serializable {
      * apellido != null <br>
      * nombreUsuario != null <br>
      * nombreUsuario != "" <br>
-     * nombreUsuario.length() <= 10 <br>
+     * nombreUsuario.length() menor o igual a 10 <br>
      * contrasenia != null <br>
      * contrasenia != "" <br>
-     * contrasenia.length() >= 6 <br>
-     * contrasenia.length() <= 12 <br>
+     * contrasenia.length() mayor o igual a 6 <br>
+     * contrasenia.length() menor o igual a 12 <br>
      * Contrasenia contiene al menos una mayuscula <br>
      * Contrasenia contiene al menos un numero <br>
      *
@@ -65,8 +65,8 @@ public class Operario implements Serializable {
 
     /**
      * Metodo que establece el estado de un mozo
-     * @param mozo
-     * @param estado
+     * @param mozo mozo a modificar
+     * @param estado estado a establecer
      *
      * <br>
      * <b>Pre:</b> <br>
@@ -87,8 +87,8 @@ public class Operario implements Serializable {
 
     /**
      * Metodo que asigna mesa a un mozo <br>
-     * @param mozo
-     * @param mesa
+     * @param mozo mozo a asignar mesa
+     * @param mesa mesa a asignar al mozo
      *
      */
     public void asignarMesa(Mozo mozo, Mesa mesa) {

@@ -26,11 +26,11 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Metodo que crea nuevo operario y lo carga al sistema
-     * @param nombre
-     * @param apellido
-     * @param nombreDeUsuario
-     * @param contrasena
-     * @throws NombreDeUsuarioNoDisponibleException
+     * @param nombre nombre del operario
+     * @param apellido apellido del operario
+     * @param nombreDeUsuario nombre de usuario del operario
+     * @param contrasena contrasena del operario
+     * @throws NombreDeUsuarioNoDisponibleException si el nombre de usuario ya existe
      *
      * Este metodo se utiliza para crear un nuevo operario
      *
@@ -49,7 +49,7 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Este metodo se utiliza para eliminar un operario del sistema
-     * @param operario
+     * @param operario operario a eliminar
      */
     public void eliminarOperario(Operario operario) {
         Sistema s = Sistema.getInstance();
@@ -58,10 +58,10 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Este metodo se utiliza para crear un nuevo mozo
-     * @param nombre
-     * @param apellido
-     * @param fechaNacimiento
-     * @param hijosACargo
+     * @param nombre nombre del mozo
+     * @param apellido apellido del mozo
+     * @param fechaNacimiento fecha de nacimiento del mozo
+     * @param hijosACargo hijos a cargo del mozo
      */
     public void agregarMozo(String nombre, String apellido, Date fechaNacimiento, int hijosACargo) {
         Mozo mozo = new Mozo(nombre, apellido, fechaNacimiento, hijosACargo);
@@ -71,9 +71,9 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Este metodo se utiliza para eliminar un mozo del sistema
-     * @param mozo
-     *
+     * @param mozo mozo a eliminar
      */
+
     public void eliminarMozo(Mozo mozo) {
         Sistema s = Sistema.getInstance();
         s.eliminarMozo(mozo);
@@ -81,11 +81,11 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Este metodo se utiliza para crear un nuevo producto
-     * @param id
-     * @param nombre
-     * @param precioCosto
-     * @param precioVenta
-     * @param stockInicial
+     * @param id id del producto
+     * @param nombre nombre del producto
+     * @param precioCosto precio de costo del producto
+     * @param precioVenta precio de venta del producto
+     * @param stockInicial stock inicial del producto
      */
     public void agregarProducto(int id, String nombre, double precioCosto, double precioVenta, int stockInicial) {
         Producto producto = new Producto(id, nombre, precioCosto, precioVenta, stockInicial);
@@ -95,7 +95,7 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Este metodo se utiliza para eliminar un producto del sistema
-     * @param producto
+     * @param producto producto a eliminar
      */
     public void eliminarProducto(Producto producto) {
         Sistema s = Sistema.getInstance();
@@ -104,9 +104,8 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Este metodo se utiliza para crear una nueva mesa
-     * @param nroMesa
-     * @param capacidad
-     *
+     * @param nroMesa numero de mesa
+     * @param capacidad capacidad de la mesa
      */
     public void agregarMesa(int nroMesa, int capacidad) {
         Mesa mesa = new Mesa(nroMesa, capacidad);
@@ -116,7 +115,7 @@ public class Administrador extends Operario implements Serializable {
 
     /**
      * Este metodo se utiliza para eliminar una mesa del sistema
-     * @param mesa
+     * @param mesa mesa a eliminar
      */
     public void eliminarMesa(Mesa mesa) {
         Sistema s = Sistema.getInstance();

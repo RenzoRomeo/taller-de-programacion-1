@@ -51,17 +51,17 @@ public class Sistema {
 
     /**
      * Inicio de sesion de un operario
-     * @param nombreUsuario
-     * @param contrasenia
+     * @param nombreUsuario nombre de usuario del operario
+     * @param contrasenia contrasenia del operario
      *
      * <br>
      * <b>Pre:</b> <br>
      * nombreUsuario != null <br>
      * contrasenia != null <br>
      *
-     * @throws UsuarioInactivoException
-     * @throws UsuarioNoExisteException
-     * @throws ContraseniaIncorrectaException
+     * @throws UsuarioInactivoException si el usuario esta inactivo
+     * @throws UsuarioNoExisteException si el usuario no existe
+     * @throws ContraseniaIncorrectaException si la contrasenia es incorrecta
      */
     public void iniciarSesionOperario(String nombreUsuario, String contrasenia) throws UsuarioInactivoException, UsuarioNoExisteException, ContraseniaIncorrectaException {
         assert nombreUsuario != null;
@@ -90,7 +90,7 @@ public class Sistema {
      * <b>Pre:</b> <br>
      * operario != null <br>
      *
-     * @throws NombreDeUsuarioNoDisponibleException
+     * @throws NombreDeUsuarioNoDisponibleException si el nombre de usuario ya esta en uso
      */
     public void agregarOperario(Operario operario) throws NombreDeUsuarioNoDisponibleException {
         if (operarios.containsKey(operario.getNombreUsuario())) {
@@ -157,8 +157,8 @@ public class Sistema {
 
     /**
      * establece estado mozo
-     * @param mozo
-     * @param estado
+     * @param mozo mozo a modificar
+     * @param estado estado a establecer
      * <b>Pre:</b>
      * mozo != null
      * estado != null
@@ -251,13 +251,13 @@ public class Sistema {
 
     /**
      *
-     * @param mesa
-     * @param p
-     * @param cantidad
+     * @param mesa mesa a la que se le agrega la comanda
+     * @param p producto a agregar a la comanda
+     * @param cantidad cantidad del producto a agregar
      *
      * <br>
      * <b>Pre:</b> <br>
-     * mesas.size() > 0 <br>
+     * mesas.size() mayor a 0 <br>
      * mesa != null <br>
      * Mesa tiene mozo activo asignado <br>
      * mesa tiene estado libre <br>
@@ -297,14 +297,14 @@ public class Sistema {
 
     /**
      *
-     * @param p
-     * @param cantidad
-     * @param mesa
+     * @param p producto a agregar a la comanda
+     * @param cantidad cantidad del producto a agregar
+     * @param mesa mesa a la que se le agrega el pedido
      *
      * <br>
      * <b>Pre:</b> <br>
      * p != null <br>
-     * cantidad > 0 <br>
+     * cantidad mayor a 0 <br>
      * mesa != null <br>
      * mesa esta cargada en el sistema <br>
      * mesa tiene comanda abierta <br>
@@ -327,8 +327,8 @@ public class Sistema {
 
     /**
      *
-     * @param mesa
-     * @param formaDePago
+     * @param mesa mesa a la que se le cierra la comanda
+     * @param formaDePago forma de pago de la comanda
      *
      * <br>
      * <b>Pre:</b> <br>
@@ -408,8 +408,8 @@ public class Sistema {
 
     /**
      *
-     * @param mozo
-     * @param mesa
+     * @param mozo mozo a asignar a la mesa
+     * @param mesa mesa a la que se le asigna el mozo
      *
      * <br>
      * <b>Pre:</b> <br>
@@ -455,14 +455,14 @@ public class Sistema {
 
     /**
      * Agrega una promocion de producto al sistema
-     * @param id
-     * @param activa
-     * @param diasPromo
-     * @param producto
-     * @param aplicaDosPorUno
-     * @param aplicaDescuentoPorCantidad
-     * @param dtoPorCantidad_CantMinima
-     * @param descuentoPorCantidad_PrecioUnitario
+     * @param id id de la promocion
+     * @param activa indica si la promocion esta activa
+     * @param diasPromo dias en los que se aplica la promocion
+     * @param producto producto al que se le aplica la promocion
+     * @param aplicaDosPorUno indica si la promocion es 2x1
+     * @param aplicaDescuentoPorCantidad indica si la promocion es por descuento por cantidad
+     * @param dtoPorCantidad_CantMinima cantidad minima para aplicar el descuento por cantidad
+     * @param descuentoPorCantidad_PrecioUnitario precio unitario para aplicar el descuento por cantidad
      *
      * <br>
      * <b>Post:</b> <br>
@@ -477,13 +477,13 @@ public class Sistema {
 
     /**
      * Agrega una promocion temporal al sistema
-     * @param id
-     * @param activa
-     * @param diasPromo
-     * @param nombre
-     * @param formaDePago
-     * @param porcentajeDescuento
-     * @param esAcumulable
+     * @param id id de la promocion
+     * @param activa indica si la promocion esta activa
+     * @param diasPromo dias en los que se aplica la promocion
+     * @param nombre nombre de la promocion
+     * @param formaDePago forma de pago para aplicar la promocion
+     * @param porcentajeDescuento porcentaje de descuento a aplicar
+     * @param esAcumulable indica si la promocion es acumulable
      *
      * <br>
      * <b>Post:</b> <br>
