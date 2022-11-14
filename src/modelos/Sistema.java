@@ -113,7 +113,7 @@ public class Sistema {
         assert instancia.administrador != null : "El administrador no se inicializó correctamente";
         assert instancia.modoOperacion == ModoOperacion.OPERARIO : "El modo administrador no se inicializó correctamente";
 
-        assert instancia.verificarInvariantes() : "No se cumple la invariante";
+        instancia.verificarInvariantes();
     }
 
     /**
@@ -141,7 +141,7 @@ public class Sistema {
         mozos.add(mozo);
 
         assert mozos.contains(mozo) : "El mozo no se agregó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -166,7 +166,7 @@ public class Sistema {
         mozos.remove(mozo);
 
         assert !mozos.contains(mozo) : "El mozo no se eliminó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -192,7 +192,7 @@ public class Sistema {
         productos.add(producto);
 
         assert productos.contains(producto) : "El producto no se agregó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -223,7 +223,7 @@ public class Sistema {
         productos.remove(producto);
 
         assert !productos.contains(producto) : "El producto no se eliminó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -248,7 +248,7 @@ public class Sistema {
         mozo.setEstado(estado);
 
         assert mozo.getEstado() == estado : "El estado no se estableció";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -274,7 +274,7 @@ public class Sistema {
         mesas.add(mesa);
 
         assert mesas.contains(mesa) : "La mesa no se agregó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -300,7 +300,7 @@ public class Sistema {
         mesas.remove(mesa);
 
         assert !mesas.contains(mesa) : "La mesa no se eliminó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -329,7 +329,7 @@ public class Sistema {
         asignacionMesas.computeIfAbsent(mozo, k -> new ArrayList<>()).add(mesa);
 
         assert asignacionMesas.get(mozo).contains(mesa) : "La mesa no se asignó al mozo";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -343,7 +343,7 @@ public class Sistema {
         comandas.put(mesa, new Comanda());
 
         assert comandas.containsKey(mesa) : "La comanda no se creó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -369,7 +369,7 @@ public class Sistema {
         operarios.add(operario);
 
         assert operarios.contains(operario) : "El operario no se agregó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     /**
@@ -396,14 +396,27 @@ public class Sistema {
         operarios.remove(operario);
 
         assert !operarios.contains(operario) : "El operario no se eliminó";
-        assert verificarInvariantes() : "Los invariantes no se cumplen";
+        verificarInvariantes();
     }
 
     public ModoOperacion getModoOperacion() {
         return modoOperacion;
     }
 
-    private boolean verificarInvariantes() {
+    private void verificarInvariantes() {
+        assert nombreLocal != null : "El nombre del local no puede ser nulo";
+        assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
+        assert mozos != null : "La lista de mozos no puede ser nula";
+        assert mesas != null : "La lista de mesas no puede ser nula";
+        assert productos != null : "La lista de productos no puede ser nula";
+        assert operarios != null : "La lista de operarios no puede ser nula";
+        assert asignacionMesas != null : "La asignación de mesas no puede ser nula";
+        assert comandas != null : "La lista de comandas no puede ser nula";
+        assert promociones != null : "La lista de promociones no puede ser nula";
+        assert mozos.size() <= 6 : "No puede haber más de 6 mozos";
+        assert promociones.values().stream().allMatch(promocionesProducto -> promocionesProducto != null
+                && promocionesProducto.stream().allMatch(promocion -> promocion.getDiasPromo() != null)) : "Debe haber días de promoción para todos los productos";
+
         Dia diaActual = Dia.getDiaActual();
         Set<Map.Entry<Producto, List<Promocion>>> entries = promociones.entrySet();
         Iterator<Map.Entry<Producto, List<Promocion>>> iterator = entries.iterator();
@@ -422,13 +435,7 @@ public class Sistema {
             }
         }
 
-        return nombreLocal != null && !nombreLocal.equals("") && mozos != null
-                && mesas != null && productos != null && operarios != null
-                && asignacionMesas != null && comandas != null
-                && promociones != null && mozos.size() <= 6
-                && productosPromocionadosHoy >= 2
-                && promociones.values().stream().allMatch(promocionesProducto -> promocionesProducto != null && promocionesProducto.stream().allMatch(promocion -> promocion.getDiasPromo() != null));
-
+        assert productosPromocionadosHoy >= 2 : "Debe haber al menos 2 productos promocionados hoy";
     }
 
 
