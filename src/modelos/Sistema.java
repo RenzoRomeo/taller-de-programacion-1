@@ -452,6 +452,7 @@ public class Sistema {
         this.modoOperacion = modoOperacion;
 
         assert this.modoOperacion == modoOperacion : "El modo de operacion no se establecio";
+        verificarInvariantes();
     }
 
 
