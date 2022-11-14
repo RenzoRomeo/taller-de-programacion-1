@@ -334,13 +334,27 @@ public class Sistema {
 
     /**
      * Crea una comanda para una mesa.
-     * <b>Pre:</b>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * <b>Post:</b> <br>
+     * Se crea una comanda para la mesa. <br>
      */
-    public void crearComanda(Mesa mesa) {
+    public void crearComanda(Mesa mesa) throws MesaInexistenteException, MesaNoAsignadaException, MesaOcupadaException {
         assert mesa != null : "La mesa no puede ser nula";
-        assert mesas.contains(mesa) : "La mesa no está en el sistema";
+
+        if (!mesas.contains(mesa))
+            throw new MesaInexistenteException(mesa);
+
+        if (!asignacionMesas.values().stream().anyMatch(l -> l.contains(mesa))) {
+            throw new MesaNoAsignadaException(mesa);
+        }
+
+        if (mesa.estaOcupada()) {
+            throw new MesaOcupadaException(mesa);
+        }
 
         comandas.put(mesa, new Comanda());
+        mesa.ocupar();
 
         assert comandas.containsKey(mesa) : "La comanda no se creó";
         verificarInvariantes();
