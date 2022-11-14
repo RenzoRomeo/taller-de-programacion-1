@@ -18,6 +18,8 @@ public class Comanda implements Serializable {
 
     /**
      * Agrega un pedido a la comanda
+     * @param producto producto del pedido
+     * @param cantidad cantidad del producto
      */
     public void agregarPedido(Producto producto, int cantidad) {
         Pedido pedido = new Pedido(producto, cantidad);

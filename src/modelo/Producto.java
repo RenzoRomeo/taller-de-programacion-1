@@ -19,7 +19,7 @@ public class Producto implements Serializable {
      *
      * <br>
      * <b>Pre:</b> <br>
-     * id > 0 <br>
+     * id mayor a 0 <br>
      * nombre != null <br>
      * precioCosto mayor a 0 <br>
      * precioVenta mayor a 0 <br>

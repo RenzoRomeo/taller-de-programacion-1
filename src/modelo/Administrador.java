@@ -30,7 +30,6 @@ public class Administrador extends Operario implements Serializable {
      * @param apellido apellido del operario
      * @param nombreDeUsuario nombre de usuario del operario
      * @param contrasena contrasena del operario
-     * @throws NombreDeUsuarioNoDisponibleException si el nombre de usuario ya existe
      *
      * Este metodo se utiliza para crear un nuevo operario
      *
