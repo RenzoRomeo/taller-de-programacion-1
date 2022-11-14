@@ -2,10 +2,11 @@ package modelo;
 
 import enums.FormaDePago;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Factura {
+public class Factura implements Serializable {
     private Date fecha;
     private Mesa mesa;
     private ArrayList<Pedido> listaPedidos = new ArrayList<>();

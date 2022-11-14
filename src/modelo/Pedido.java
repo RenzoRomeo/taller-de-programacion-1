@@ -1,8 +1,9 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Pedido {
+public class Pedido implements Serializable {
     private Producto producto;
     private int cantidad;
     private Date fechaActual;
@@ -12,13 +13,14 @@ public class Pedido {
      * @param producto
      * @param cantidad
      *
-     * <b>Pre:</b>
-     * producto != null
-     * cantidad > 0
-     * cantidad < stock
+     * <br>
+     * <b>Pre:</b> <br>
+     * producto != null <br>
+     * cantidad > 0 <br>
+     * cantidad < stock <br>
      *
-     * <b>Post:</b>
-     * Se crea un pedido con los datos ingresados
+     * <b>Post:</b> <br>
+     * Se crea un pedido con los datos ingresados <br>
      */
     public Pedido(Producto producto, int cantidad) {
         assert producto != null;

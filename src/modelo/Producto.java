@@ -1,6 +1,8 @@
 package modelo;
 
-public class Producto {
+import java.io.Serializable;
+
+public class Producto implements Serializable {
     private int id;
     private String nombre;
     private double precioCosto;
@@ -8,23 +10,24 @@ public class Producto {
     private int stock;
 
     /**
-     *
+     * Constructor de la clase Producto
      * @param id
      * @param nombre
      * @param precioCosto
      * @param precioVenta
      * @param stockInicial
      *
-     * <b>Pre:</b>
-     * id > 0
-     * nombre != null
-     * precioCosto > 0
-     * precioVenta > 0
-     * precioVenta > precioCosto
-     * stockInicial >= 0
+     * <br>
+     * <b>Pre:</b> <br>
+     * id > 0 <br>
+     * nombre != null <br>
+     * precioCosto > 0 <br>
+     * precioVenta > 0 <br>
+     * precioVenta > precioCosto <br>
+     * stockInicial >= 0 <br>
      *
-     * <b>Post:</b>
-     * Se crea un producto con los datos ingresados
+     * <b>Post:</b> <br>
+     * Se crea un producto con los datos ingresados <br>
      */
     public Producto(int id, String nombre, double precioCosto, double precioVenta, int stockInicial) {
         assert id > 0;

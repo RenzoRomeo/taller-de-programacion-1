@@ -2,9 +2,10 @@ package modelo;
 
 import enums.Dia;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PromocionProducto extends Promocion{
+public class PromocionProducto extends Promocion implements Serializable {
     private Producto producto;
     private boolean aplicaDosPorUno;
     private boolean aplicaDescuentoPorCantidad;
@@ -15,7 +16,6 @@ public class PromocionProducto extends Promocion{
     /**
      * Constructor de la clase PromocionProducto
      * @param id
-     * @param activa
      * @param diasPromo
      * @param producto
      * @param aplicaDosPorUno
@@ -25,8 +25,6 @@ public class PromocionProducto extends Promocion{
      *
      * <br>
      * <b>Pre:</b> <br>
-     * id > 0 <br>
-     * diasPromo != null <br>
      * producto != null <br>
      * dtoPorCantidad_CantMinima >= 0 <br>
      * descuentoPorCantidad_PrecioUnitario >= 0 <br>
@@ -36,8 +34,8 @@ public class PromocionProducto extends Promocion{
      * <b>Post:</b> <br>
      * Se crea una promocion de producto con los datos ingresados <br>
      */
-    public PromocionProducto(int id, boolean activa, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) {
-        super(id, activa, diasPromo);
+    public PromocionProducto(int id, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) {
+        super(id, diasPromo);
 
         assert producto != null;
         assert dtoPorCantidad_CantMinima >= 0;
@@ -64,6 +62,18 @@ public class PromocionProducto extends Promocion{
     }
 
 
+    /**
+     * Metodo que aplica promocion a un pedido
+     * @param pedido
+     * @param subtotal
+     *
+     * <br>
+     * <b>Pre:</b> <br>
+     * pedido != null <br>
+     * subtotal >= 0 <br>
+     *
+     * @return subtotal con descuento aplicado
+     */
     public double realizaDescuento(Pedido pedido, double subtotal){
         double descuento = 0.0;
         if (aplicaDosPorUno){

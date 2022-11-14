@@ -33,6 +33,11 @@ public class Sistema {
     //Singleton sistema
     private static Sistema sistema = null;
 
+    /**
+     * Patron singleton para obtener una instancia de sistema <br>
+     *
+     * @return instancia de sistema
+     */
     public static Sistema getInstance() {
         if (sistema == null) {
             sistema = new Sistema();
@@ -40,23 +45,23 @@ public class Sistema {
         return sistema;
     }
 
-
     public void setNombreLocal(String nombreLocal) {
         this.nombreLocal = nombreLocal;
     }
 
     /**
-     *
+     * Inicio de sesion de un operario
      * @param nombreUsuario
      * @param contrasenia
      *
-     * <b>Pre:</b>
-     * nombreUsuario != null
-     * contrasenia != null
+     * <br>
+     * <b>Pre:</b> <br>
+     * nombreUsuario != null <br>
+     * contrasenia != null <br>
      *
-     * <b>Post:</b>
-     * //TODO
-     *
+     * @throws UsuarioInactivoException
+     * @throws UsuarioNoExisteException
+     * @throws ContraseniaIncorrectaException
      */
     public void iniciarSesionOperario(String nombreUsuario, String contrasenia) throws UsuarioInactivoException, UsuarioNoExisteException, ContraseniaIncorrectaException {
         assert nombreUsuario != null;
@@ -77,7 +82,16 @@ public class Sistema {
     }
 
 
-
+    /**
+     * Agrega operario al sistema
+     * @param operario
+     *
+     * <br>
+     * <b>Pre:</b> <br>
+     * operario != null <br>
+     *
+     * @throws NombreDeUsuarioNoDisponibleException
+     */
     public void agregarOperario(Operario operario) throws NombreDeUsuarioNoDisponibleException {
         if (operarios.containsKey(operario.getNombreUsuario())) {
             throw new NombreDeUsuarioNoDisponibleException(operario.getNombreUsuario());
@@ -455,7 +469,7 @@ public class Sistema {
      * Se agrega promocion al sistema <br>
      */
     public void agregarPromocionProducto(int id, boolean activa, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) {
-        PromocionProducto promocion = new PromocionProducto(id, activa, diasPromo, producto, aplicaDosPorUno, aplicaDescuentoPorCantidad, dtoPorCantidad_CantMinima, descuentoPorCantidad_PrecioUnitario);
+        PromocionProducto promocion = new PromocionProducto(id, diasPromo, producto, aplicaDosPorUno, aplicaDescuentoPorCantidad, dtoPorCantidad_CantMinima, descuentoPorCantidad_PrecioUnitario);
         promocionesProducto.add(promocion);
 
         assert promocionesProducto.contains(promocion) : "Promocion no agregada";
@@ -476,7 +490,7 @@ public class Sistema {
      * Se agrega promocion al sistema <br>
      */
     public void agregarPromocionTemporal(int id, boolean activa, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable){
-        PromocionTemporal promocion = new PromocionTemporal(id, activa, diasPromo, nombre, formaDePago, porcentajeDescuento, esAcumulable);
+        PromocionTemporal promocion = new PromocionTemporal(id, diasPromo, nombre, formaDePago, porcentajeDescuento, esAcumulable);
         promocionesTemporales.add(promocion);
 
         assert promocionesTemporales.contains(promocion) : "Promocion no agregada";

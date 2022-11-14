@@ -2,7 +2,9 @@ package modelo;
 
 import enums.Estado;
 
-public class Operario {
+import java.io.Serializable;
+
+public class Operario implements Serializable {
     private String nombre;
     private String apellido;
     private String nombreUsuario;
@@ -17,21 +19,22 @@ public class Operario {
      * @param nombreUsuario
      * @param contrasenia
      *
-     * <b>Pre:</b>
-     * nombre != null
-     * apellido != null
-     * nombreUsuario != null
-     * nombreUsuario != ""
-     * nombreUsuario.length() <= 10
-     * contrasenia != null
-     * contrasenia != ""
-     * contrasenia.length() >= 6
-     * contrasenia.length() <= 12
-     * Contrasenia contiene al menos una mayuscula
-     * Contrasenia contiene al menos un numero
+     * <br>
+     * <b>Pre:</b> <br>
+     * nombre != null <br>
+     * apellido != null <br>
+     * nombreUsuario != null <br>
+     * nombreUsuario != "" <br>
+     * nombreUsuario.length() <= 10 <br>
+     * contrasenia != null <br>
+     * contrasenia != "" <br>
+     * contrasenia.length() >= 6 <br>
+     * contrasenia.length() <= 12 <br>
+     * Contrasenia contiene al menos una mayuscula <br>
+     * Contrasenia contiene al menos un numero <br>
      *
-     * <b>Post:</b>
-     * Se crea un nuevo operario con los datos recibidos.
+     * <b>Post:</b> <br>
+     * Se crea un nuevo operario con los datos recibidos. <br>
      *
      */
     public Operario(String nombre, String apellido, String nombreUsuario, String contrasenia) {
@@ -65,7 +68,8 @@ public class Operario {
      * @param mozo
      * @param estado
      *
-     * <b>Pre:</b>
+     * <br>
+     * <b>Pre:</b> <br>
      * mozo != null <br>
      * estado != null <br>
      *
@@ -82,7 +86,7 @@ public class Operario {
     }
 
     /**
-     * Metodo que asigna mesa a un mozo
+     * Metodo que asigna mesa a un mozo <br>
      * @param mozo
      * @param mesa
      *

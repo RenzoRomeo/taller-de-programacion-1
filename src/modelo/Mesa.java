@@ -1,6 +1,8 @@
 package modelo;
 
-public class Mesa {
+import java.io.Serializable;
+
+public class Mesa implements Serializable {
     private int nroMesa;
     private int capacidad;
     private boolean estaOcupada;
@@ -10,13 +12,14 @@ public class Mesa {
      * @param nroMesa
      * @param capacidad
      *
-     * <b>Pre:</b>
-     * nroMesa inexistente
-     * nroMesa >= 0
-     * capacidad >= 2
+     * <br>
+     * <b>Pre:</b> <br>
+     * nroMesa inexistente <br>
+     * nroMesa >= 0 <br>
+     * capacidad >= 2 <br>
      *
-     * <b>Post:</b>
-     * Se crea una mesa con los datos ingresados
+     * <b>Post:</b> <br>
+     * Se crea una mesa con los datos ingresados <br>
      */
     public Mesa (int nroMesa, int capacidad)
         {

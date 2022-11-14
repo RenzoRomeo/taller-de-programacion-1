@@ -2,10 +2,11 @@ package modelo;
 
 import enums.Estado;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Mozo {
+public class Mozo implements Serializable {
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
@@ -18,15 +19,15 @@ public class Mozo {
      * @param apellido
      * @param fechaNacimiento
      * @param hijosACargo
+     * <br>
+     * <b>Pre:</b> <br>
+     * nombre != null <br>
+     * apellido != null <br>
+     * fechaNacimiento != null <br>
+     * hijosACargo >= 0 <br>
      *
-     * <b>Pre:</b>
-     * nombre != null
-     * apellido != null
-     * fechaNacimiento != null
-     * hijosACargo >= 0
-     *
-     * <b>Post:</b>
-     * Se crea un mozo con los datos ingresados
+     * <b>Post:</b> <br>
+     * Se crea un mozo con los datos ingresados <br>
      */
     public Mozo(String nombre, String apellido, Date fechaNacimiento, int hijosACargo)
         {

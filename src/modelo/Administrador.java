@@ -3,9 +3,11 @@ package modelo;
 import excepciones.AdminExistenteException;
 import excepciones.NombreDeUsuarioNoDisponibleException;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Administrador extends Operario {
+//implementa interfaz para persistir binario
+public class Administrador extends Operario implements Serializable {
     private boolean establecioContrasena;
 
     /**
@@ -23,7 +25,7 @@ public class Administrador extends Operario {
 
 
     /**
-     *
+     * Metodo que crea nuevo operario y lo carga al sistema
      * @param nombre
      * @param apellido
      * @param nombreDeUsuario
