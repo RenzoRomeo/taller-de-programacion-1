@@ -84,8 +84,25 @@ public class Sistema {
         }
         operarios.put(operario.getNombreUsuario(), operario);
     }
+
+    /**
+     * Elimina a un operario del sistema
+     * @param operario
+     *
+     * <b>Pre:</b>
+     * operario != null <br>
+     * Operario esta cargado en el sistema <br>
+     *
+     * <b>Post:</b>
+     * Operario eliminado del sistema <br>
+     */
     public void eliminarOperario(Operario operario) {
+        assert operario != null : "El operario no puede ser null";
+        assert operarios.containsKey(operario.getNombreUsuario()) : "El operario no esta cargado en el sistema";
+
         operarios.remove(operario);
+
+        assert !operarios.containsKey(operario.getNombreUsuario()) : "El operario no fue eliminado del sistema";
     }
 
 
@@ -94,20 +111,29 @@ public class Sistema {
      * @param mozo
      * <b>Pre:</b>
      * mozo != null
+     * mozo no esta cargado en el sistema
      *
+     * <b>Post:</b>
+     * mozo cargado en el sistema
      */
     public void agregarMozo(Mozo mozo) {
-        assert mozo != null;
+        assert mozo != null : "El mozo no puede ser null";
+        assert !mozos.contains(mozo) : "El mozo ya esta cargado en el sistema";
 
         mozos.add(mozo);
+
+        assert mozos.contains(mozo) : "El mozo no fue cargado en el sistema";
     }
 
     /**
      * Elimina mozo del sistema
      * @param mozo
      * <b>Pre:</b>
-     * mozo != null
+     * mozo != null <br>
+     * mozo esta cargado en el sistema <br>
      *
+     * <b>Post:</b>
+     * mozo eliminado del sistema <br>
      */
     public void eliminarMozo(Mozo mozo) {
         assert mozo != null;
@@ -134,27 +160,41 @@ public class Sistema {
     /**
      * Agrega mesa al sistema
      * @param mesa
-     * <b>Pre:</b>
-     * mesa != null
+     * <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * mesa no esta cargada en el sistema <br>
      *
+     * <b>Post:</b> <br>
+     * mesa cargada en el sistema <br>
      */
     public void agregarMesa(Mesa mesa) {
-        assert mesa != null;
+        assert mesa != null : "La mesa no puede ser null";
+        assert !mesas.contains(mesa) : "La mesa ya esta cargada en el sistema";
 
         mesas.add(mesa);
+
+        assert mesas.contains(mesa) : "La mesa no fue cargada en el sistema";
     }
 
     /**
      * Elimina mesa del sistema
      * @param mesa
-     * <b>Pre:</b>
-     * mesa != null
+     * <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * mesa esta cargada en el sistema <br>
      *
+     * <b>Post:</b> <br>
+     * mesa eliminada del sistema <br>
      */
     public void eliminarMesa(Mesa mesa) {
-        assert mesa != null;
+        assert mesa != null : "La mesa no puede ser null";
+        assert mesas.contains(mesa) : "La mesa no esta cargada en el sistema";
 
         mesas.remove(mesa);
+
+        assert !mesas.contains(mesa) : "La mesa no fue eliminada del sistema";
     }
 
 
@@ -174,13 +214,22 @@ public class Sistema {
     /**
      * Elimina producto del sistema
      * @param producto
-     * <b>Pre:</b>
-     * producto != null
+     * <br>
+     * <b>Pre:</b> <br>
+     * producto != null <br>
+     * producto esta cargado en el sistema <br>
      *
+     * <b>Post:</b>
+     * producto eliminado del sistema <br>
      */
+
     public void eliminarProducto(Producto producto) {
-        assert producto != null;
+        assert producto != null : "El producto no puede ser null";
+        assert productos.contains(producto) : "El producto no esta cargado en el sistema";
+
         productos.remove(producto);
+
+        assert !productos.contains(producto) : "El producto no fue eliminado del sistema";
     }
 
     //La comanda va estar abierta siempre y cuando exista
@@ -198,9 +247,9 @@ public class Sistema {
      * al menos 2 productos en promocion activa
      *
      */
-    public void crearComanda(Mesa mesa, Pedido pedido) {
-        assert mesa != null;
-        assert mesa.getEstaOcupada() == false;
+    public void crearComanda(Mesa mesa, Producto p, int cantidad) {
+        assert mesa != null : "La mesa no puede ser null";
+        assert mesa.getEstaOcupada() == false : "La mesa no esta libre";
 
         //chequea cuantos productos hay en promocion hoy
         int cantidadPromocion = 0;
@@ -214,7 +263,8 @@ public class Sistema {
         int finalCantidadPromocion = cantidadPromocion;
         asignacionMesas.forEach((mozo, mesasAsignadas) -> {
             if (mesasAsignadas.contains(mesa) && mozo.getEstado() == Estado.ACTIVO && finalCantidadPromocion >= 2) {
-                        Comanda comanda = new Comanda(pedido);
+                        Comanda comanda = new Comanda();
+                        comanda.agregarPedido(p, cantidad);
                         comandas.put(mesa, comanda);
                         mesa.setEstaOcupada(true);
             }
@@ -335,11 +385,11 @@ public class Sistema {
      *
      */
     public void asignarMesa(Mozo mozo, Mesa mesa) {
-        assert mozo != null;
-        assert mozo.getEstado() == Estado.ACTIVO;
-        assert mesa != null;
-        assert mozos.contains(mozo);
-        assert mesas.contains(mesa);
+        assert mozo != null : "Mozo no puede ser null";
+        assert mozo.getEstado() == Estado.ACTIVO : "Mozo debe estar activo";
+        assert mesa != null : "Mesa no puede ser null";
+        assert mozos.contains(mozo) : "Mozo no existe";
+        assert mesas.contains(mesa) : "Mesa no existe";
 
 
         if (asignacionMesas.containsKey(mozo)) {
@@ -351,7 +401,7 @@ public class Sistema {
             asignacionMesas.put(mozo, m);
         }
 
-        assert asignacionMesas.get(mozo).contains(mesa);
+        assert asignacionMesas.get(mozo).contains(mesa) : "Mesa no asignada correctamente";
 
     }
 

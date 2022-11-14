@@ -5,7 +5,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import modelo.Sistema;
-import vista.IVista;
+import vistas.IVista;
 import vistas.IVista;
 
 public abstract class Controller<E extends IVista> implements ActionListener, WindowListener {

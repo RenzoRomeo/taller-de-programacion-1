@@ -7,8 +7,7 @@ public class Comanda {
     private Date fecha;
     private ArrayList<Pedido> pedidos = new ArrayList<>();
 
-    public Comanda(Pedido pedido) {
-        pedidos.add(pedido);
+    public Comanda() {
         this.fecha = new Date();
     }
 

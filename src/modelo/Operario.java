@@ -35,16 +35,16 @@ public class Operario {
      *
      */
     public Operario(String nombre, String apellido, String nombreUsuario, String contrasenia) {
-        assert nombre != null;
-        assert apellido != null;
-        assert nombreUsuario != null;
-        assert nombreUsuario != "";
-        assert nombreUsuario.length() <= 10;
-        assert contrasenia != null;
-        assert contrasenia != "";
-        assert contrasenia.length() >= 6;
-        assert contrasenia.length() <= 12;
-        assert contrasenia.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,10}$"); //Regex que verifica que la contrasenia tenga al menos una mayuscula, un numero y que no tenga espacios en blanco
+        assert nombre != null : "El nombre no puede ser nulo";
+        assert apellido != null : "El apellido no puede ser nulo";
+        assert nombreUsuario != null : "El nombre de usuario no puede ser nulo";
+        assert nombreUsuario != "" : "El nombre de usuario no puede ser vacio";
+        assert nombreUsuario.length() <= 10 : "El nombre de usuario no puede tener mas de 10 caracteres";
+        assert contrasenia != null : "La contrasenia no puede ser nula";
+        assert contrasenia != "" : "La contrasenia no puede ser vacia";
+        assert contrasenia.length() >= 6 : "La contrasenia debe tener al menos 6 caracteres";
+        assert contrasenia.length() <= 12 : "La contrasenia no puede tener mas de 12 caracteres";
+        assert contrasenia.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,10}$") : "No cumple con las condiciones de contrasenia"; //Regex que verifica que la contrasenia tenga al menos una mayuscula, un numero y que no tenga espacios en blanco
 
         this.nombre = nombre;
         this.apellido = apellido;
@@ -60,10 +60,33 @@ public class Operario {
 
     }
 
+    /**
+     * Metodo que establece el estado de un mozo
+     * @param mozo
+     * @param estado
+     *
+     * <b>Pre:</b>
+     * mozo != null <br>
+     * estado != null <br>
+     *
+     * <b>Post:</b>
+     * Se establece el estado del mozo recibido. <br>
+     */
     public void establecerEstadoMozo(Mozo mozo, Estado estado) {
+        assert mozo != null : "El mozo no puede ser nulo";
+        assert estado != null : "El estado no puede ser nulo";
+
         mozo.setEstado(estado);
+
+        assert mozo.getEstado() == estado : "El estado del mozo no se establecio correctamente";
     }
 
+    /**
+     * Metodo que asigna mesa a un mozo
+     * @param mozo
+     * @param mesa
+     *
+     */
     public void asignarMesa(Mozo mozo, Mesa mesa) {
         Sistema s = Sistema.getInstance();
         s.asignarMesa(mozo, mesa);
