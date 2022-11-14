@@ -23,14 +23,18 @@ public class PromocionProducto extends Promocion{
      * @param dtoPorCantidad_CantMinima
      * @param descuentoPorCantidad_PrecioUnitario
      *
-     * <b>Pre:</b>
-     * id > 0
-     * diasPromo != null
-     * producto != null
-     * dtoPorCantidad_CantMinima >= 0
-     * descuentoPorCantidad_PrecioUnitario >= 0
-     * aplicarDosPorUno == true || aplicarDescuentoPorCantidad == true
-     * descuentoPorCantidad_PrecioUnitario >= 0
+     * <br>
+     * <b>Pre:</b> <br>
+     * id > 0 <br>
+     * diasPromo != null <br>
+     * producto != null <br>
+     * dtoPorCantidad_CantMinima >= 0 <br>
+     * descuentoPorCantidad_PrecioUnitario >= 0 <br>
+     * aplicarDosPorUno == true || aplicarDescuentoPorCantidad == true <br>
+     * descuentoPorCantidad_PrecioUnitario >= 0 <br>
+     *
+     * <b>Post:</b> <br>
+     * Se crea una promocion de producto con los datos ingresados <br>
      */
     public PromocionProducto(int id, boolean activa, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) {
         super(id, activa, diasPromo);
@@ -58,6 +62,7 @@ public class PromocionProducto extends Promocion{
     public Producto getProducto() {
         return producto;
     }
+
 
     public double realizaDescuento(Pedido pedido, double subtotal){
         double descuento = 0.0;

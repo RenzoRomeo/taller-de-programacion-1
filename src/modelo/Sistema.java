@@ -238,13 +238,19 @@ public class Sistema {
     /**
      *
      * @param mesa
+     * @param p
+     * @param cantidad
      *
-     * <b>Pre:</b>
-     * mesas.size() > 0
-     * mesa != null
-     * Mesa tiene mozo activo asignado
-     * mesa tiene estado libre
-     * al menos 2 productos en promocion activa
+     * <br>
+     * <b>Pre:</b> <br>
+     * mesas.size() > 0 <br>
+     * mesa != null <br>
+     * Mesa tiene mozo activo asignado <br>
+     * mesa tiene estado libre <br>
+     * al menos 2 productos en promocion activa <br>
+     *
+     * <b>Post:</b> <br>
+     * comanda creada <br>
      *
      */
     public void crearComanda(Mesa mesa, Producto p, int cantidad) {
@@ -263,14 +269,14 @@ public class Sistema {
         int finalCantidadPromocion = cantidadPromocion;
         asignacionMesas.forEach((mozo, mesasAsignadas) -> {
             if (mesasAsignadas.contains(mesa) && mozo.getEstado() == Estado.ACTIVO && finalCantidadPromocion >= 2) {
-                        Comanda comanda = new Comanda();
-                        comanda.agregarPedido(p, cantidad);
-                        comandas.put(mesa, comanda);
-                        mesa.setEstaOcupada(true);
+                Comanda comanda = new Comanda();
+                comanda.agregarPedido(p, cantidad);
+                comandas.put(mesa, comanda);
+                mesa.setEstaOcupada(true);
             }
         });
 
-
+        assert comandas.containsKey(mesa) : "La comanda no fue creada";
     }
 
     //Se agrega de a un producto a la comanda
@@ -281,19 +287,28 @@ public class Sistema {
      * @param cantidad
      * @param mesa
      *
-     * <b>Pre:</b>
-     * p != null
-     * cantidad > 0
-     * mesa != null
+     * <br>
+     * <b>Pre:</b> <br>
+     * p != null <br>
+     * cantidad > 0 <br>
+     * mesa != null <br>
+     * mesa esta cargada en el sistema <br>
+     * mesa tiene comanda abierta <br>
      *
+     * <b>Post:</b> <br>
+     * pedido agregado a la comanda <br>
      */
     public void agregarPedido(Producto p, int cantidad, Mesa mesa) {
-        assert p != null;
-        assert cantidad > 0;
-        assert mesa != null;
+        assert p != null : "El producto no puede ser null";
+        assert cantidad > 0 : "La cantidad debe ser mayor a 0";
+        assert mesa != null : "La mesa no puede ser null";
+        assert mesas.contains(mesa) : "La mesa no esta cargada en el sistema";
+        assert comandas.containsKey(mesa) : "La mesa no tiene comanda abierta";
 
         Comanda comanda = comandas.get(mesa);
         comanda.agregarPedido(p, cantidad);
+
+        assert comanda.getPedidos().contains(p) : "El pedido no fue agregado a la comanda";
     }
 
     /**
@@ -301,14 +316,21 @@ public class Sistema {
      * @param mesa
      * @param formaDePago
      *
-     * <b>Pre:</b>
-     * mesa != null
-     * formaDePago != null
+     * <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * mesa esta cargada en el sistema <br>
+     * mesa tiene comanda abierta <br>
+     * formaDePago != null <br>
      *
+     * <b>Post:</b> <br>
+     *  comanda cerrada <br>
      */
     public void cerrarComanda(Mesa mesa, FormaDePago formaDePago) {
-        assert mesa != null;
-        assert formaDePago != null;
+        assert mesa != null : "La mesa no puede ser null";
+        assert mesas.contains(mesa) : "La mesa no esta cargada en el sistema";
+        assert comandas.containsKey(mesa) : "La mesa no tiene comanda abierta";
+        assert formaDePago != null : "La forma de pago no puede ser null";
 
         Comanda comanda = comandas.get(mesa);
         Mozo mozo = null;
@@ -347,6 +369,9 @@ public class Sistema {
                 }
             }
         Factura factura = new Factura(mesa, formaDePago, total, promocionesAplicadas, mozo);
+
+        assert !comandas.containsKey(mesa) : "La comanda no fue cerrada";
+
     }
 
     private boolean cumpleCondicionAcumulable(boolean esAcumulable, boolean aplicoPromocionProducto) {
@@ -372,17 +397,17 @@ public class Sistema {
      * @param mozo
      * @param mesa
      *
-     * <b>Pre:</b>
-     * mozo != null
-     * mozo.getEstado() == Estado.ACTIVO
-     * mesa != null
-     * mozos.contains(mozo)
-     * mesas.contains(mesa)
+     * <br>
+     * <b>Pre:</b> <br>
+     * mozo != null <br>
+     * mozo.getEstado() == Estado.ACTIVO <br>
+     * mesa != null <br>
+     * mozos.contains(mozo) <br>
+     * mesas.contains(mesa) <br>
      *
      *
-     * <b>Post:</b>
-     * asignacionMesas.get(mozo).contains(mesa)
-     *
+     * <b>Post:</b> <br>
+     * asignacionMesas.get(mozo).contains(mesa) <br>
      */
     public void asignarMesa(Mozo mozo, Mesa mesa) {
         assert mozo != null : "Mozo no puede ser null";
@@ -402,7 +427,6 @@ public class Sistema {
         }
 
         assert asignacionMesas.get(mozo).contains(mesa) : "Mesa no asignada correctamente";
-
     }
 
 
@@ -415,14 +439,47 @@ public class Sistema {
         return false;
     }
 
+    /**
+     * Agrega una promocion de producto al sistema
+     * @param id
+     * @param activa
+     * @param diasPromo
+     * @param producto
+     * @param aplicaDosPorUno
+     * @param aplicaDescuentoPorCantidad
+     * @param dtoPorCantidad_CantMinima
+     * @param descuentoPorCantidad_PrecioUnitario
+     *
+     * <br>
+     * <b>Post:</b> <br>
+     * Se agrega promocion al sistema <br>
+     */
     public void agregarPromocionProducto(int id, boolean activa, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) {
         PromocionProducto promocion = new PromocionProducto(id, activa, diasPromo, producto, aplicaDosPorUno, aplicaDescuentoPorCantidad, dtoPorCantidad_CantMinima, descuentoPorCantidad_PrecioUnitario);
         promocionesProducto.add(promocion);
+
+        assert promocionesProducto.contains(promocion) : "Promocion no agregada";
     }
 
+    /**
+     * Agrega una promocion temporal al sistema
+     * @param id
+     * @param activa
+     * @param diasPromo
+     * @param nombre
+     * @param formaDePago
+     * @param porcentajeDescuento
+     * @param esAcumulable
+     *
+     * <br>
+     * <b>Post:</b> <br>
+     * Se agrega promocion al sistema <br>
+     */
     public void agregarPromocionTemporal(int id, boolean activa, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable){
         PromocionTemporal promocion = new PromocionTemporal(id, activa, diasPromo, nombre, formaDePago, porcentajeDescuento, esAcumulable);
         promocionesTemporales.add(promocion);
+
+        assert promocionesTemporales.contains(promocion) : "Promocion no agregada";
     }
 
     public String getNombreLocal() {

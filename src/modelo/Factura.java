@@ -19,14 +19,15 @@ public class Factura {
      * @param mesa
      * @param mozo
      *
-     * <b>Pre:</b>
-     * mesa != null
-     * mozo != null
+     * <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * mozo != null <br>
      *
      */
     public Factura(Mesa mesa, FormaDePago formaDePago, double total, ArrayList<Promocion> promocionesAplicadas, Mozo mozo) {
-        assert mesa != null;
-        assert mozo != null;
+        assert mesa != null : "mesa no puede ser null";
+        assert mozo != null : "mozo no puede ser null";
 
         this.fecha = new Date();
         this.mesa = mesa;
