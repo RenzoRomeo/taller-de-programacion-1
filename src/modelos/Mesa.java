@@ -27,8 +27,8 @@ public class Mesa {
     public Mesa(int nroMesa, int capacidad) {
         assert nroMesa >= 0 : "El número de mesa no puede ser negativo";
         assert capacidad > 0 : "La capacidad no puede ser negativa";
-
-        assert nroMesa == 0 || capacidad >= 2 : "La capacidad de una mesa no puede ser menor a 2";
+        assert nroMesa == 0 && capacidad >= 1 : "La capacidad de la barra debe ser al menos 1";
+        assert nroMesa >= 1 && capacidad >= 2 : "La capacidad de una mesa debe ser al menos 2";
 
         this.nroMesa = nroMesa;
         this.capacidad = capacidad;
@@ -36,6 +36,7 @@ public class Mesa {
 
         assert this.nroMesa == nroMesa : "El número de mesa no se ha asignado correctamente";
         assert this.capacidad == capacidad : "La capacidad no se ha asignado correctamente";
+        verificarInvariantes();
     }
 
     public int getNroMesa() {
@@ -46,5 +47,31 @@ public class Mesa {
         return capacidad;
     }
 
-    // TODO: verificar invariantes mesa
+    public boolean estaOcupada() {
+        return estaOcupada;
+    }
+
+    /**
+     * Ocupa la mesa. <br>
+     */
+    public void ocupar() {
+        estaOcupada = true;
+        verificarInvariantes();
+    }
+
+    /**
+     * Desocupa la mesa. <br>
+     */
+    public void desocupar() {
+        estaOcupada = false;
+        verificarInvariantes();
+    }
+
+    private void verificarInvariantes() {
+        assert nroMesa >= 0 : "El número de mesa no puede ser negativo";
+        assert capacidad > 0 : "La capacidad no puede ser negativa";
+
+        assert nroMesa == 0 && capacidad >= 1 : "La capacidad de la barra debe ser al menos 1";
+        assert nroMesa >= 1 && capacidad >= 2 : "La capacidad de una mesa debe ser al menos 2";
+    }
 }
