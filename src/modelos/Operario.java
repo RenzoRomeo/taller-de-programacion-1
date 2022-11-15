@@ -44,7 +44,6 @@ public class Operario {
      * contrasenia contiene al menos una letra mayuscula <br>
      * <b>Post:</b> <br>
      * Se crea un nuevo operario con los datos ingresados y con el estado activo. <br>
-     *
      * @param nombre        Nombre del operario.
      * @param apellido      Apellido del operario.
      * @param nombreUsuario Nombre de usuario del operario.

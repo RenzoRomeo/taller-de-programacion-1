@@ -12,4 +12,8 @@ public class Comanda {
         fecha = new Date();
         pedidos = new ArrayList<Pedido>();
     }
+
+    public void agregarPedido(Pedido pedido) {
+        pedidos.add(pedido);
+    }
 }
