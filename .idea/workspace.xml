@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="Fin de la doc ahora si" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Gax5RXlwEnEAZUTdWdD2es8sET" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="excepciones" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="VistaLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="vistas.VistaLogin" />
+      <module name="taller-de-programacion-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="prueba.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.VistaLogin" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="" />
+      <created>1666640314046</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1666640314046</updated>
+      <workItem from="1666640316774" duration="4375000" />
+      <workItem from="1666725844862" duration="6024000" />
+      <workItem from="1667498659691" duration="9459000" />
+      <workItem from="1667584913795" duration="6146000" />
+      <workItem from="1667656410517" duration="2925000" />
+      <workItem from="1667659747441" duration="27000" />
+      <workItem from="1667688786798" duration="8000" />
+      <workItem from="1667823873180" duration="200000" />
+      <workItem from="1667877865643" duration="1050000" />
+      <workItem from="1668003637915" duration="11770000" />
+      <workItem from="1668259821959" duration="83000" />
+      <workItem from="1668260177695" duration="7420000" />
+      <workItem from="1668449497456" duration="6938000" />
+      <workItem from="1668456481745" duration="125000" />
+      <workItem from="1668537405762" duration="193000" />
+    </task>
+    <task id="LOCAL-00001" summary="Creadas las clases + constructor de operario con asersiones">
+      <created>1666643834828</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666643834828</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Cambio varios">
+      <created>1666645142111</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1666645142111</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Asignar mesa a mozo">
+      <created>1666727486474</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666727486474</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Iniciar sesion con excepciones">
+      <created>1666729835466</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666729835466</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Constructores y getters, avances minis">
+      <created>1666729865754</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666729865754</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Constructor mesa">
+      <created>1666730330693</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666730330693</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Avances minis">
+      <created>1666731864347</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1666731864347</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Aserciones clase Sistema">
+      <created>1667501613253</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667501613253</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Admin se crea con lo pedido">
+      <created>1667505946796</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667505946796</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Cambio en constructor de comanda">
+      <created>1667506019284</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1667506019284</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Getters y setters de la mesa">
+      <created>1667506042470</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667506042470</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Cambio nombre de atributo en producto stockInicial -&gt; stock">
+      <created>1667506079080</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667506079080</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Agrego administrador a sistema. Getter en promocion">
+      <created>1667506130891</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1667506130891</updated>
+    </task>
+    <task id="LOCAL-00014" summary="cambios varios">
+      <created>1667519707564</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1667519707564</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Eliminacion de los metodos de modificar. Hashmap de operarios">
+      <created>1667587099082</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667587099082</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Excepcion de NombreUsuarioOperarioExistente. Constructor PromocionTemporal">
+      <created>1667588043603</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1667588043603</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Un par de clases creadas">
+      <created>1667590547165</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1667590547165</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Un par de clases creadas V2">
+      <created>1667591152746</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1667591152746</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Getters de diversas clases">
+      <created>1668009633529</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1668009633529</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Constructor de factura">
+      <created>1668009645446</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1668009645446</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Aplica descuentos de promociones">
+      <created>1668009721593</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1668009721593</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Cerrar comanda (no terminado aun)">
+      <created>1668009741146</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1668009741146</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Cambios varios v3">
+      <created>1668022837295</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1668022837295</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Un par de vistas realizadas">
+      <created>1668049956376</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1668049956376</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Actualizaciones de vistas">
+      <created>1668268415855</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1668268415855</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Clases para la persistencia y getters/setters de sistema para lo mismo">
+      <created>1668268462904</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1668268462904</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Cambios varios">
+      <created>1668268495441</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1668268495441</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Un poco de documentacion">
+      <created>1668452114037</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1668452114037</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Mas documentacion">
+      <created>1668453065848</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1668453065848</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Implements serializable y aun mas documentacion">
+      <created>1668455149046</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1668455149046</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Fin de la documentacion?">
+      <created>1668456121024</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1668456121024</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fin de la doc ahora si">
+      <created>1668456366677</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1668456366677</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/grupo_a" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Aserciones clase Sistema" />
+    <MESSAGE value="Admin se crea con lo pedido" />
+    <MESSAGE value="Cambio en constructor de comanda" />
+    <MESSAGE value="Getters y setters de la mesa" />
+    <MESSAGE value="Cambio nombre de atributo en producto stockInicial -&gt; stock" />
+    <MESSAGE value="Agrego administrador a sistema. Getter en promocion" />
+    <MESSAGE value="cambios varios" />
+    <MESSAGE value="Eliminacion de los metodos de modificar. Hashmap de operarios" />
+    <MESSAGE value="Excepcion de NombreUsuarioOperarioExistente. Constructor PromocionTemporal" />
+    <MESSAGE value="Un par de clases creadas" />
+    <MESSAGE value="Un par de clases creadas V2" />
+    <MESSAGE value="Getters de diversas clases" />
+    <MESSAGE value="Constructor de factura" />
+    <MESSAGE value="Aplica descuentos de promociones" />
+    <MESSAGE value="Cerrar comanda (no terminado aun)" />
+    <MESSAGE value="Cambios varios v3" />
+    <MESSAGE value="Un par de vistas realizadas" />
+    <MESSAGE value="Actualizaciones de vistas" />
+    <MESSAGE value="Clases para la persistencia y getters/setters de sistema para lo mismo" />
+    <MESSAGE value="Cambios varios" />
+    <MESSAGE value="Un poco de documentacion" />
+    <MESSAGE value="Mas documentacion" />
+    <MESSAGE value="Implements serializable y aun mas documentacion" />
+    <MESSAGE value="Fin de la documentacion?" />
+    <MESSAGE value="Fin de la doc ahora si" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fin de la doc ahora si" />
+  </component>
+</project>
