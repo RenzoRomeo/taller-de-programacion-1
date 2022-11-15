@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+/home/renzo/dev/facultad/taller-de-programacion-1/.metadata/.plugins/org.eclipse.jdt.core
+3833247777.index
+2680246031.index
+1865797976.index
