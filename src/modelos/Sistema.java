@@ -8,20 +8,20 @@ import modelos.enums.ModoOperacion;
 import java.util.*;
 
 /**
- * <b>Inv:</b>
- * nombreLocal != null
- * nombreLocal != ""
- * mozos != null
- * mesas != null
- * productos != null
- * operarios != null
- * asignacionMesas != null
- * comandas != null
- * promocionesProducto != null
- * promocionesTemporales != null
- * mozos.size() <= 6
- * Al menos 2 productos deberán estar promocionados.
- * Se establecen días de promocion para todos los productos.
+ * <b>Inv:</b> <br>
+ * nombreLocal != null <br>
+ * nombreLocal != "" <br>
+ * mozos != null <br>
+ * mesas != null <br>
+ * productos != null <br>
+ * operarios != null <br>
+ * asignacionMesas != null <br>
+ * comandas != null <br>
+ * promocionesProducto != null <br>
+ * promocionesTemporales != null <br>
+ * mozos.size() <= 6 <br>
+ * Al menos 2 productos deberán estar promocionados. <br>
+ * Se establecen días de promocion para todos los productos. <br>
  */
 public class Sistema {
 
