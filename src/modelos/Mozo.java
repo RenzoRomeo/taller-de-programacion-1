@@ -53,6 +53,7 @@ public class Mozo {
         assert this.fechaNacimiento == fechaNacimiento : "La fecha de nacimiento no se ha asignado correctamente";
         assert this.hijosACargo == hijosACargo : "La cantidad de hijos a cargo no se ha asignado correctamente";
         assert this.estado == Estado.ACTIVO : "El estado no se ha asignado correctamente";
+        verificarInvariantes();
     }
 
     /**

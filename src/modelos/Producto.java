@@ -1,15 +1,14 @@
 package modelos;
 
 /**
- * Clase que representa a un producto del sistema.
- * <b>Inv:</b>
- * nombre != null
- * nombre != ""
- * el nombre permanece constante
- * precioCosto >= 0
- * precioVenta >= 0
- * precioVenta > precioCosto
- * stock >= 0
+ * Clase que representa a un producto del sistema. <br>
+ * <b>Inv:</b> <br>
+ * nombre != null <br>
+ * nombre != "" <br>
+ * precioCosto >= 0 <br>
+ * precioVenta >= 0 <br>
+ * precioVenta > precioCosto <br>
+ * stock >= 0 <br>
  */
 public class Producto {
     private int id;
@@ -21,20 +20,21 @@ public class Producto {
     private static int ultimoId = 0;
 
     /**
-     * Constructor de la clase Producto.
-     * @param nombre Nombre del producto.
+     * Constructor de la clase Producto. <br>
+     * <b>Pre:</b> <br>
+     * nombre != null <br>
+     * nombre != "" <br>
+     * precioCosto >= 0 <br>
+     * precioVenta >= 0 <br>
+     * precioVenta > precioCosto <br>
+     * stock >= 0 <br>
+     * <b>Post:</b> <br>
+     * Se crea un nuevo producto con los datos ingresados y un id unico autogenerado. <br>
+     *
+     * @param nombre      Nombre del producto.
      * @param precioCosto Precio de costo del producto.
      * @param precioVenta Precio de venta del producto.
-     * @param stock Stock del producto.
-     * <b>Pre:</b>
-     * nombre != null
-     * nombre != ""
-     * precioCosto >= 0
-     * precioVenta >= 0
-     * precioVenta > precioCosto
-     * stock >= 0
-     * <b>Post:</b>
-     * Se crea un nuevo producto con los datos ingresados y un id unico autogenerado.
+     * @param stock       Stock del producto.
      */
     public Producto(String nombre, double precioCosto, double precioVenta, int stock) {
         assert nombre != null : "El nombre del producto no puede ser nulo.";
@@ -56,15 +56,16 @@ public class Producto {
         assert this.precioCosto == precioCosto : "El precio de costo del producto no es el esperado.";
         assert this.precioVenta == precioVenta : "El precio de venta del producto no es el esperado.";
         assert this.stock == stock : "El stock del producto no es el esperado.";
+        verificarInvariantes();
     }
 
     /**
-     * Incrementa el stock en una cantidad dada.
+     * Incrementa el stock en una cantidad dada. <br>
+     * <b>Pre:</b> <br>
+     * cantidad > 0 <br>
+     * <b>Post:</b> <br>
+     * Se incrementa el stock en la cantidad dada. <br>
      * @param cantidad Cantidad a incrementar.
-     * <b>Pre:</b>
-     * cantidad > 0
-     * <b>Post:</b>
-     * Se incrementa el stock en la cantidad dada.
      */
     public void incrementarStock(int cantidad) {
         assert cantidad > 0 : "La cantidad a incrementar debe ser mayor a 0";
@@ -73,15 +74,16 @@ public class Producto {
         this.stock += cantidad;
 
         assert this.stock == stockInicial + cantidad : "El stock no se incremento correctamente";
+        verificarInvariantes();
     }
 
     /**
-     * Decrementa el stock en una cantidad dada.
+     * Decrementa el stock en una cantidad dada. <br>
+     * <b>Pre:</b> <br>
+     * cantidad > 0 <br>
+     * <b>Post:</b> <br>
+     * Se decrementa el stock en la cantidad dada. <br>
      * @param cantidad Cantidad a decrementar.
-     * <b>Pre:</b>
-     * cantidad > 0
-     * <b>Post:</b>
-     * Se decrementa el stock en la cantidad dada.
      */
     public void decrementarStock(int cantidad) {
         assert cantidad > 0 : "La cantidad a decrementar debe ser mayor a 0";
@@ -90,16 +92,17 @@ public class Producto {
         this.stock -= cantidad;
 
         assert this.stock == stockInicial - cantidad : "El stock no se decremento correctamente";
+        verificarInvariantes();
     }
 
     /**
-     * Cambia el precio de venta del producto.
+     * Cambia el precio de venta del producto. <br>
+     * <b>Pre:</b> <br>
+     * precioVenta > 0 <br>
+     * precioVenta > precioCosto <br>
+     * <b>Post:</b> <br>
+     * Se cambia el precio de venta del producto. <br>
      * @param precioVenta Nuevo precio de venta.
-     * <b>Pre:</b>
-     * precioVenta > 0
-     * precioVenta > precioCosto
-     * <b>Post:</b>
-     * Se cambia el precio de venta del producto.
      */
     public void cambiarPrecioVenta(double precioVenta) {
         assert precioVenta > 0 : "El precio de venta debe ser mayor a 0";
@@ -108,6 +111,7 @@ public class Producto {
         this.precioVenta = precioVenta;
 
         assert this.precioVenta == precioVenta : "El precio de venta no se cambio correctamente";
+        verificarInvariantes();
     }
 
     public double getPrecioVenta() {
@@ -115,13 +119,13 @@ public class Producto {
     }
 
     /**
-     * Cambia el precio de costo del producto.
+     * Cambia el precio de costo del producto. <br>
+     * <b>Pre:</b> <br>
+     * precioCosto > 0 <br>
+     * precioVenta > precioCosto <br>
+     * <b>Post:</b> <br>
+     * Se cambia el precio de costo del producto. <br>
      * @param precioCosto Nuevo precio de costo.
-     * <b>Pre:</b>
-     * precioCosto > 0
-     * precioVenta > precioCosto
-     * <b>Post:</b>
-     * Se cambia el precio de costo del producto.
      */
     public void cambiarPrecioCosto(double precioCosto) {
         assert precioCosto > 0 : "El precio de costo debe ser mayor a 0";
@@ -130,6 +134,7 @@ public class Producto {
         this.precioCosto = precioCosto;
 
         assert this.precioCosto == precioCosto : "El precio de costo no se cambio correctamente";
+        verificarInvariantes();
     }
 
     public double getPrecioCosto() {
@@ -142,5 +147,14 @@ public class Producto {
 
     public String getNombre() {
         return nombre;
+    }
+
+    private void verificarInvariantes() {
+        assert this.nombre != null : "El nombre del producto no puede ser nulo.";
+        assert this.nombre != "" : "El nombre del producto no puede ser vacio.";
+        assert this.precioCosto >= 0 : "El precio de costo del producto no puede ser negativo.";
+        assert this.precioVenta >= 0 : "El precio de venta del producto no puede ser negativo.";
+        assert this.precioVenta > this.precioCosto : "El precio de venta del producto no puede ser menor o igual al precio de costo.";
+        assert this.stock >= 0 : "El stock del producto no puede ser negativo.";
     }
 }
