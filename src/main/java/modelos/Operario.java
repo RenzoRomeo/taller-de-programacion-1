@@ -155,6 +155,11 @@ public class Operario {
         this.activo = activo;
     }
 
+    //realizado unica y exclusivamente para el testing
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
 
     private void verificarInvariantes() {
         assert nombre != null : "El nombre del operario no puede ser nulo";
@@ -170,4 +175,6 @@ public class Operario {
         assert contrasenia.matches(".*[0-9].*") : "La contraseña del operario debe contener al menos un número";
         assert contrasenia.matches(".*[A-Z].*") : "La contraseña del operario debe contener al menos una letra mayúscula";
     }
+
+
 }

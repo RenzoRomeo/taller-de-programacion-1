@@ -39,11 +39,11 @@ public class Administrador extends Operario {
         if (inicializado)
             throw new AdministradorExistenteException();
 
-        Administrador administrador = new Administrador();
+        instancia = new Administrador();
         inicializado = true;
 
         assert instancia != null : "No se creó la instancia del administrador";
-        return administrador;
+        return instancia;
     }
 
     /**
