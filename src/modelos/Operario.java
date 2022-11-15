@@ -2,24 +2,23 @@ package modelos;
 
 import excepciones.ContraseniaIncorrectaException;
 import excepciones.UsuarioInactivoException;
-import modelos.enums.Estado;
 import modelos.enums.ModoOperacion;
 
 /**
- * Clase que representa a un operario del sistema.
- * <b>Inv:</b>
- * nombre != null
- * nombre != ""
- * apellido != null
- * apellido != ""
- * nombreUsuario != null
- * nombreUsuario != ""
- * nombreUsuario.length() <= 10
- * contrasenia != null
- * contrasenia.length() >= 6
- * contrasenia.length() <= 12
- * contrasenia contiene al menos un numero
- * contrasenia contiene al menos una letra mayuscula
+ * Clase que representa a un operario del sistema. <br>
+ * <b>Inv:</b> <br>
+ * nombre != null <br>
+ * nombre != "" <br>
+ * apellido != null <br>
+ * apellido != "" <br>
+ * nombreUsuario != null <br>
+ * nombreUsuario != "" <br>
+ * nombreUsuario.length() <= 10 <br>
+ * contrasenia != null <br>
+ * contrasenia.length() >= 6 <br>
+ * contrasenia.length() <= 12 <br>
+ * contrasenia contiene al menos un numero <br>
+ * contrasenia contiene al menos una letra mayuscula <br>
  */
 public class Operario {
     private String nombre;
@@ -76,14 +75,7 @@ public class Operario {
         assert this.nombreUsuario == nombreUsuario : "El nombre de usuario no se asignó correctamente";
         assert this.contrasenia == contrasenia : "La contraseña no se asignó correctamente";
         assert this.activo == true : "El estado del operario no se asignó correctamente";
-    }
-
-    public void establecerEstadoMozo(Mozo mozo, Estado estado) {
-
-    }
-
-    public void asignarMesa(Mozo mozo, Mesa mesa) {
-
+        verificarInvariantes();
     }
 
     /**
@@ -105,6 +97,7 @@ public class Operario {
         }
 
         Sistema.getInstancia().setModoOperacion(ModoOperacion.OPERARIO);
+        verificarInvariantes();
     }
 
     /**
@@ -129,20 +122,17 @@ public class Operario {
         contrasenia = contraseniaNueva;
 
         assert contrasenia.equals(contraseniaNueva);
+        verificarInvariantes();
     }
 
-    // TODO: Metodo estático para verificar si la contraseña es válida.
-
     /**
-     * Crea una nueva comanda y se la asiga a una mesa.
+     * Metodo que permite verificar si la contrasena es valida. <br>
      *
-     * @param mesa Mesa a la que se le asigna la comanda.
-     *             <b>Pre:</b>
-     *             mesa != null
-     *             mesa.isOcupada() == false
+     * @param contrasenia Contraseña a verificar.
+     * @return true si la contraseña es valida, false en caso contrario.
      */
-    public void crearComanda(Mesa mesa) {
-
+    public static boolean verificarContrasenia(String contrasenia) {
+        return contrasenia != null && contrasenia.length() >= 6 && contrasenia.length() <= 12 && contrasenia.matches(".*[0-9].*") && contrasenia.matches(".*[A-Z].*");
     }
 
     public String getNombre() {
@@ -157,6 +147,7 @@ public class Operario {
         return nombreUsuario;
     }
 
+    //TODO Disenar el proceso de activo e inactivo.
     public boolean isActivo() {
         return activo;
     }
@@ -165,9 +156,19 @@ public class Operario {
         this.activo = activo;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
 
-    // TODO invariantes de clase.
+    private void verificarInvariantes() {
+        assert nombre != null : "El nombre del operario no puede ser nulo";
+        assert nombre != "" : "El nombre del operario no puede ser vacío";
+        assert apellido != null : "El apellido del operario no puede ser nulo";
+        assert apellido != "" : "El apellido del operario no puede ser vacío";
+        assert nombreUsuario != null : "El nombre de usuario del operario no puede ser nulo";
+        assert nombreUsuario != "" : "El nombre de usuario del operario no puede ser vacío";
+        assert nombreUsuario.length() <= 10 : "El nombre de usuario del operario no puede tener más de 10 caracteres";
+        assert contrasenia != null : "La contraseña del operario no puede ser nula";
+        assert contrasenia.length() >= 6 : "La contraseña del operario no puede tener menos de 6 caracteres";
+        assert contrasenia.length() <= 12 : "La contraseña del operario no puede tener más de 12 caracteres";
+        assert contrasenia.matches(".*[0-9].*") : "La contraseña del operario debe contener al menos un número";
+        assert contrasenia.matches(".*[A-Z].*") : "La contraseña del operario debe contener al menos una letra mayúscula";
+    }
 }
