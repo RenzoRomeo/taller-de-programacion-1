@@ -17,7 +17,8 @@ import java.util.*;
  * operarios != null
  * asignacionMesas != null
  * comandas != null
- * promociones != null
+ * promocionesProducto != null
+ * promocionesTemporales != null
  * mozos.size() <= 6
  * Al menos 2 productos deberán estar promocionados.
  * Se establecen días de promocion para todos los productos.
@@ -33,7 +34,8 @@ public class Sistema {
     private List<Operario> operarios;
     private Map<Mozo, List<Mesa>> asignacionMesas;
     private Map<Mesa, Comanda> comandas;
-    private Map<Producto, List<Promocion>> promociones;
+    private Map<Producto, List<PromocionProducto>> promocionesProducto;
+    private List<PromocionTemporal> promocionesTemporales;
     private Administrador administrador;
     private ModoOperacion modoOperacion;
 
@@ -92,7 +94,8 @@ public class Sistema {
         instancia.operarios = new ArrayList<>();
         instancia.asignacionMesas = new HashMap<>();
         instancia.comandas = new HashMap<>();
-        instancia.promociones = new HashMap<>();
+        instancia.promocionesProducto = new HashMap<>();
+        instancia.promocionesTemporales = new ArrayList<>();
 
         try {
             instancia.administrador = Administrador.crearAdministrador();
@@ -109,7 +112,7 @@ public class Sistema {
         assert instancia.operarios != null : "La lista de operarios no se inicializó correctamente";
         assert instancia.asignacionMesas != null : "La asignación de mesas no se inicializó correctamente";
         assert instancia.comandas != null : "La lista de comandas no se inicializó correctamente";
-        assert instancia.promociones != null : "La lista de promociones no se inicializó correctamente";
+        assert instancia.promocionesProducto != null : "La lista de promociones no se inicializó correctamente";
         assert instancia.administrador != null : "El administrador no se inicializó correctamente";
         assert instancia.modoOperacion == ModoOperacion.OPERARIO : "El modo administrador no se inicializó correctamente";
 
@@ -361,6 +364,38 @@ public class Sistema {
     }
 
     /**
+     * Cierra una comanda para una mesa. <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * <b>Post:</b> <br>
+     * Se cierra la comanda para la mesa. <br>
+     *
+     * @param mesa La mesa de la comanda a cerrar.
+     * @throws MesaInexistenteException Si la mesa no existe.
+     * @throws MesaNoOcupadaException   Si la mesa no está ocupada.
+     */
+    public void cerrarComanda(Mesa mesa) throws MesaInexistenteException, MesaNoOcupadaException {
+        assert mesa != null : "La mesa no puede ser nula";
+
+        if (!mesas.contains(mesa))
+            throw new MesaInexistenteException(mesa);
+
+        if (!mesa.estaOcupada()) {
+            throw new MesaNoOcupadaException(mesa);
+        }
+
+        Comanda comanda = comandas.get(mesa);
+
+        comandas.remove(mesa);
+        mesa.desocupar();
+
+        // TODO: Hacer facturación con la comanda.
+
+        assert !comandas.containsKey(mesa) : "La comanda no se cerró";
+        verificarInvariantes();
+    }
+
+    /**
      * Agrega un pedido a una comanda. <br>
      * <b>Pre:</b> <br>
      * mesa != null <br>
@@ -368,7 +403,6 @@ public class Sistema {
      * <b>Post:</b> <br>
      * Se agrega el pedido a la comanda de la mesa. <br>
      * Se descuenta el stock del producto. <br>
-     *
      * @param mesa   Mesa para agregar el pedido.
      * @param pedido Pedido a agregar.
      * @throws ComandaInexistenteException Si la mesa no tiene una comanda.
@@ -435,42 +469,6 @@ public class Sistema {
         return modoOperacion;
     }
 
-    private void verificarInvariantes() {
-        assert nombreLocal != null : "El nombre del local no puede ser nulo";
-        assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
-        assert mozos != null : "La lista de mozos no puede ser nula";
-        assert mesas != null : "La lista de mesas no puede ser nula";
-        assert productos != null : "La lista de productos no puede ser nula";
-        assert operarios != null : "La lista de operarios no puede ser nula";
-        assert asignacionMesas != null : "La asignación de mesas no puede ser nula";
-        assert comandas != null : "La lista de comandas no puede ser nula";
-        assert promociones != null : "La lista de promociones no puede ser nula";
-        assert mozos.size() <= 6 : "No puede haber más de 6 mozos";
-        assert promociones.values().stream().allMatch(promocionesProducto -> promocionesProducto != null
-                && promocionesProducto.stream().allMatch(promocion -> promocion.getDiasPromo() != null)) : "Debe haber días de promoción para todos los productos";
-
-        Dia diaActual = Dia.getDiaActual();
-        Set<Map.Entry<Producto, List<Promocion>>> entries = promociones.entrySet();
-        Iterator<Map.Entry<Producto, List<Promocion>>> iterator = entries.iterator();
-        int productosPromocionadosHoy = 0;
-        while (iterator.hasNext() && productosPromocionadosHoy < 2) {
-            Map.Entry<Producto, List<Promocion>> entry = iterator.next();
-            List<Promocion> promociones = entry.getValue();
-            Iterator<Promocion> iteratorPromociones = promociones.iterator();
-            boolean productoPromocionadoHoy = false;
-            while (iteratorPromociones.hasNext() && productosPromocionadosHoy < 2 && !productoPromocionadoHoy) {
-                Promocion promocion = iteratorPromociones.next();
-                if (promocion.getDiasPromo().contains(diaActual)) {
-                    productosPromocionadosHoy++;
-                    productoPromocionadoHoy = true;
-                }
-            }
-        }
-
-        assert productosPromocionadosHoy >= 2 : "Debe haber al menos 2 productos promocionados hoy";
-    }
-
-
     /**
      * Asigna el modo de operacion del sistema.
      * <b>Pre:</b> modoOperacion != null
@@ -507,5 +505,69 @@ public class Sistema {
         } else {
             throw new OperarioInexistenteException(nombreUsuario);
         }
+    }
+
+    /**
+     * Agrega una promoción por producto al sistema. <br>
+     * <b>Pre:</b> <br>
+     * producto != null <br>
+     * promocion != null <br>
+     * <b>Post:</b> <br>
+     * Se agrega la promoción al sistema. <br>
+     *
+     * @param producto  Producto para promocionar.
+     * @param promocion Promocion a aplicar.
+     * @throws ProductoInexistenteException Si el producto no existe.
+     */
+    public void agregarPromocionProducto(Producto producto, PromocionProducto promocion) throws ProductoInexistenteException {
+        // TODO: Implementar
+    }
+
+    /**
+     * Agrega una promoción temporal al sistema. <br>
+     * <b>Pre:</b> <br>
+     * promocion != null <br>
+     * <b>Post:</b> <br>
+     * Se agrega la promoción al sistema. <br>
+     *
+     * @param promocion
+     */
+    public void agregarPromocionTemporal(PromocionTemporal promocion) {
+        // TODO: Implementar
+    }
+
+    private void verificarInvariantes() {
+        assert nombreLocal != null : "El nombre del local no puede ser nulo";
+        assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
+        assert mozos != null : "La lista de mozos no puede ser nula";
+        assert mesas != null : "La lista de mesas no puede ser nula";
+        assert productos != null : "La lista de productos no puede ser nula";
+        assert operarios != null : "La lista de operarios no puede ser nula";
+        assert asignacionMesas != null : "La asignación de mesas no puede ser nula";
+        assert comandas != null : "La lista de comandas no puede ser nula";
+        assert promocionesProducto != null : "La lista de promociones no puede ser nula";
+        assert mozos.size() <= 6 : "No puede haber más de 6 mozos";
+        assert promocionesProducto.values().stream().allMatch(promocionesProducto -> promocionesProducto != null
+                && promocionesProducto.stream().allMatch(promocion -> promocion.getDiasPromo() != null)) : "Debe haber días de promoción para todos los productos";
+
+        Dia diaActual = Dia.getDiaActual();
+        Set<Map.Entry<Producto, List<PromocionProducto>>> entries = promocionesProducto.entrySet();
+        Iterator<Map.Entry<Producto, List<PromocionProducto>>> iterator = entries.iterator();
+        int productosPromocionadosHoy = 0;
+        while (iterator.hasNext() && productosPromocionadosHoy < 2) {
+            Map.Entry<Producto, List<PromocionProducto>> entry = iterator.next();
+            List<PromocionProducto> promociones = entry.getValue();
+            Iterator<PromocionProducto> iteratorPromociones = promociones.iterator();
+            boolean productoPromocionadoHoy = false;
+            while (iteratorPromociones.hasNext() && productosPromocionadosHoy < 2 && !productoPromocionadoHoy) {
+                Promocion promocion = iteratorPromociones.next();
+                if (promocion.getDiasPromo().contains(diaActual)) {
+                    productosPromocionadosHoy++;
+                    productoPromocionadoHoy = true;
+                }
+            }
+        }
+
+        assert productosPromocionadosHoy >= 2 : "Debe haber al menos 2 productos promocionados hoy";
     }
 }
