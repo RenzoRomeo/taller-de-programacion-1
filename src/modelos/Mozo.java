@@ -30,7 +30,12 @@ public class Mozo {
      * la edad del mozo es mayor o igual a 18 años. <br>
      * <b>Post:</b> <br>
      * Se crea el mozo con los datos indicados y con estado ACTIVO. <br>
-     * */
+     *
+     * @param nombre          Nombre del mozo.
+     * @param apellido        Apellido del mozo.
+     * @param fechaNacimiento Fecha de nacimiento del mozo.
+     * @param hijosACargo     Cantidad de hijos a cargo del mozo.
+     */
     public Mozo(String nombre, String apellido, Date fechaNacimiento, int hijosACargo) {
         assert nombre != null : "El nombre no puede ser nulo";
         assert apellido != null : "El apellido no puede ser nulo";
