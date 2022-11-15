@@ -5,7 +5,6 @@ import modelos.enums.Estado;
 import java.util.Date;
 
 /**
- * Clase que representa un mozo.
  * <b>Inv:</b> <br>
  * nombre != null <br>
  * apellido != null <br>
@@ -31,7 +30,6 @@ public class Mozo {
      * la edad del mozo es mayor o igual a 18 años. <br>
      * <b>Post:</b> <br>
      * Se crea el mozo con los datos indicados y con estado ACTIVO. <br>
-     *
      * @param nombre          Nombre del mozo.
      * @param apellido        Apellido del mozo.
      * @param fechaNacimiento Fecha de nacimiento del mozo.
@@ -62,7 +60,6 @@ public class Mozo {
      * Determina si la persona es mayor de edad. <br>
      * <b>Pre:</b> <br>
      * fechaNacimiento != null <br>
-     *
      * @param fechaNacimiento La fecha de nacimiento de la persona.
      * @return Si es mozo es mayor de edad.
      */

@@ -24,11 +24,11 @@ public class PromocionProducto extends Promocion {
      * dtoPorCantidad_PrecioUnitario > 0 si aplica descuento por cantidad <br>
      * <b>Post:</b> <br>
      * Se crea una nueva promocion de producto con los datos ingresados. <br>
-     *
      * @param aplicaDosPorUno               Indica si la promocion aplica dos por uno.
      * @param aplicaDtoPorCantidad          Indica si la promocion aplica descuento por cantidad.
      * @param dtoPorCantidad_CantMinima     Cantidad minima para aplicar el descuento por cantidad.
      * @param dtoPorCantidad_PrecioUnitario Precio unitario para aplicar el descuento por cantidad.
+     * @param diasPromo                     Dias en los que se aplica la promocion.
      */
     public PromocionProducto(boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_CantMinima, double dtoPorCantidad_PrecioUnitario, List<Dia> diasPromo) {
         super(diasPromo);

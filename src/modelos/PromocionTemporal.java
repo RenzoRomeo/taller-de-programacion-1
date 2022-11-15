@@ -30,7 +30,6 @@ public class PromocionTemporal extends Promocion {
      * porcentajeDescuento <= 100 <br>
      * <b>Post:</b> <br>
      * Se crea una nueva promocion temporal con los datos ingresados. <br>
-     *
      * @param nombre              Nombre de la promocion temporal.
      * @param formaPago           Forma de pago de la promocion temporal.
      * @param porcentajeDescuento Porcentaje de descuento de la promocion temporal.
