@@ -96,7 +96,15 @@ public class Operario implements Serializable {
         s.asignarMesa(mozo, mesa);
     }
 
-    public String getNombreUsuario() {
+    public String getNombre() {
+		return nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public String getNombreUsuario() {
         return this.nombreUsuario;
     }
 
@@ -106,6 +114,10 @@ public class Operario implements Serializable {
 
     public boolean isActivo() {
         return this.activo;
+    }
+    
+    public void setActivo(boolean activo) {
+    	this.activo = activo;
     }
 
 }

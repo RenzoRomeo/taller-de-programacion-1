@@ -17,7 +17,7 @@ public class Administrador extends Operario implements Serializable {
      */
 
     public Administrador(){
-        super("ADMIN", "ADMIN", "ADMIN", "ADMIN1234");
+        super("ADMIN", "ADMIN", "ADMIN", "Admin1234");
         establecioContrasena = false;
 
         assert establecioContrasena == false;
