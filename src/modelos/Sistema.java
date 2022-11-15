@@ -127,7 +127,9 @@ public class Sistema {
      * Se agrega el mozo al sistema. <br>
      *
      * @param mozo El mozo a agregar.
-     * @throws MozoInexistenteException Si el mozo a agregar ya existe.
+     * @throws MozoExistenteException         Si el mozo a agregar ya existe.
+     * @throws MaximaCantidadMozosException   Si se supera la cantidad máxima de mozos.
+     * @throws OperacionNoAutorizadaException Si el modo de operación no es administrador.
      */
     public void agregarMozo(Mozo mozo) throws MozoExistenteException, MaximaCantidadMozosException, OperacionNoAutorizadaException {
         assert mozo != null : "El mozo no puede ser nulo";
@@ -153,9 +155,9 @@ public class Sistema {
      * mozo != null <br>
      * <b>Post:</b> <br>
      * Se elimina el mozo del sistema. <br>
-     *
      * @param mozo El mozo a eliminar.
      * @throws MozoInexistenteException Si el mozo a eliminar no existe.
+     * @throws OperacionNoAutorizadaException Si el usuario no tiene permisos para realizar la operación.
      */
     public void eliminarMozo(Mozo mozo) throws MozoInexistenteException, OperacionNoAutorizadaException {
         assert mozo != null : "El mozo no puede ser nulo";
@@ -210,12 +212,14 @@ public class Sistema {
      * @throws ProductoEnComandaException     Si el producto está asociado a una comanda.
      * @throws OperacionNoAutorizadaException Si el sistema no está en modo administrador.
      */
-    public void eliminarProducto(Producto producto) throws ProductoInexistenteException, OperacionNoAutorizadaException {
+    public void eliminarProducto(Producto producto) throws ProductoInexistenteException, ProductoEnComandaException, OperacionNoAutorizadaException {
         assert producto != null : "El producto no puede ser nulo";
         assert productos.contains(producto) : "El producto no se encuentra en el sistema";
 
         if (modoOperacion != ModoOperacion.ADMINISTRADOR)
             throw new OperacionNoAutorizadaException();
+
+        // TODO: Verificar que el producto no esté en una comanda.
 
         if (!productos.contains(producto)) {
             throw new ProductoInexistenteException(producto);
@@ -260,9 +264,9 @@ public class Sistema {
      * mesa != null <br>
      * <b>Post:</b> <br>
      * Se agrega la mesa al sistema. <br>
-     *
      * @param mesa La mesa a agregar.
-     * @throws MesaRepetidaException si la mesa ya está en el sistema.
+     * @throws MesaRepetidaException si la mesa ya está en el sistema
+     * @throws OperacionNoAutorizadaException si el sistema no está en modo administrador
      */
     public void agregarMesa(Mesa mesa) throws MesaRepetidaException, OperacionNoAutorizadaException {
         assert mesa != null : "La mesa no puede ser nula";
@@ -287,9 +291,9 @@ public class Sistema {
      * La mesa debe estar en el sistema. <br>
      * <b>Post:</b> <br>
      * Se elimina la mesa del sistema. <br>
-     *
      * @param mesa La mesa a eliminar.
      * @throws MesaInexistenteException Si la mesa no existe.
+     * @throws OperacionNoAutorizadaException Si el sistema no está en modo administrador.
      */
     public void eliminarMesa(Mesa mesa) throws MesaInexistenteException, OperacionNoAutorizadaException {
         assert mesa != null : "La mesa no puede ser nula";
@@ -341,16 +345,16 @@ public class Sistema {
      * mesa != null <br>
      * <b>Post:</b> <br>
      * Se crea una comanda para la mesa. <br>
+     *
+     * @param mesa La mesa para la cual se crea la comanda.
+     * @throws MesaInexistenteException Si la mesa no existe.
+     * @throws MesaOcupadaException     Si la mesa ya tiene una comanda.
      */
-    public void crearComanda(Mesa mesa) throws MesaInexistenteException, MesaNoAsignadaException, MesaOcupadaException {
+    public void crearComanda(Mesa mesa) throws MesaInexistenteException, MesaOcupadaException {
         assert mesa != null : "La mesa no puede ser nula";
 
         if (!mesas.contains(mesa))
             throw new MesaInexistenteException(mesa);
-
-        if (!asignacionMesas.values().stream().anyMatch(l -> l.contains(mesa))) {
-            throw new MesaNoAsignadaException(mesa);
-        }
 
         if (mesa.estaOcupada()) {
             throw new MesaOcupadaException(mesa);
@@ -418,7 +422,7 @@ public class Sistema {
      * operario != null <br>
      * <b>Post:</b> <br>
      * Se agrega el operario al sistema. <br>
-     *
+     * @param operario Operario a agregar.
      * @throws OperarioExistenteException     Si el operario no existe.
      * @throws OperacionNoAutorizadaException Si el sistema no está en modo administrador.
      */
@@ -530,9 +534,37 @@ public class Sistema {
      * <b>Post:</b> <br>
      * Se agrega la promoción al sistema. <br>
      *
-     * @param promocion
+     * @param promocion Promocion a aplicar.
      */
     public void agregarPromocionTemporal(PromocionTemporal promocion) {
+        // TODO: Implementar
+    }
+
+    /**
+     * Elimina una promoción por producto del sistema. <br>
+     * <b>Pre:</b> <br>
+     * producto != null <br>
+     * <b>Post:</b> <br>
+     * Se elimina la promoción del sistema. <br>
+     *
+     * @param producto Producto para eliminar promocion.
+     * @throws ProductoInexistenteException Si el producto no existe.
+     */
+    public void eliminarPromocionProducto(Producto producto) throws ProductoInexistenteException {
+        // TODO: Implementar
+    }
+
+    /**
+     * Elimina una promoción temporal del sistema. <br>
+     * <b>Pre:</b> <br>
+     * promocion != null <br>
+     * <b>Post:</b> <br>
+     * Se elimina la promoción del sistema. <br>
+     *
+     * @param promocion Promocion a eliminar.
+     * @throws PromocionInexistenteException Si la promoción no existe.
+     */
+    public void eliminarPromocionTemporal(PromocionTemporal promocion) throws PromocionInexistenteException {
         // TODO: Implementar
     }
 
