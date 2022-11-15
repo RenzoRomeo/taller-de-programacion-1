@@ -23,7 +23,6 @@ public abstract class Promocion {
      * diasPromo.size() > 0 <br>
      * <b>Post:</b> <br>
      * Se crea una nueva promocion con los datos ingresados. <br>
-     *
      * @param diasPromo Dias en los que se aplica la promocion.
      */
     public Promocion(List<Dia> diasPromo) {
