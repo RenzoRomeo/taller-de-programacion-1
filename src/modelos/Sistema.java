@@ -578,6 +578,8 @@ public class Sistema {
         // TODO: Implementar
     }
 
+    // TODO Estadisticas mensuales empleado.
+
     private void verificarInvariantes() {
         assert nombreLocal != null : "El nombre del local no puede ser nulo";
         assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
