@@ -361,6 +361,24 @@ public class Sistema {
     }
 
     /**
+     * Agrega un pedido a una comanda. <br>
+     * <b>Pre:</b> <br>
+     * mesa != null <br>
+     * pedido != null <br>
+     * <b>Post:</b> <br>
+     * Se agrega el pedido a la comanda de la mesa. <br>
+     * Se descuenta el stock del producto. <br>
+     *
+     * @param mesa   Mesa para agregar el pedido.
+     * @param pedido Pedido a agregar.
+     * @throws ComandaInexistenteException Si la mesa no tiene una comanda.
+     * @throws StockInsuficienteException  Si no hay stock suficiente para el pedido.
+     */
+    public void agregarPedido(Mesa mesa, Pedido pedido) throws ComandaInexistenteException, StockInsuficienteException {
+        // TODO: Implementar
+    }
+
+    /**
      * Agrega un operario al sistema. <br>
      * <b>Pre:</b> <br>
      * operario != null <br>
