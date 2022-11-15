@@ -389,6 +389,16 @@ public class Sistema {
         }
 
         Comanda comanda = comandas.get(mesa);
+        Mozo mozo = null;
+        boolean encontrado = false;
+        Iterator<Map.Entry<Mozo, List<Mesa>>> it = asignacionMesas.entrySet().iterator();
+        while (it.hasNext() && !encontrado) {
+            Map.Entry<Mozo, List<Mesa>> entry = it.next();
+            if (entry.getValue().contains(mesa)) {
+                mozo = entry.getKey();
+                encontrado = true;
+            }
+        }
 
         comandas.remove(mesa);
         mesa.desocupar();
