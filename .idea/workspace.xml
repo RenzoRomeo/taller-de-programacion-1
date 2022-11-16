@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="Tests con escenario.">
+    <list default="true" id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="Verificar que la cantidad se incremente en 2.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/EliminarOperarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/EliminarOperarioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/escenarios/Escenario1Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/escenarios/Escenario1Sistema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/Operario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Operario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelo/Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelo/Sistema.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +22,13 @@
         <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
+    </option>
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="OPTIONS">
+      <set>
+        <option value="NO_FF" />
+      </set>
     </option>
   </component>
   <component name="Git.Settings">
@@ -66,7 +73,8 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -79,66 +87,66 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="modelo" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="test.escenarios" />
+    </key>
   </component>
   <component name="RunManager" selected="JUnit.test in taller-de-programacion-1">
-    <configuration name="AgregarOperarioTest.operarioAgregado" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AgregarMesaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taller-de-programacion-1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.escenarios.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.AgregarOperarioTest" />
-      <option name="METHOD_NAME" value="operarioAgregado" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EliminarOperarioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="taller-de-programacion-1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.escenarios.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.EliminarOperarioTest" />
+      <option name="MAIN_CLASS_NAME" value="test.AgregarMesaTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EliminarOperarioTest.operarioInexistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AgregarMozoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taller-de-programacion-1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.escenarios.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.EliminarOperarioTest" />
-      <option name="METHOD_NAME" value="operarioInexistente" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="test.AgregarMozoTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IniciarSesionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AgregarPedidoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taller-de-programacion-1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.escenarios.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.IniciarSesionTest" />
+      <option name="MAIN_CLASS_NAME" value="test.AgregarPedidoTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="modelo in taller-de-programacion-1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taller-de-programacion-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="modelo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="modelo" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -147,7 +155,7 @@
       <module name="taller-de-programacion-1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.escenarios.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -160,10 +168,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.test in taller-de-programacion-1" />
-        <item itemvalue="JUnit.EliminarOperarioTest" />
-        <item itemvalue="JUnit.EliminarOperarioTest.operarioInexistente" />
-        <item itemvalue="JUnit.AgregarOperarioTest.operarioAgregado" />
-        <item itemvalue="JUnit.IniciarSesionTest" />
+        <item itemvalue="JUnit.modelo in taller-de-programacion-1" />
+        <item itemvalue="JUnit.AgregarPedidoTest" />
+        <item itemvalue="JUnit.AgregarMesaTest" />
+        <item itemvalue="JUnit.AgregarMozoTest" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +201,11 @@
       <workItem from="1668543096852" duration="428000" />
       <workItem from="1668543544931" duration="3162000" />
       <workItem from="1668547303998" duration="12120000" />
-      <workItem from="1668601595344" duration="5978000" />
+      <workItem from="1668601595344" duration="9722000" />
+      <workItem from="1668614377529" duration="1297000" />
+      <workItem from="1668620734569" duration="5444000" />
+      <workItem from="1668626560466" duration="1859000" />
+      <workItem from="1668628802610" duration="1281000" />
     </task>
     <task id="LOCAL-00001" summary="Creadas las clases + constructor de operario con asersiones">
       <created>1666643834828</created>
@@ -447,7 +459,70 @@
       <option name="project" value="LOCAL" />
       <updated>1668609266794</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Escenario 1 con mozo.">
+      <created>1668610106760</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1668610106760</updated>
+    </task>
+    <task id="LOCAL-00038" summary="EliminarOperario.">
+      <created>1668610137830</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1668610137830</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Agregar mozo.">
+      <created>1668611412620</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1668611412620</updated>
+    </task>
+    <task id="LOCAL-00040" summary="EstablecerEstadoMozoTest.">
+      <created>1668613086858</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1668613086858</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Error con los Date.">
+      <created>1668613107805</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1668613107805</updated>
+    </task>
+    <task id="LOCAL-00042" summary="AgregarMesaTest">
+      <created>1668613724104</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1668613724104</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Escenario1Sistema">
+      <created>1668625943032</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1668625943032</updated>
+    </task>
+    <task id="LOCAL-00044" summary="AgregarPedidoTest">
+      <created>1668625950082</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1668625950082</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Verificar que la cantidad se incremente en 2.">
+      <created>1668627134718</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1668627134719</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +539,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/grupo_a" />
+                        <option value="origin/grupo_b" />
                       </list>
                     </value>
                   </entry>
@@ -479,15 +554,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Cambio nombre de atributo en producto stockInicial -&gt; stock" />
-    <MESSAGE value="Agrego administrador a sistema. Getter en promocion" />
-    <MESSAGE value="cambios varios" />
-    <MESSAGE value="Eliminacion de los metodos de modificar. Hashmap de operarios" />
-    <MESSAGE value="Excepcion de NombreUsuarioOperarioExistente. Constructor PromocionTemporal" />
-    <MESSAGE value="Un par de clases creadas" />
-    <MESSAGE value="Un par de clases creadas V2" />
-    <MESSAGE value="Getters de diversas clases" />
-    <MESSAGE value="Constructor de factura" />
     <MESSAGE value="Aplica descuentos de promociones" />
     <MESSAGE value="Cerrar comanda (no terminado aun)" />
     <MESSAGE value="Cambios varios v3" />
@@ -504,8 +570,29 @@
     <MESSAGE value="AgregarOperarioTest." />
     <MESSAGE value="Escenarios sistema." />
     <MESSAGE value="Tests con escenario." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests con escenario." />
+    <MESSAGE value="Escenario 1 con mozo." />
+    <MESSAGE value="EliminarOperario." />
+    <MESSAGE value="Agregar mozo." />
+    <MESSAGE value="EstablecerEstadoMozoTest." />
+    <MESSAGE value="Error con los Date." />
+    <MESSAGE value="AgregarMesaTest" />
+    <MESSAGE value="Escenario1Sistema" />
+    <MESSAGE value="AgregarPedidoTest" />
+    <MESSAGE value="Verificar que la cantidad se incremente en 2." />
+    <option name="LAST_COMMIT_MESSAGE" value="Verificar que la cantidad se incremente en 2." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/taller_de_programacion_1$AgregarPedidoTest.ic" NAME="AgregarPedidoTest Coverage Results" MODIFIED="1668627494433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/taller_de_programacion_1$test_in_taller_de_programacion_1.ic" NAME="test in taller-de-programacion-1 Coverage Results" MODIFIED="1668629701513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
   </component>
 </project>
