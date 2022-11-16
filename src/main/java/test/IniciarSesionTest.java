@@ -2,10 +2,9 @@ package test;
 
 import excepciones.*;
 import modelos.*;
-import modelos.enums.Dia;
+import modelos.enums.ModoOperacion;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -22,14 +21,7 @@ public class IniciarSesionTest {
         } catch (SistemaYaInicializadoException e) {
             fail("Sistema no deberia estar inicializado");
         }
-//        Administrador admin = Sistema.getInstancia().getAdministrador();
-//        try {
-//            admin.iniciarSesion("ADMIN1234");
-//        } catch (UsuarioInactivoException e) {
-//            fail("Usuario debio estar activo");
-//        } catch (ContraseniaIncorrectaException e) {
-//            fail("Contrasenia debio ser correcta");
-//        }
+        Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
 
         try {
             Sistema.getInstancia().agregarOperario(operario);

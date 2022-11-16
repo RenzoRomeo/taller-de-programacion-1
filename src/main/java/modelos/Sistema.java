@@ -440,8 +440,8 @@ public class Sistema {
     public void agregarOperario(Operario operario) throws OperarioExistenteException, OperacionNoAutorizadaException {
         assert operario != null : "El operario no puede ser nulo";
 
-//        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
-//            throw new OperacionNoAutorizadaException();
+        if (modoOperacion != ModoOperacion.ADMINISTRADOR)
+            throw new OperacionNoAutorizadaException();
 
         if (operarios.contains(operario)) {
             throw new OperarioExistenteException(operario);
