@@ -12,6 +12,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import test.escenarios.Escenario1Sistema;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class AgregarPedidoTest {
@@ -29,7 +32,27 @@ public class AgregarPedidoTest {
     @Test
     void agregarPedido() {
         try {
+            AtomicInteger cantidadProductoAntes = new AtomicInteger();
+            Sistema.getInstance().getComandas().get(Escenario1Sistema.getMesa1()).getPedidos().forEach(
+                    pedido -> {
+                        if (pedido.getProducto().equals(Escenario1Sistema.getProductoCocaCola())) {
+                            cantidadProductoAntes.addAndGet(pedido.getCantidad());
+                        }
+                    }
+            );
+
             Sistema.getInstance().agregarPedido(Escenario1Sistema.getProductoCocaCola(), 2, Escenario1Sistema.getMesa1());
+
+            AtomicInteger cantidadProductoDespues = new AtomicInteger();
+            Sistema.getInstance().getComandas().get(Escenario1Sistema.getMesa1()).getPedidos().forEach(
+                    pedido -> {
+                        if (pedido.getProducto().equals(Escenario1Sistema.getProductoCocaCola())) {
+                            cantidadProductoDespues.addAndGet(pedido.getCantidad());
+                        }
+                    }
+            );
+
+            assertEquals("La cantidad de productos deberia haberse incrementado en 2", cantidadProductoAntes.get() + 2, cantidadProductoDespues.get());
         } catch (MesaNoTieneComandaException e) {
             fail("La mesa deberia tener una comanda");
         } catch (MesaNoExisteException e) {
