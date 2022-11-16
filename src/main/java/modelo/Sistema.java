@@ -1,13 +1,10 @@
 package modelo;
 
-import controladores.LoginController;
+//import controladores.LoginController;
 import enums.Dia;
 import enums.Estado;
 import enums.FormaDePago;
-import excepciones.ContraseniaIncorrectaException;
-import excepciones.NombreDeUsuarioNoDisponibleException;
-import excepciones.UsuarioInactivoException;
-import excepciones.UsuarioNoExisteException;
+import excepciones.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,7 +74,7 @@ public class Sistema {
             throw new ContraseniaIncorrectaException();
         }
         //TODO LOGIN
-        LoginController.getInstance().inicioSesionExitoso();
+//        LoginController.getInstance().inicioSesionExitoso();
 
     }
 
@@ -101,18 +98,19 @@ public class Sistema {
 
     /**
      * Elimina a un operario del sistema
-     * @param operario
      *
-     * <b>Pre:</b>
-     * operario != null <br>
-     * Operario esta cargado en el sistema <br>
+     * @param operario <b>Pre:</b>
+     *                 operario != null <br>
      *
-     * <b>Post:</b>
-     * Operario eliminado del sistema <br>
+     *                 <b>Post:</b>
+     *                 Operario eliminado del sistema <br>
+     * @throws UsuarioNoExisteException si el usuario no existe
      */
-    public void eliminarOperario(Operario operario) {
+    public void eliminarOperario(Operario operario) throws UsuarioNoExisteException {
         assert operario != null : "El operario no puede ser null";
-        assert operarios.containsKey(operario.getNombreUsuario()) : "El operario no esta cargado en el sistema";
+        if (!operarios.containsKey(operario.getNombreUsuario())) {
+            throw new UsuarioNoExisteException();
+        }
 
         operarios.remove(operario);
 
@@ -122,17 +120,21 @@ public class Sistema {
 
     /**
      * Agrega mozo al sistema
-     * @param mozo
-     * <b>Pre:</b>
-     * mozo != null
-     * mozo no esta cargado en el sistema
      *
-     * <b>Post:</b>
-     * mozo cargado en el sistema
+     * @param mozo <br>
+     *             <b>Pre:</b> <br>
+     *             mozo != null <br>
+     *
+     *             <b>Post:</b> <br>
+     *             mozo cargado en el sistema <br>
+     * @throws MozoYaExistenteException si el mozo ya existe
      */
-    public void agregarMozo(Mozo mozo) {
+    public void agregarMozo(Mozo mozo) throws MozoYaExistenteException {
         assert mozo != null : "El mozo no puede ser null";
-        assert !mozos.contains(mozo) : "El mozo ya esta cargado en el sistema";
+
+        if (mozos.contains(mozo)) {
+            throw new MozoYaExistenteException();
+        }
 
         mozos.add(mozo);
 
@@ -141,50 +143,67 @@ public class Sistema {
 
     /**
      * Elimina mozo del sistema
-     * @param mozo
-     * <b>Pre:</b>
-     * mozo != null <br>
-     * mozo esta cargado en el sistema <br>
      *
-     * <b>Post:</b>
-     * mozo eliminado del sistema <br>
+     * @param mozo <b>Pre:</b>
+     *             mozo != null <br>
+     *             mozo esta cargado en el sistema <br>
+     *
+     *             <b>Post:</b>
+     *             mozo eliminado del sistema <br>
+     * @throws MozoNoExisteException si el mozo no existe
      */
-    public void eliminarMozo(Mozo mozo) {
+    public void eliminarMozo(Mozo mozo) throws MozoNoExisteException {
         assert mozo != null;
+
+        if (!mozos.contains(mozo)) {
+            throw new MozoNoExisteException();
+        }
 
         mozos.remove(mozo);
     }
 
     /**
      * establece estado mozo
-     * @param mozo mozo a modificar
-     * @param estado estado a establecer
-     * <b>Pre:</b>
-     * mozo != null
-     * estado != null
      *
+     * @param mozo   mozo a modificar
+     * @param estado estado a establecer
+     *               <b>Pre:</b>
+     *               mozo != null
+     *               estado != null
+     * @throws MozoNoExisteException       si el mozo no existe
+     * @throws EstadoMozoInvalidoException si el estado es invalido
      */
-    public void establecerEstadoMozo(Mozo mozo, Estado estado) {
+    public void establecerEstadoMozo(Mozo mozo, Estado estado) throws MozoNoExisteException, EstadoMozoInvalidoException {
         assert mozo != null;
         assert estado != null;
+
+        if (!mozos.contains(mozo)) {
+            throw new MozoNoExisteException();
+        }
+        if (estado != Estado.ACTIVO || estado != Estado.AUSENTE || estado != Estado.DE_FRANCO) {
+            throw new EstadoMozoInvalidoException();
+        }
 
         mozo.setEstado(estado);
     }
 
     /**
      * Agrega mesa al sistema
-     * @param mesa
-     * <br>
-     * <b>Pre:</b> <br>
-     * mesa != null <br>
-     * mesa no esta cargada en el sistema <br>
      *
-     * <b>Post:</b> <br>
-     * mesa cargada en el sistema <br>
+     * @param mesa <br>
+     *             <b>Pre:</b> <br>
+     *             mesa != null <br>
+     *
+     *             <b>Post:</b> <br>
+     *             mesa cargada en el sistema <br>
+     * @throws MesaYaExistenteException si la mesa ya existe
      */
-    public void agregarMesa(Mesa mesa) {
+    public void agregarMesa(Mesa mesa) throws MesaYaExistenteException {
         assert mesa != null : "La mesa no puede ser null";
-        assert !mesas.contains(mesa) : "La mesa ya esta cargada en el sistema";
+
+        if (mesas.contains(mesa)) {
+            throw new MesaYaExistenteException();
+        }
 
         mesas.add(mesa);
 
@@ -193,19 +212,21 @@ public class Sistema {
 
     /**
      * Elimina mesa del sistema
-     * @param mesa
-     * <br>
-     * <b>Pre:</b> <br>
-     * mesa != null <br>
-     * mesa esta cargada en el sistema <br>
      *
-     * <b>Post:</b> <br>
-     * mesa eliminada del sistema <br>
+     * @param mesa <br>
+     *             <b>Pre:</b> <br>
+     *             mesa != null <br>
+     *
+     *             <b>Post:</b> <br>
+     *             mesa eliminada del sistema <br>
+     * @throws MesaNoExisteException si la mesa no existe
      */
-    public void eliminarMesa(Mesa mesa) {
+    public void eliminarMesa(Mesa mesa) throws MesaNoExisteException {
         assert mesa != null : "La mesa no puede ser null";
-        assert mesas.contains(mesa) : "La mesa no esta cargada en el sistema";
 
+        if (!mesas.contains(mesa)) {
+            throw new MesaNoExisteException();
+        }
         mesas.remove(mesa);
 
         assert !mesas.contains(mesa) : "La mesa no fue eliminada del sistema";
@@ -214,32 +235,39 @@ public class Sistema {
 
     /**
      * Agrega producto al sistema
-     * @param producto
-     * <b>Pre:</b>
-     * producto != null
      *
+     * @param producto <b>Pre:</b>
+     *                 producto != null
+     * @throws ProductoYaExistenteException si el producto ya existe
      */
-    public void agregarProducto(Producto producto) {
+    public void agregarProducto(Producto producto) throws ProductoYaExistenteException {
         assert producto != null;
 
+        if (productos.contains(producto)) {
+            throw new ProductoYaExistenteException();
+        }
         productos.add(producto);
     }
 
     /**
      * Elimina producto del sistema
-     * @param producto
-     * <br>
-     * <b>Pre:</b> <br>
-     * producto != null <br>
-     * producto esta cargado en el sistema <br>
      *
-     * <b>Post:</b>
-     * producto eliminado del sistema <br>
+     * @param producto <br>
+     *                 <b>Pre:</b> <br>
+     *                 producto != null <br>
+     *
+     *                 <b>Post:</b>
+     *                 producto eliminado del sistema <br>
+     * @throws ProductoNoExisteException si el producto no existe
      */
 
-    public void eliminarProducto(Producto producto) {
+    public void eliminarProducto(Producto producto) throws ProductoNoExisteException {
         assert producto != null : "El producto no puede ser null";
         assert productos.contains(producto) : "El producto no esta cargado en el sistema";
+
+        if (!productos.contains(producto)) {
+            throw new ProductoNoExisteException();
+        }
 
         productos.remove(producto);
 
@@ -250,26 +278,38 @@ public class Sistema {
     //Se crea con un unico producto y se le van agregando pedidos
 
     /**
-     *
-     * @param mesa mesa a la que se le agrega la comanda
-     * @param p producto a agregar a la comanda
+     * @param mesa     mesa a la que se le agrega la comanda
+     * @param p        producto a agregar a la comanda
      * @param cantidad cantidad del producto a agregar
      *
-     * <br>
-     * <b>Pre:</b> <br>
-     * mesas.size() mayor a 0 <br>
-     * mesa != null <br>
-     * Mesa tiene mozo activo asignado <br>
-     * mesa tiene estado libre <br>
-     * al menos 2 productos en promocion activa <br>
+     *                 <br>
+     *                 <b>Pre:</b> <br>
+     *                 mesa != null <br>
+     *                 Mesa tiene mozo activo asignado <br>
      *
-     * <b>Post:</b> <br>
-     * comanda creada <br>
-     *
+     *                 <b>Post:</b> <br>
+     *                 comanda creada <br>
+     * @throws MesaNoExisteException             si la mesa no existe
+     * @throws MesaNoDisponibleException         si la mesa esta ocupada
+     * @throws ProductoNoExisteException         si el producto no existe
+     * @throws ProductoNoDisponibleException     si el producto no tiene stock solicitado
+     * @throws CantidadEnPromocionMenorException si la cantidad es menor a 2
      */
-    public void crearComanda(Mesa mesa, Producto p, int cantidad) {
+    public void crearComanda(Mesa mesa, Producto p, int cantidad) throws MesaNoExisteException, MesaNoDisponibleException, ProductoNoExisteException, ProductoNoDisponibleException, CantidadEnPromocionMenorException {
         assert mesa != null : "La mesa no puede ser null";
-        assert mesa.getEstaOcupada() == false : "La mesa no esta libre";
+
+        if (!mesas.contains(mesa)) {
+            throw new MesaNoExisteException();
+        }
+        if (mesa.getEstaOcupada()) {
+            throw new MesaNoDisponibleException();
+        }
+        if (!productos.contains(p)) {
+            throw new ProductoNoExisteException();
+        }
+        if ((p.getStock() - cantidad) <= 0) {
+            throw new ProductoNoDisponibleException();
+        }
 
         //chequea cuantos productos hay en promocion hoy
         int cantidadPromocion = 0;
@@ -278,11 +318,13 @@ public class Sistema {
                 cantidadPromocion++;
             }
         }
+        if (cantidadPromocion < 2) {
+            throw new CantidadEnPromocionMenorException();
+        }
 
         //chequea que la mesa tenga un mozo activo asignado antes de crearla
-        int finalCantidadPromocion = cantidadPromocion;
         asignacionMesas.forEach((mozo, mesasAsignadas) -> {
-            if (mesasAsignadas.contains(mesa) && mozo.getEstado() == Estado.ACTIVO && finalCantidadPromocion >= 2) {
+            if (mesasAsignadas.contains(mesa) && mozo.getEstado() == Estado.ACTIVO) {
                 Comanda comanda = new Comanda();
                 comanda.agregarPedido(p, cantidad);
                 comandas.put(mesa, comanda);
@@ -296,28 +338,40 @@ public class Sistema {
     //Se agrega de a un producto a la comanda
 
     /**
-     *
-     * @param p producto a agregar a la comanda
+     * @param p        producto a agregar a la comanda
      * @param cantidad cantidad del producto a agregar
-     * @param mesa mesa a la que se le agrega el pedido
+     * @param mesa     mesa a la que se le agrega el pedido
      *
-     * <br>
-     * <b>Pre:</b> <br>
-     * p != null <br>
-     * cantidad mayor a 0 <br>
-     * mesa != null <br>
-     * mesa esta cargada en el sistema <br>
-     * mesa tiene comanda abierta <br>
+     *                 <br>
+     *                 <b>Pre:</b> <br>
+     *                 p != null <br>
+     *                 cantidad mayor a 0 <br>
+     *                 mesa != null <br>
      *
-     * <b>Post:</b> <br>
-     * pedido agregado a la comanda <br>
+     *                 <b>Post:</b> <br>
+     *                 pedido agregado a la comanda <br>
+     * @throws ProductoNoExisteException     si el producto no existe
+     * @throws ProductoNoDisponibleException si el producto no tiene stock solicitado
+     * @throws MesaNoExisteException         si la mesa no existe
+     * @throws MesaNoTieneComandaException   si la mesa no tiene comanda creada
      */
-    public void agregarPedido(Producto p, int cantidad, Mesa mesa) {
+    public void agregarPedido(Producto p, int cantidad, Mesa mesa) throws ProductoNoExisteException, ProductoNoDisponibleException, MesaNoExisteException, MesaNoTieneComandaException {
         assert p != null : "El producto no puede ser null";
         assert cantidad > 0 : "La cantidad debe ser mayor a 0";
         assert mesa != null : "La mesa no puede ser null";
-        assert mesas.contains(mesa) : "La mesa no esta cargada en el sistema";
-        assert comandas.containsKey(mesa) : "La mesa no tiene comanda abierta";
+
+        if (!productos.contains(p)) {
+            throw new ProductoNoExisteException();
+        }
+        if ((p.getStock() - cantidad) <= 0) {
+            throw new ProductoNoDisponibleException();
+        }
+        if (!mesas.contains(mesa)) {
+            throw new MesaNoExisteException();
+        }
+        if (!comandas.containsKey(mesa)) {
+            throw new MesaNoTieneComandaException();
+        }
 
         Comanda comanda = comandas.get(mesa);
         comanda.agregarPedido(p, cantidad);
@@ -326,25 +380,33 @@ public class Sistema {
     }
 
     /**
-     *
-     * @param mesa mesa a la que se le cierra la comanda
+     * @param mesa        mesa a la que se le cierra la comanda
      * @param formaDePago forma de pago de la comanda
      *
-     * <br>
-     * <b>Pre:</b> <br>
-     * mesa != null <br>
-     * mesa esta cargada en el sistema <br>
-     * mesa tiene comanda abierta <br>
-     * formaDePago != null <br>
+     *                    <br>
+     *                    <b>Pre:</b> <br>
+     *                    mesa != null <br>
+     *                    formaDePago != null <br>
      *
-     * <b>Post:</b> <br>
-     *  comanda cerrada <br>
+     *                    <b>Post:</b> <br>
+     *                    comanda cerrada <br>
+     * @throws MesaNoExisteException        si la mesa no existe
+     * @throws MesaNoTieneComandaException  si la mesa no tiene comanda creada
+     * @throws FormaDePagoInvalidaException si la forma de pago no es valida
      */
-    public void cerrarComanda(Mesa mesa, FormaDePago formaDePago) {
+    public void cerrarComanda(Mesa mesa, FormaDePago formaDePago) throws MesaNoExisteException, MesaNoTieneComandaException, FormaDePagoInvalidaException {
         assert mesa != null : "La mesa no puede ser null";
-        assert mesas.contains(mesa) : "La mesa no esta cargada en el sistema";
-        assert comandas.containsKey(mesa) : "La mesa no tiene comanda abierta";
         assert formaDePago != null : "La forma de pago no puede ser null";
+
+        if (!mesas.contains(mesa)) {
+            throw new MesaNoExisteException();
+        }
+        if (!comandas.containsKey(mesa)) {
+            throw new MesaNoTieneComandaException();
+        }
+        if (!(formaDePago == FormaDePago.TARJETA || formaDePago == FormaDePago.EFECTIVO)) {
+            throw new FormaDePagoInvalidaException();
+        }
 
         Comanda comanda = comandas.get(mesa);
         Mozo mozo = null;
@@ -392,8 +454,7 @@ public class Sistema {
         boolean auxiliar = false;
         if (esAcumulable) {
             auxiliar = true;
-        }
-        else if (!aplicoPromocionProducto) {
+        } else if (!aplicoPromocionProducto) {
             auxiliar = true;
         }
         return auxiliar;
@@ -405,36 +466,41 @@ public class Sistema {
     }
 
 
-
     /**
-     *
      * @param mozo mozo a asignar a la mesa
      * @param mesa mesa a la que se le asigna el mozo
      *
-     * <br>
-     * <b>Pre:</b> <br>
-     * mozo != null <br>
-     * mozo.getEstado() == Estado.ACTIVO <br>
-     * mesa != null <br>
-     * mozos.contains(mozo) <br>
-     * mesas.contains(mesa) <br>
+     *             <br>
+     *             <b>Pre:</b> <br>
+     *             mozo != null <br>
+     *             mozo.getEstado() == Estado.ACTIVO <br>
+     *             mesa != null <br>
+     *             mozos.contains(mozo) <br>
+     *             mesas.contains(mesa) <br>
      *
      *
-     * <b>Post:</b> <br>
-     * asignacionMesas.get(mozo).contains(mesa) <br>
+     *             <b>Post:</b> <br>
+     *             asignacionMesas.get(mozo).contains(mesa) <br>
      */
-    public void asignarMesa(Mozo mozo, Mesa mesa) {
+    public void asignarMesa(Mozo mozo, Mesa mesa) throws MozoNoExisteException, MesaNoExisteException, MozoNoActivoException {
         assert mozo != null : "Mozo no puede ser null";
-        assert mozo.getEstado() == Estado.ACTIVO : "Mozo debe estar activo";
         assert mesa != null : "Mesa no puede ser null";
-        assert mozos.contains(mozo) : "Mozo no existe";
-        assert mesas.contains(mesa) : "Mesa no existe";
+
+        if (!mozos.contains(mozo)) {
+            throw new MozoNoExisteException();
+        }
+        if (!mesas.contains(mesa)) {
+            throw new MesaNoExisteException();
+        }
+        if (mozo.getEstado() != Estado.ACTIVO) {
+            throw new MozoNoActivoException();
+        }
 
 
         if (asignacionMesas.containsKey(mozo)) {
             if (!asignacionMesas.get(mozo).contains(mesa))
                 asignacionMesas.get(mozo).add(mesa);
-        }else {
+        } else {
             ArrayList<Mesa> m = new ArrayList<>();
             m.add(mesa);
             asignacionMesas.put(mozo, m);
@@ -467,8 +533,15 @@ public class Sistema {
      * <br>
      * <b>Post:</b> <br>
      * Se agrega promocion al sistema <br>
+     *
+     * @throws ProductoNoExisteException si el producto no existe en el sistema
      */
-    public void agregarPromocionProducto(int id, boolean activa, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) {
+    public void agregarPromocionProducto(int id, boolean activa, ArrayList<Dia> diasPromo, Producto producto, boolean aplicaDosPorUno, boolean aplicaDescuentoPorCantidad, int dtoPorCantidad_CantMinima, double descuentoPorCantidad_PrecioUnitario) throws ProductoNoExisteException {
+
+        if (!productos.contains(producto)) {
+            throw new ProductoNoExisteException();
+        }
+
         PromocionProducto promocion = new PromocionProducto(id, diasPromo, producto, aplicaDosPorUno, aplicaDescuentoPorCantidad, dtoPorCantidad_CantMinima, descuentoPorCantidad_PrecioUnitario);
         promocionesProducto.add(promocion);
 
@@ -486,10 +559,18 @@ public class Sistema {
      * @param esAcumulable indica si la promocion es acumulable
      *
      * <br>
+     *
      * <b>Post:</b> <br>
      * Se agrega promocion al sistema <br>
+     *
+     * @throws FormaDePagoInvalidaException si la forma de pago no es valida
      */
-    public void agregarPromocionTemporal(int id, boolean activa, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable){
+    public void agregarPromocionTemporal(int id, boolean activa, ArrayList<Dia> diasPromo, String nombre, FormaDePago formaDePago, int porcentajeDescuento, boolean esAcumulable) throws FormaDePagoInvalidaException{
+
+        if (!(formaDePago == FormaDePago.EFECTIVO || formaDePago == FormaDePago.TARJETA)) {
+            throw new FormaDePagoInvalidaException();
+        }
+
         PromocionTemporal promocion = new PromocionTemporal(id, diasPromo, nombre, formaDePago, porcentajeDescuento, esAcumulable);
         promocionesTemporales.add(promocion);
 

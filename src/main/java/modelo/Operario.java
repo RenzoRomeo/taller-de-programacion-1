@@ -1,6 +1,9 @@
 package modelo;
 
 import enums.Estado;
+import excepciones.MesaNoExisteException;
+import excepciones.MozoNoActivoException;
+import excepciones.MozoNoExisteException;
 
 import java.io.Serializable;
 
@@ -87,11 +90,11 @@ public class Operario implements Serializable {
 
     /**
      * Metodo que asigna mesa a un mozo <br>
+     *
      * @param mozo mozo a asignar mesa
      * @param mesa mesa a asignar al mozo
-     *
      */
-    public void asignarMesa(Mozo mozo, Mesa mesa) {
+    public void asignarMesa(Mozo mozo, Mesa mesa) throws MesaNoExisteException, MozoNoExisteException, MozoNoActivoException {
         Sistema s = Sistema.getInstance();
         s.asignarMesa(mozo, mesa);
     }
