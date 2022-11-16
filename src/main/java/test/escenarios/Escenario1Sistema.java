@@ -45,6 +45,7 @@ public class Escenario1Sistema {
             sistema.agregarMesa(mesa3);
             sistema.agregarProducto(productoCocaCola);
             sistema.asignarMesa(mozoAlberto, mesa1);
+            sistema.asignarMesa(mozoAlberto, mesa3);
             sistema.agregarPromocionProducto(1, true, dias, productoCocaCola, true, false, 0, 0);
             sistema.agregarPromocionProducto(2, true, dias, productoCocaCola, false, true, 4, 20);
             sistema.crearComanda(mesa1, productoCocaCola, 1);
