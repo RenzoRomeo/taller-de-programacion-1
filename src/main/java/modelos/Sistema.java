@@ -536,6 +536,9 @@ public class Sistema {
      */
     public void agregarPromocionProducto(Producto producto, PromocionProducto promocion) throws ProductoInexistenteException {
         // TODO: Implementar
+        if (!productos.contains(producto)) {
+            throw new ProductoInexistenteException(producto);
+        }
         ArrayList<PromocionProducto> promociones = new ArrayList<>();
         promociones.add(promocion);
         this.promocionesProducto.put(producto, promociones);

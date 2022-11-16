@@ -74,4 +74,5 @@ public class Mesa {
 //        assert nroMesa == 0 && capacidad >= 1 : "La capacidad de la barra debe ser al menos 1";
         assert nroMesa == 0 || (nroMesa >= 1 && capacidad >= 2)  : "La capacidad de una mesa debe ser al menos 2 o ser barra";
     }
+
 }
