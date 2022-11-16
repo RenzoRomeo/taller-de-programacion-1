@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="Maven Java 11.">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/AgregarOperarioTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/taller-de-programacion-1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/taller-de-programacion-1.iml" afterDir="false" />
+    <list default="true" id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="Tests con escenario.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/EliminarOperarioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/EliminarOperarioTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/escenarios/Escenario1Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/escenarios/Escenario1Sistema.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,24 +51,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="excepciones" />
@@ -93,56 +80,90 @@
       <recent name="modelo" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AgregarOperarioTest">
-    <configuration name="VistaLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="vistas.VistaLogin" />
+  <component name="RunManager" selected="JUnit.test in taller-de-programacion-1">
+    <configuration name="AgregarOperarioTest.operarioAgregado" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taller-de-programacion-1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="prueba.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AgregarOperarioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="taller-de-programacion-1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.escenarios.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.AgregarOperarioTest" />
+      <option name="METHOD_NAME" value="operarioAgregado" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EliminarOperarioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taller-de-programacion-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.escenarios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.EliminarOperarioTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AgregarOperarioTest.nombreDeUsuarioNoDisponible" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EliminarOperarioTest.operarioInexistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="taller-de-programacion-1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="test.escenarios.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.AgregarOperarioTest" />
-      <option name="METHOD_NAME" value="nombreDeUsuarioNoDisponible" />
+      <option name="MAIN_CLASS_NAME" value="test.EliminarOperarioTest" />
+      <option name="METHOD_NAME" value="operarioInexistente" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IniciarSesionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taller-de-programacion-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.escenarios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.IniciarSesionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test in taller-de-programacion-1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="taller-de-programacion-1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.escenarios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AgregarOperarioTest" />
-        <item itemvalue="JUnit.AgregarOperarioTest.nombreDeUsuarioNoDisponible" />
-        <item itemvalue="Application.VistaLogin" />
+        <item itemvalue="JUnit.test in taller-de-programacion-1" />
+        <item itemvalue="JUnit.EliminarOperarioTest" />
+        <item itemvalue="JUnit.EliminarOperarioTest.operarioInexistente" />
+        <item itemvalue="JUnit.AgregarOperarioTest.operarioAgregado" />
+        <item itemvalue="JUnit.IniciarSesionTest" />
       </list>
     </recent_temporary>
   </component>
@@ -171,7 +192,8 @@
       <workItem from="1668537405762" duration="193000" />
       <workItem from="1668543096852" duration="428000" />
       <workItem from="1668543544931" duration="3162000" />
-      <workItem from="1668547303998" duration="6192000" />
+      <workItem from="1668547303998" duration="12120000" />
+      <workItem from="1668601595344" duration="5978000" />
     </task>
     <task id="LOCAL-00001" summary="Creadas las clases + constructor de operario con asersiones">
       <created>1666643834828</created>
@@ -404,7 +426,28 @@
       <option name="project" value="LOCAL" />
       <updated>1668543626276</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="AgregarOperarioTest.">
+      <created>1668556433466</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1668556433466</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Escenarios sistema.">
+      <created>1668607558063</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1668607558063</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Tests con escenario.">
+      <created>1668609266794</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1668609266794</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,9 +479,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Admin se crea con lo pedido" />
-    <MESSAGE value="Cambio en constructor de comanda" />
-    <MESSAGE value="Getters y setters de la mesa" />
     <MESSAGE value="Cambio nombre de atributo en producto stockInicial -&gt; stock" />
     <MESSAGE value="Agrego administrador a sistema. Getter en promocion" />
     <MESSAGE value="cambios varios" />
@@ -461,7 +501,10 @@
     <MESSAGE value="Fin de la documentacion?" />
     <MESSAGE value="Fin de la doc ahora si" />
     <MESSAGE value="Maven Java 11." />
-    <option name="LAST_COMMIT_MESSAGE" value="Maven Java 11." />
+    <MESSAGE value="AgregarOperarioTest." />
+    <MESSAGE value="Escenarios sistema." />
+    <MESSAGE value="Tests con escenario." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests con escenario." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

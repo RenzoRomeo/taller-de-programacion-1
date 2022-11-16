@@ -23,7 +23,7 @@ public class EliminarOperarioTest {
 
     @Test
     void operarioEliminado() {
-        Operario juan = Escenario1Sistema.getJuan();
+        Operario juan = Escenario1Sistema.getOperarioJuan();
         try {
             Sistema.getInstance().eliminarOperario(juan);
         } catch (UsuarioNoExisteException e) {
