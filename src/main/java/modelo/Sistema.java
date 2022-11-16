@@ -146,8 +146,7 @@ public class Sistema {
      *
      * @param mozo <b>Pre:</b>
      *             mozo != null <br>
-     *             mozo esta cargado en el sistema <br>
-     *
+     *             
      *             <b>Post:</b>
      *             mozo eliminado del sistema <br>
      * @throws MozoNoExisteException si el mozo no existe
