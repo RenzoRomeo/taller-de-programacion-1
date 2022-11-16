@@ -1,10 +1,8 @@
 package test.escenarios;
 
-import enums.Dia;
 import excepciones.*;
 import modelo.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Escenario2Sistema {
@@ -28,15 +26,6 @@ public class Escenario2Sistema {
 
         productoCocaCola = new Producto(1, "Coca Cola", 80, 100, 50);
 
-        ArrayList<Dia> dias = new ArrayList<>();
-        dias.add(Dia.LUNES);
-        dias.add(Dia.MARTES);
-        dias.add(Dia.MIERCOLES);
-        dias.add(Dia.JUEVES);
-        dias.add(Dia.VIERNES);
-        dias.add(Dia.SABADO);
-        dias.add(Dia.DOMINGO);
-
         try {
             sistema.agregarOperario(operarioJuan);
             sistema.agregarOperario(operarioJose);
@@ -45,8 +34,7 @@ public class Escenario2Sistema {
             sistema.agregarMesa(mesa3);
             sistema.agregarProducto(productoCocaCola);
             sistema.asignarMesa(mozoAlberto, mesa1);
-            sistema.agregarPromocionProducto(1, true, dias, productoCocaCola, true, false, 0, 0);
-            sistema.agregarPromocionProducto(2, true, dias, productoCocaCola, false, true, 4, 20);
+            sistema.asignarMesa(mozoAlberto, mesa3);
             sistema.crearComanda(mesa1, productoCocaCola, 1);
         } catch (NombreDeUsuarioNoDisponibleException | MozoYaExistenteException | MesaYaExistenteException |
                  ProductoYaExistenteException | MesaNoExisteException | MesaNoDisponibleException |
