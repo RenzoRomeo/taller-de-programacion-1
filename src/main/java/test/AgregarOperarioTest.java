@@ -1,5 +1,6 @@
 package test;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -10,10 +11,12 @@ import org.junit.jupiter.api.Test;
 import excepciones.NombreDeUsuarioNoDisponibleException;
 import modelo.Operario;
 import modelo.Sistema;
+import test.escenarios.Escenario1Sistema;
 
 class AgregarOperarioTest {
-    private static Sistema sistema;
 
+	private static Sistema sistema;
+	
     @BeforeAll
     static void setUp() {
     	Escenario1Sistema.setUp();
