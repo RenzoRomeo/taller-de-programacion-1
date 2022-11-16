@@ -1,24 +1,23 @@
 package test;
 
 import excepciones.*;
-import modelos.Operario;
-import modelos.Sistema;
+import modelos.*;
+import modelos.enums.ModoOperacion;
 import org.junit.jupiter.api.BeforeAll;
+
+import java.sql.Date;
+
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class Main {
-    public static void main(String[] args) throws SistemaYaInicializadoException, OperarioExistenteException, OperacionNoAutorizadaException {
-        Operario operario = new Operario("Teo", "Ramos", "teoramite","Teo1234");;
-        System.out.println("Hello World!");
+    private static Mesa mesa = new Mesa(2, 5);
+    private static Sueldo sueldo = new Sueldo(500);
+    private static Mozo mozo = new Mozo("Juan", "Perez", new Date(13/10/98), 2, sueldo);
+    public static void main(String[] args) throws SistemaYaInicializadoException, OperarioExistenteException, OperacionNoAutorizadaException, MesaRepetidaException, MozoExistenteException, MaximaCantidadMozosException, MozoInexistenteException, MesaInexistenteException {
         Sistema.inicializarSistema("McDonalds");
-        System.out.println(Sistema.isInicializado());
-        Sistema.getInstancia().agregarOperario(operario);
-        try {
-            operario.iniciarSesion("Teo1234");
-        } catch (UsuarioInactivoException e) {
-            fail("Usuario debio estar activo");
-        } catch (ContraseniaIncorrectaException e) {
-            fail("Contrasenia debio ser correcta");
-        }
+        Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
+        Sistema.getInstancia().agregarMozo(mozo);
+        Sistema.getInstancia().agregarMesa(mesa);
+        Sistema.getInstancia().asignarMesa(mozo, mesa);
     }
 }

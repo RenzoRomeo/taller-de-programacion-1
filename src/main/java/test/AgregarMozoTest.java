@@ -34,6 +34,7 @@ public class AgregarMozoTest {
         Mozo mozo = new Mozo("Juan", "Perez", date, 2, sueldo);
         try {
             Sistema.getInstancia().agregarMozo(mozo);
+            System.out.println("Mozo agregado correctamente");
         } catch (OperacionNoAutorizadaException e) {
             fail("Operacion debio ser autorizada");
         } catch (MozoExistenteException e) {
