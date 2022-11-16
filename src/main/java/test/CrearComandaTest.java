@@ -4,6 +4,7 @@ import excepciones.*;
 import modelos.Mesa;
 import modelos.Sistema;
 import modelos.enums.ModoOperacion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +17,7 @@ public class CrearComandaTest {
 
     @BeforeAll
     public static void setUp() {
-        try {
-            Sistema.inicializarSistema("McDonalds");
-        }
-        catch (SistemaYaInicializadoException e) {}
+        Escenario.setUp();
 
         Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
         try {
@@ -28,11 +26,12 @@ public class CrearComandaTest {
         }
         catch (MesaRepetidaException e) {}
         catch (OperacionNoAutorizadaException e) {}
-
-
-
     }
 
+    @AfterAll
+    public static void tearDown() {
+        Escenario.resetearSistema();
+    }
     @Test
     public void datosCorrectosTest() {
 

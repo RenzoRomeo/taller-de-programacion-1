@@ -6,6 +6,7 @@ import excepciones.SistemaYaInicializadoException;
 import modelos.Operario;
 import modelos.Sistema;
 import modelos.enums.ModoOperacion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +16,12 @@ public class AgregarOperarioTest {
 
     @BeforeAll
     public static void setUp() {
-        try {
-            Sistema.inicializarSistema("McDonalds");
-        } catch (SistemaYaInicializadoException e) {
-            fail("Sistema no deberia estar inicializado");
-        }
+        Escenario.setUp();
         Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
+    }
+    @AfterAll
+    public static void tearDown() {
+        Escenario.resetearSistema();
     }
 
     @Test

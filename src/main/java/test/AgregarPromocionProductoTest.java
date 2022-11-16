@@ -9,6 +9,7 @@ import modelos.PromocionProducto;
 import modelos.Sistema;
 import modelos.enums.Dia;
 import modelos.enums.ModoOperacion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -25,15 +26,15 @@ public class AgregarPromocionProductoTest {
 
     @BeforeAll
     public static void setUp() throws ProductoExistenteException, OperacionNoAutorizadaException {
-        try {
-            Sistema.inicializarSistema("McDonalds");
-        } catch (SistemaYaInicializadoException e) {
-            fail("Sistema no deberia estar inicializado");
-        }
+        Escenario.setUp();
         Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
         Sistema.getInstancia().agregarProducto(papas);
         diasPromo.add(Dia.LUNES);
         diasPromo.add(Dia.MIERCOLES);
+    }
+    @AfterAll
+    public static void tearDown() {
+        Escenario.resetearSistema();
     }
 
     @Test

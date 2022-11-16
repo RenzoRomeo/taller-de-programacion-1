@@ -6,6 +6,7 @@ import excepciones.SistemaYaInicializadoException;
 import modelos.Producto;
 import modelos.Sistema;
 import modelos.enums.ModoOperacion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,13 +16,11 @@ public class AgregarProductoTest {
 
     @BeforeAll
     public static void setUp() {
-        try {
-            Sistema.inicializarSistema("McDonalds");
-        } catch (SistemaYaInicializadoException e) {
-            throw new RuntimeException(e);
-        }
-
-
+        Escenario.setUp();
+    }
+    @AfterAll
+    public static void tearDown() {
+        Escenario.resetearSistema();
     }
 
     @Test

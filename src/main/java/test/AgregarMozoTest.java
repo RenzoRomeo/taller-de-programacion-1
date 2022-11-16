@@ -8,6 +8,7 @@ import modelos.Mozo;
 import modelos.Sistema;
 import modelos.Sueldo;
 import modelos.enums.ModoOperacion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +20,11 @@ public class AgregarMozoTest {
 
     @BeforeAll
     public static void setUp() {
-        try {
-            Sistema.inicializarSistema("McDonalds");
-        } catch (SistemaYaInicializadoException e) {
-            fail("Sistema no deberia estar inicializado");
-        }
+        Escenario.setUp();
+    }
+    @AfterAll
+    public static void tearDown() {
+        Escenario.resetearSistema();
     }
 
     @Test

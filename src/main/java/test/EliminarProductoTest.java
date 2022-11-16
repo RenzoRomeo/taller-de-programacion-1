@@ -4,6 +4,7 @@ import excepciones.*;
 import modelos.Producto;
 import modelos.Sistema;
 import modelos.enums.ModoOperacion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,10 +18,7 @@ public class EliminarProductoTest {
 
     @BeforeAll
     public static void setUp() {
-        try {
-            Sistema.inicializarSistema("McDonalds");
-        }
-        catch (SistemaYaInicializadoException e) {}
+        Escenario.setUp();
         Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
         try {
             Sistema.getInstancia().agregarProducto(producto);
@@ -28,9 +26,13 @@ public class EliminarProductoTest {
         catch (ProductoExistenteException e) {}
         catch (OperacionNoAutorizadaException e) {}
     }
+    @AfterAll
+    public static void tearDown() {
+        Escenario.resetearSistema();
+    }
 
     @AfterEach
-    public void tearDown() {
+    public void tearDownEach() {
         Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
         try {
             Sistema.getInstancia().agregarProducto(producto);

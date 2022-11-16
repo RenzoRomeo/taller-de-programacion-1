@@ -6,6 +6,7 @@ import modelos.Mozo;
 import modelos.Sistema;
 import modelos.Sueldo;
 import modelos.enums.ModoOperacion;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,10 +21,7 @@ public class AsignarMesaTest {
 
     @BeforeAll
     public static void setUp() {
-        try {
-            Sistema.inicializarSistema("McDonalds");
-        }
-        catch (SistemaYaInicializadoException e) {}
+        Escenario.setUp();
         Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
         try {
             Sistema.getInstancia().agregarMesa(mesa);
@@ -36,8 +34,10 @@ public class AsignarMesaTest {
         catch (MozoExistenteException e) {}
         catch (MaximaCantidadMozosException e) {}
         catch (OperacionNoAutorizadaException e) {}
-
-
+    }
+    @AfterAll
+    public static void tearDown() {
+        Escenario.resetearSistema();
     }
 
     @Test

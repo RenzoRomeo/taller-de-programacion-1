@@ -88,4 +88,9 @@ public class Administrador extends Operario {
     public static boolean isInicializado() {
         return inicializado;
     }
+
+    //Creado para poder resetear el sistema despues de cada test
+    public static void setInicializado(boolean inicializado) {
+        Administrador.inicializado = inicializado;
+    }
 }

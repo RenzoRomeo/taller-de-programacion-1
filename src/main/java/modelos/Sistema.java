@@ -588,41 +588,91 @@ public class Sistema {
     // TODO Estadisticas mensuales empleado.
 
     private void verificarInvariantes() {
-//        assert nombreLocal != null : "El nombre del local no puede ser nulo";
-//        assert !nombreLocal.equals("") : "El nombre del local no puede ser vacío";
-//        assert mozos != null : "La lista de mozos no puede ser nula";
-//        assert mesas != null : "La lista de mesas no puede ser nula";
-//        assert productos != null : "La lista de productos no puede ser nula";
-//        assert operarios != null : "La lista de operarios no puede ser nula";
-//        assert asignacionMesas != null : "La asignación de mesas no puede ser nula";
-//        assert comandas != null : "La lista de comandas no puede ser nula";
-//        assert promocionesProducto != null : "La lista de promociones no puede ser nula";
-//        assert mozos.size() <= 6 : "No puede haber más de 6 mozos";
-//        assert promocionesProducto.values().stream().allMatch(promocionesProducto -> promocionesProducto != null
-//                && promocionesProducto.stream().allMatch(promocion -> promocion.getDiasPromo() != null)) : "Debe haber días de promoción para todos los productos";
-//
-//        Dia diaActual = Dia.getDiaActual();
-//        Set<Map.Entry<Producto, List<PromocionProducto>>> entries = promocionesProducto.entrySet();
-//        Iterator<Map.Entry<Producto, List<PromocionProducto>>> iterator = entries.iterator();
-//        int productosPromocionadosHoy = 0;
-//        while (iterator.hasNext() && productosPromocionadosHoy < 2) {
-//            Map.Entry<Producto, List<PromocionProducto>> entry = iterator.next();
-//            List<PromocionProducto> promociones = entry.getValue();
-//            Iterator<PromocionProducto> iteratorPromociones = promociones.iterator();
-//            boolean productoPromocionadoHoy = false;
-//            while (iteratorPromociones.hasNext() && productosPromocionadosHoy < 2 && !productoPromocionadoHoy) {
-//                Promocion promocion = iteratorPromociones.next();
-//                if (promocion.getDiasPromo().contains(diaActual)) {
-//                    productosPromocionadosHoy++;
-//                    productoPromocionadoHoy = true;
-//                }
-//            }
-//        }
-//
-//        assert productosPromocionadosHoy >= 2 : "Debe haber al menos 2 productos promocionados hoy";
+
     }
+
 
     public Administrador getAdministrador() {
         return this.administrador;
+    }
+
+    public String getNombreLocal() {
+        return nombreLocal;
+    }
+
+    public void setNombreLocal(String nombreLocal) {
+        this.nombreLocal = nombreLocal;
+    }
+
+    public List<Mozo> getMozos() {
+        return mozos;
+    }
+
+    public void setMozos(List<Mozo> mozos) {
+        this.mozos = mozos;
+    }
+
+    public List<Mesa> getMesas() {
+        return mesas;
+    }
+
+    public void setMesas(List<Mesa> mesas) {
+        this.mesas = mesas;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public List<Operario> getOperarios() {
+        return operarios;
+    }
+
+    public void setOperarios(List<Operario> operarios) {
+        this.operarios = operarios;
+    }
+
+    public Map<Mozo, List<Mesa>> getAsignacionMesas() {
+        return asignacionMesas;
+    }
+
+    public void setAsignacionMesas(Map<Mozo, List<Mesa>> asignacionMesas) {
+        this.asignacionMesas = asignacionMesas;
+    }
+
+    public Map<Mesa, Comanda> getComandas() {
+        return comandas;
+    }
+
+    public void setComandas(Map<Mesa, Comanda> comandas) {
+        this.comandas = comandas;
+    }
+
+    public Map<Producto, List<PromocionProducto>> getPromocionesProducto() {
+        return promocionesProducto;
+    }
+
+    public void setPromocionesProducto(Map<Producto, List<PromocionProducto>> promocionesProducto) {
+        this.promocionesProducto = promocionesProducto;
+    }
+
+    public List<PromocionTemporal> getPromocionesTemporales() {
+        return promocionesTemporales;
+    }
+
+    public void setPromocionesTemporales(List<PromocionTemporal> promocionesTemporales) {
+        this.promocionesTemporales = promocionesTemporales;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
+
+    public static void setInstancia(Sistema instancia) {
+        Sistema.instancia = instancia;
     }
 }
