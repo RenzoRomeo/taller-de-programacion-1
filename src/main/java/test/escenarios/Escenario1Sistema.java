@@ -1,7 +1,9 @@
 package test.escenarios;
 
+import excepciones.MesaYaExistenteException;
 import excepciones.MozoYaExistenteException;
 import excepciones.NombreDeUsuarioNoDisponibleException;
+import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Sistema;
@@ -11,8 +13,8 @@ import java.util.Date;
 public class Escenario1Sistema {
     private static Operario operarioJuan;
     private static Operario operarioJose;
-
     private static Mozo mozoAlberto;
+    private static Mesa mesa1;
 
     public static void setUp() {
         Sistema sistema = Sistema.getInstance();
@@ -22,11 +24,14 @@ public class Escenario1Sistema {
 
         mozoAlberto = new Mozo("Alberto", "Perez", new Date(1995, 5, 10), 0);
 
+        mesa1 = new Mesa(1, 4);
+
         try {
             sistema.agregarOperario(operarioJuan);
             sistema.agregarOperario(operarioJose);
             sistema.agregarMozo(mozoAlberto);
-        } catch (NombreDeUsuarioNoDisponibleException | MozoYaExistenteException e) {
+            sistema.agregarMesa(mesa1);
+        } catch (NombreDeUsuarioNoDisponibleException | MozoYaExistenteException | MesaYaExistenteException e) {
 
         }
     }
@@ -35,6 +40,7 @@ public class Escenario1Sistema {
         Sistema sistema = Sistema.getInstance();
         sistema.getOperarios().clear();
         sistema.getMozos().clear();
+        sistema.getMesas().clear();
     }
 
     public static Operario getOperarioJuan() {
@@ -47,5 +53,9 @@ public class Escenario1Sistema {
 
     public static Mozo getMozoAlberto() {
         return mozoAlberto;
+    }
+
+    public static Mesa getMesa1() {
+        return mesa1;
     }
 }
