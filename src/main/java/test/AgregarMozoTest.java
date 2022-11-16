@@ -27,10 +27,10 @@ public class AgregarMozoTest {
 
     @Test
     void mozoAgregado() {
-        Mozo mozoAgregado = new Mozo("Rodrigo", "Perez", new Date(11, 10, 1990), 2);
-        Assert.assertTrue("El mozo deberia haberse agregado correctamente", Sistema.getInstance().getMozos().contains(mozoAgregado));
+        Mozo mozoAgregado = new Mozo("Rodrigo", "Perez", new Date(1990, 11, 10), 2);
         try {
             Sistema.getInstance().agregarMozo(mozoAgregado);
+            Assert.assertTrue("El mozo deberia haberse agregado correctamente", Sistema.getInstance().getMozos().contains(mozoAgregado));
         } catch (MozoYaExistenteException e) {
             fail("El mozo deberia haberse agregado correctamente");
         }
@@ -38,10 +38,9 @@ public class AgregarMozoTest {
 
     @Test
     void mozoYaExistente() {
-        Mozo mozoAgregado = new Mozo("Alberto", "Perez", new Date(17, 11, 1991), 1);
         try {
-            Sistema.getInstance().agregarMozo(mozoAgregado);
-            fail("El mozo ya existe");
+            Sistema.getInstance().agregarMozo(Escenario1Sistema.getMozoAlberto());
+            fail("El deberia existir");
         } catch (MozoYaExistenteException e) {
 
         }
