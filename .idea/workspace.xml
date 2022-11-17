@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="CrearComandaTest para escenario 2.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9e97fe47-50b0-45c8-bcc5-2c97df95d980" name="Changes" comment="Cerrar comanda devuelve factura.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,26 +49,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "D:/Academico/Facultad/Talle de Programacion 1/taller-de-programacion-1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Academico/Facultad/Talle de Programacion 1/taller-de-programacion-1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="excepciones" />
@@ -197,7 +196,8 @@
       <workItem from="1668547303998" duration="12120000" />
       <workItem from="1668601595344" duration="5978000" />
       <workItem from="1668625981099" duration="34000" />
-      <workItem from="1668626028922" duration="4919000" />
+      <workItem from="1668626028922" duration="5141000" />
+      <workItem from="1668643584820" duration="2644000" />
     </task>
     <task id="LOCAL-00001" summary="Creadas las clases + constructor de operario con asersiones">
       <created>1666643834828</created>
@@ -472,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668629938504</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary=".idea en gitignore.">
+      <created>1668631012104</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1668631012104</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Cerrar comanda devuelve factura.">
+      <created>1668647485455</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1668647485455</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,8 +518,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Eliminacion de los metodos de modificar. Hashmap de operarios" />
-    <MESSAGE value="Excepcion de NombreUsuarioOperarioExistente. Constructor PromocionTemporal" />
     <MESSAGE value="Un par de clases creadas" />
     <MESSAGE value="Un par de clases creadas V2" />
     <MESSAGE value="Getters de diversas clases" />
@@ -529,7 +541,9 @@
     <MESSAGE value="Test crear comanda escenario 1." />
     <MESSAGE value="EscenarioSistema2." />
     <MESSAGE value="CrearComandaTest para escenario 2." />
-    <option name="LAST_COMMIT_MESSAGE" value="CrearComandaTest para escenario 2." />
+    <MESSAGE value=".idea en gitignore." />
+    <MESSAGE value="Cerrar comanda devuelve factura." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cerrar comanda devuelve factura." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
