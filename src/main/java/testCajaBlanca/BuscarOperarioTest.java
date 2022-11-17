@@ -14,7 +14,7 @@ import test.Escenario;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class buscarOperarioTest {
+public class BuscarOperarioTest {
 
     @BeforeEach
     public void setUp() {
@@ -33,7 +33,7 @@ public class buscarOperarioTest {
         Operario operario = new Operario("Juan", "Perez", "jperez", "Jper1234");
         Sistema.getInstancia().agregarOperario(operario);
         try {
-            Assertions.assertEquals(operario, Sistema.getInstancia().buscarOperario("jperez"), "El operario no es el mismo");
+            Assertions.assertEquals(operario, BuscarOperarioCobertura.buscarOperario("jperez"), "El operario no es el mismo");
             System.out.println("Operario encontrado");
         } catch (OperarioInexistenteException e) {
             fail("Debio encontrar el operario");
@@ -44,7 +44,7 @@ public class buscarOperarioTest {
     public void camino2(){
         //Lista de operarios vacia, nombre de usuario perteneciente al administrador
         try {
-            Sistema.getInstancia().buscarOperario("ADMIN");
+            BuscarOperarioCobertura.buscarOperario("ADMIN");
             System.out.println("Admin encontrado");
         } catch (OperarioInexistenteException e) {
             fail("Debio encontrar un administrador");
@@ -55,7 +55,7 @@ public class buscarOperarioTest {
     public void camino3(){
         //Lista de operarios vacia, nombre de usuario no perteneciente al administrador
         try {
-            Sistema.getInstancia().buscarOperario("jperez");
+            BuscarOperarioCobertura.buscarOperario("jperez");
             fail("No deberia encontrar un operario");
         } catch (OperarioInexistenteException e) {
             System.out.println("Operario inexistente");

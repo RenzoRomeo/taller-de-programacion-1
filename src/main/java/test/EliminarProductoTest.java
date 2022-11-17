@@ -1,13 +1,12 @@
 package test;
 
 import excepciones.*;
+import modelos.Mesa;
+import modelos.Pedido;
 import modelos.Producto;
 import modelos.Sistema;
 import modelos.enums.ModoOperacion;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -16,8 +15,8 @@ public class EliminarProductoTest {
     private static Producto producto = new Producto("Papas", 100, 150, 20);
 
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    public void setUp() {
         Escenario.setUp();
         Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
         try {
@@ -26,14 +25,9 @@ public class EliminarProductoTest {
         catch (ProductoExistenteException e) {}
         catch (OperacionNoAutorizadaException e) {}
     }
-    @AfterAll
-    public static void tearDown() {
-        Escenario.resetearSistema();
-    }
 
     @AfterEach
     public void tearDownEach() {
-        Sistema.getInstancia().setModoOperacion(ModoOperacion.ADMINISTRADOR);
         try {
             Sistema.getInstancia().agregarProducto(producto);
         } catch (ProductoExistenteException e) {
@@ -73,8 +67,12 @@ public class EliminarProductoTest {
     }
 
     @Test
-    public void productoEnComandaException() {
-        Sistema.getInstancia().setModoOperacion(ModoOperacion.OPERARIO);
+    public void productoEnComandaException() throws MesaOcupadaException, MesaInexistenteException, StockInsuficienteException, ComandaInexistenteException, MesaRepetidaException, OperacionNoAutorizadaException {
+        Mesa mesa = new Mesa(1, 5);
+        Sistema.getInstancia().agregarMesa(mesa);
+        Sistema.getInstancia().crearComanda(mesa);
+        Pedido pedido = new Pedido(producto, 5);
+        Sistema.getInstancia().agregarPedido(mesa, pedido);
         try {
             Sistema.getInstancia().eliminarProducto(producto);
             fail("Deberia haber excepcion");
