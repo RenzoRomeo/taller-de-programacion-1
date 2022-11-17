@@ -389,11 +389,12 @@ public class Sistema {
      *
      *                    <b>Post:</b> <br>
      *                    comanda cerrada <br>
+     * @return Factura de la comanda
      * @throws MesaNoExisteException        si la mesa no existe
      * @throws MesaNoTieneComandaException  si la mesa no tiene comanda creada
      * @throws FormaDePagoInvalidaException si la forma de pago no es valida
      */
-    public void cerrarComanda(Mesa mesa, FormaDePago formaDePago) throws MesaNoExisteException, MesaNoTieneComandaException, FormaDePagoInvalidaException {
+    public Factura cerrarComanda(Mesa mesa, FormaDePago formaDePago) throws MesaNoExisteException, MesaNoTieneComandaException, FormaDePagoInvalidaException {
         assert mesa != null : "La mesa no puede ser null";
         assert formaDePago != null : "La forma de pago no puede ser null";
 
@@ -436,17 +437,18 @@ public class Sistema {
                     }
                 }
                 //chequeo si hay promocion temporal
-                for (PromocionTemporal promocionTemporal : promocionesTemporales) {
-                    if (promocionTemporal.estaActiva() && cumpleDiaPromocion(promocionTemporal) && cumpleCondicionAcumulable(promocionTemporal.esAcumulable(), aplicoPromocionProducto) && promocionTemporal.getFormaDePago().equals(formaDePago)) {
-                        promocionesAplicadas.add(promocionTemporal);
-                        total += promocionTemporal.realizaDescuento(total);
-                    }
+            for (PromocionTemporal promocionTemporal : promocionesTemporales) {
+                if (promocionTemporal.estaActiva() && cumpleDiaPromocion(promocionTemporal) && cumpleCondicionAcumulable(promocionTemporal.esAcumulable(), aplicoPromocionProducto) && promocionTemporal.getFormaDePago().equals(formaDePago)) {
+                    promocionesAplicadas.add(promocionTemporal);
+                    total += promocionTemporal.realizaDescuento(total);
                 }
             }
-        Factura factura = new Factura(mesa, formaDePago, total, promocionesAplicadas, mozo);
+        }
 
         assert !comandas.containsKey(mesa) : "La comanda no fue cerrada";
 
+        Factura factura = new Factura(mesa, formaDePago, total, promocionesAplicadas, mozo);
+        return factura;
     }
 
     private boolean cumpleCondicionAcumulable(boolean esAcumulable, boolean aplicoPromocionProducto) {
